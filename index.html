@@ -1,10 +1,149 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-<title>Raven Market Research Report</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raven Market Research Report + Kickstarter Analysis</title>
+  <style>
+    :root {
+      --green:#17803a;
+      --blue:#1d5f9f;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --line:#d6d9de;
+      --page:#f5f6f8;
+      --tab-bg:#ffffff;
+      --tab-inactive:#eef2f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .tab-shell {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--tab-bg);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(15,23,42,.06);
+      padding: 10px 18px 0;
+    }
+    .tab-title {
+      max-width: 1320px;
+      margin: 0 auto 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .tab-title strong { color: var(--ink); }
+    .tab-controls {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .tab-controls input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .tab-controls label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+      background: var(--tab-inactive);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    .tab-controls label span {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+    #tab-raven:checked ~ label[for="tab-raven"],
+    #tab-kickstarter:checked ~ label[for="tab-kickstarter"] {
+      background: #ffffff;
+      color: var(--blue);
+      border-top: 4px solid var(--green);
+      padding-top: 9px;
+    }
+    .tab-panels {
+      flex: 1;
+      min-height: 0;
+    }
+    .panel {
+      display: none;
+      width: 100%;
+      height: calc(100vh - 92px);
+      min-height: 720px;
+      background: var(--page);
+    }
+    body:has(#tab-raven:checked) .panel-raven,
+    body:has(#tab-kickstarter:checked) .panel-kickstarter {
+      display: block;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+      display: block;
+    }
+    @media print {
+      .top-tabs { display: none; }
+      .panel { display: block !important; height: auto; min-height: 0; }
+      .panel-kickstarter { break-before: page; }
+      iframe { height: 1100px; overflow: visible; }
+    }
+    @media (max-width: 720px) {
+      .top-tabs { padding: 8px 10px 0; }
+      .tab-title { font-size: 12px; }
+      .tab-controls label { padding: 10px 11px; font-size: 12px; }
+      #tab-raven:checked ~ label[for="tab-raven"],
+      #tab-kickstarter:checked ~ label[for="tab-kickstarter"] { padding-top: 7px; }
+      .panel { height: calc(100vh - 86px); min-height: 640px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-shell">
+    <nav class="top-tabs" aria-label="Raven report tabs">
+      <div class="tab-title"><strong>Raven Market Research</strong> | Main report is default. Use the tabs to view the deeper Kickstarter Maker Machine Demand Analysis.</div>
+      <div class="tab-controls">
+        <input type="radio" name="report-tab" id="tab-raven" checked />
+        <input type="radio" name="report-tab" id="tab-kickstarter" />
+        <label for="tab-raven"><span>Main</span> Raven Market Research Report</label>
+        <label for="tab-kickstarter"><span>Deep Dive</span> Kickstarter Maker Machine Demand Analysis</label>
+      </div>
+    </nav>
+
+    <section class="tab-panels">
+      <div class="panel panel-raven" role="tabpanel" aria-label="Raven Market Research Report">
+        <iframe title="Raven Market Research Report" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&#x27;en&#x27;&gt;
+&lt;head&gt;
+&lt;meta charset=&#x27;UTF-8&#x27;&gt;
+&lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1.0&#x27;&gt;
+&lt;title&gt;Raven Market Research Report&lt;/title&gt;
+&lt;style&gt;
 :root {
   --green:#17803a; --green-bg:#e8f6ee; --blue:#1d5f9f; --blue-bg:#e9f3fc; --yellow:#9a7200; --yellow-bg:#fff7d8; --orange:#b45309; --orange-bg:#fff0df;
   --ink:#1f2937; --muted:#6b7280; --line:#d6d9de; --panel:#fff; --page:#f5f6f8;
@@ -28,276 +167,673 @@ table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td
 .funnel{display:grid;grid-template-columns:1fr;gap:7px} .funnel div{border-radius:10px;padding:9px 12px;font-weight:700;text-align:center} .src-list{columns:2;column-gap:28px;font-size:10px;word-break:break-word;padding-left:18px} .src-list li{margin:0 0 6px;break-inside:avoid}
 @media print{body{background:#fff} .report{padding:0;max-width:none} .page{border:none;box-shadow:none;border-radius:0;min-height:0;height:10.45in;page-break-after:always;margin:0;padding:.35in} .sources-page{border:none;box-shadow:none;border-radius:0;page-break-before:always;margin:0;padding:.35in} h1{font-size:28px} .card{break-inside:avoid} .src-list{font-size:8px} @page{size:letter;margin:.25in}}
 @media(max-width:900px){.header-grid,.grid{display:block} .card{margin-bottom:12px} .src-list{columns:1} .page{min-height:0}}
-</style>
-</head>
-<body>
-<main class='report'>
-<section class='page'>
-  <div class='header-grid'>
-    <div>
-      <span class='pill blue'>Raven: Market Report</span><span class='pill green'>Gate 1 Recommendation: PASS to Customer Discovery</span>
-      <h1>Raven Market Research Report</h1>
-      <p class='meta'>Product: Raven, desktop PCB fabrication for hobbyists and pro-makers | Phase: 2/9 Market Research | Date: May 27, 2026</p>
-    </div>
-    <div class='card'>
-      <b>Confidence Legend</b><br>
-      <span class='pill green'>Green</span> multi-source / verified data<br>
-      <span class='pill blue'>Blue</span> 1-2 strong sources<br>
-      <span class='pill yellow'>Yellow</span> source-backed assumptions<br>
-      <span class='pill orange'>Orange</span> inference / weak data
-    </div>
-  </div>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main class=&#x27;report&#x27;&gt;
+&lt;section class=&#x27;page&#x27;&gt;
+  &lt;div class=&#x27;header-grid&#x27;&gt;
+    &lt;div&gt;
+      &lt;span class=&#x27;pill blue&#x27;&gt;Raven: Market Report&lt;/span&gt;&lt;span class=&#x27;pill green&#x27;&gt;Gate 1 Recommendation: PASS to Customer Discovery&lt;/span&gt;
+      &lt;h1&gt;Raven Market Research Report&lt;/h1&gt;
+      &lt;p class=&#x27;meta&#x27;&gt;Product: Raven, desktop PCB fabrication for hobbyists and pro-makers | Phase: 2/9 Market Research | Date: May 27, 2026&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card&#x27;&gt;
+      &lt;b&gt;Confidence Legend&lt;/b&gt;&lt;br&gt;
+      &lt;span class=&#x27;pill green&#x27;&gt;Green&lt;/span&gt; multi-source / verified data&lt;br&gt;
+      &lt;span class=&#x27;pill blue&#x27;&gt;Blue&lt;/span&gt; 1-2 strong sources&lt;br&gt;
+      &lt;span class=&#x27;pill yellow&#x27;&gt;Yellow&lt;/span&gt; source-backed assumptions&lt;br&gt;
+      &lt;span class=&#x27;pill orange&#x27;&gt;Orange&lt;/span&gt; inference / weak data
+    &lt;/div&gt;
+  &lt;/div&gt;
 
-  <div class='callout green'>
-    <p><b>Leadership answer:</b> The market supports a Raven MSRP in the <b>$1,499-$1,999</b> range, but the strongest path to 1,000-2,000 units/year is a launch paid price around <b>$999-$1,499</b>, not a true hobbyist price near $2,000.</p>
-  </div>
+  &lt;div class=&#x27;callout green&#x27;&gt;
+    &lt;p&gt;&lt;b&gt;Leadership answer:&lt;/b&gt; The market supports a Raven MSRP in the &lt;b&gt;$1,499-$1,999&lt;/b&gt; range, but the strongest path to 1,000-2,000 units/year is a launch paid price around &lt;b&gt;$999-$1,499&lt;/b&gt;, not a true hobbyist price near $2,000.&lt;/p&gt;
+  &lt;/div&gt;
 
-  <div class='grid'>
-    <div class='card span-3'><span class='pill green'>Kickstarter</span><span class='metric-value green'>30</span><span class='metric-label'>manually confirmed TRUE campaigns</span></div>
-    <div class='card span-3'><span class='pill green'>Demand Proof</span><span class='metric-value green'>$126.5M</span><span class='metric-label'>confirmed campaign revenue</span></div>
-    <div class='card span-3'><span class='pill blue'>Unit Signal</span><span class='metric-value blue'>79,389</span><span class='metric-label'>confirmed product-tier purchases</span></div>
-    <div class='card span-3'><span class='pill blue'>Pricing Signal</span><span class='metric-value blue'>$1,601</span><span class='metric-label'>median weighted product-tier price</span></div>
-  </div>
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-3&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Kickstarter&lt;/span&gt;&lt;span class=&#x27;metric-value green&#x27;&gt;30&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;manually confirmed TRUE campaigns&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&#x27;card span-3&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Demand Proof&lt;/span&gt;&lt;span class=&#x27;metric-value green&#x27;&gt;$126.5M&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;confirmed campaign revenue&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&#x27;card span-3&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Unit Signal&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;79,389&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;confirmed product-tier purchases&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&#x27;card span-3&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Pricing Signal&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;$1,601&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;median weighted product-tier price&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
 
-  <div class='grid'>
-    <div class='card span-6'>
-      <h2 class='green'>1. Executive Summary: Opportunity Narrative</h2>
-      <p class='green'><b>Market gap:</b> Hobbyists can design boards in KiCad/EasyEDA, but the path from Gerber files to reliable same-day physical PCB output is still fragmented by CAM setup, tooling, failed boards, and outsourced fab delays.</p>
-      <p class='blue'><b>Beachhead:</b> High-intent electronics makers already trying desktop PCB production with FlatCAM, pcb2gcode, generic CNC mills, Othermill/Bantam-style machines, or Voltera V-One-like workflows.</p>
-      <p class='blue'><b>Price anchor:</b> Prosumer fabrication buyers have paid $800-$2,300 weighted campaign prices for successful desktop tools; Raven should avoid being framed as a pure $2,000 hobby toy.</p>
-      <p class='green'><b>Investment thesis:</b> Kickstarter confirms a broad paid market for desktop fabrication machines, and software telemetry confirms a specific PCB fabrication pain point. Raven is justified if it converts CAM complexity into a reliable appliance-like workflow.</p>
-    </div>
-    <div class='card span-6'>
-      <h2 class='blue'>2. Core Evidence Weighting</h2>
-      <table>
-        <tr><th>Data Map</th><th>Weight</th><th>PM Read</th></tr>
-        <tr><td class='green'>Kickstarter maker machines</td><td class='green'>Highest</td><td class='green'>Closest public evidence of hobbyist/prosumer willingness to pay for desktop fabrication hardware.</td></tr>
-        <tr><td class='blue'>Hobby electronics hardware/ecommerce</td><td class='blue'>High</td><td class='blue'>Raspberry Pi, Arduino, Adafruit, SparkFun show large and growing hardware creation ecosystems.</td></tr>
-        <tr><td class='blue'>Software data</td><td class='blue'>High</td><td class='blue'>CAD/simulation size shows creator pool; CAM download velocity shows high-intent physical PCB users.</td></tr>
-        <tr><td class='yellow'>PCB fab houses</td><td class='yellow'>Medium</td><td class='yellow'>Large status-quo competitor; validates demand but also makes price/value hard for hobbyists.</td></tr>
-      </table>
-    </div>
-  </div>
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h2 class=&#x27;green&#x27;&gt;1. Executive Summary: Opportunity Narrative&lt;/h2&gt;
+      &lt;p class=&#x27;green&#x27;&gt;&lt;b&gt;Market gap:&lt;/b&gt; Hobbyists can design boards in KiCad/EasyEDA, but the path from Gerber files to reliable same-day physical PCB output is still fragmented by CAM setup, tooling, failed boards, and outsourced fab delays.&lt;/p&gt;
+      &lt;p class=&#x27;blue&#x27;&gt;&lt;b&gt;Beachhead:&lt;/b&gt; High-intent electronics makers already trying desktop PCB production with FlatCAM, pcb2gcode, generic CNC mills, Othermill/Bantam-style machines, or Voltera V-One-like workflows.&lt;/p&gt;
+      &lt;p class=&#x27;blue&#x27;&gt;&lt;b&gt;Price anchor:&lt;/b&gt; Prosumer fabrication buyers have paid $800-$2,300 weighted campaign prices for successful desktop tools; Raven should avoid being framed as a pure $2,000 hobby toy.&lt;/p&gt;
+      &lt;p class=&#x27;green&#x27;&gt;&lt;b&gt;Investment thesis:&lt;/b&gt; Kickstarter confirms a broad paid market for desktop fabrication machines, and software telemetry confirms a specific PCB fabrication pain point. Raven is justified if it converts CAM complexity into a reliable appliance-like workflow.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h2 class=&#x27;blue&#x27;&gt;2. Core Evidence Weighting&lt;/h2&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Data Map&lt;/th&gt;&lt;th&gt;Weight&lt;/th&gt;&lt;th&gt;PM Read&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Kickstarter maker machines&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Highest&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Closest public evidence of hobbyist/prosumer willingness to pay for desktop fabrication hardware.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Hobby electronics hardware/ecommerce&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;High&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Raspberry Pi, Arduino, Adafruit, SparkFun show large and growing hardware creation ecosystems.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Software data&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;High&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;CAD/simulation size shows creator pool; CAM download velocity shows high-intent physical PCB users.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;PCB fab houses&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Medium&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Large status-quo competitor; validates demand but also makes price/value hard for hobbyists.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
-  <div class='grid'>
-    <div class='card span-6'>
-      <h2 class='blue'>Kickstarter Product Purchases by MSRP Band</h2>
-      <div class='bar-row'><span class='bar-label-left'><$700</span><div class='bar-track'><div class='bar orange' style='width:41.1%'></div></div><span class='bar-value'>11,759</span></div><div class='bar-row'><span class='bar-label-left'>$700-$999</span><div class='bar-track'><div class='bar green' style='width:100.0%'></div></div><span class='bar-value'>28,629</span></div><div class='bar-row'><span class='bar-label-left'>$1,000-$1,999</span><div class='bar-track'><div class='bar blue' style='width:42.6%'></div></div><span class='bar-value'>12,207</span></div><div class='bar-row'><span class='bar-label-left'>$2,000-$4,999</span><div class='bar-track'><div class='bar yellow' style='width:86.3%'></div></div><span class='bar-value'>24,695</span></div><div class='bar-row'><span class='bar-label-left'>$5,000-$9,999</span><div class='bar-track'><div class='bar orange' style='width:7.3%'></div></div><span class='bar-value'>2,099</span></div>
-      <p class='small'>Manual TRUE rows only. Product-tier purchases are stronger than total backers because they exclude non-product/support tiers where available.</p>
-    </div>
-    <div class='card span-6'>
-      <h2 class='blue'>Product Purchases by Category</h2>
-      <div class='bar-row'><span class='bar-label-left'>MICS Fab Machines</span><div class='bar-track'><div class='bar blue' style='width:100.0%'></div></div><span class='bar-value'>25,013</span></div><div class='bar-row'><span class='bar-label-left'>3D Printers</span><div class='bar-track'><div class='bar blue' style='width:99.5%'></div></div><span class='bar-value'>24,896</span></div><div class='bar-row'><span class='bar-label-left'>Laser Machines</span><div class='bar-track'><div class='bar yellow' style='width:69.4%'></div></div><span class='bar-value'>17,353</span></div><div class='bar-row'><span class='bar-label-left'>CNC Machines</span><div class='bar-track'><div class='bar green' style='width:45.3%'></div></div><span class='bar-value'>11,319</span></div><div class='bar-row'><span class='bar-label-left'>MISC 2: PCB/Waterjet</span><div class='bar-track'><div class='bar green' style='width:3.2%'></div></div><span class='bar-value'>808</span></div>
-      <p class='small'>PCB/waterjet category is smaller but most directly relevant; 3D printers and multi-function machines are broader upper-bound comps.</p>
-    </div>
-  </div>
-</section>
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h2 class=&#x27;blue&#x27;&gt;Kickstarter Product Purchases by MSRP Band&lt;/h2&gt;
+      &lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;&lt;$700&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar orange&#x27; style=&#x27;width:41.1%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;11,759&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;$700-$999&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar green&#x27; style=&#x27;width:100.0%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;28,629&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;$1,000-$1,999&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar blue&#x27; style=&#x27;width:42.6%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;12,207&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;$2,000-$4,999&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar yellow&#x27; style=&#x27;width:86.3%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;24,695&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;$5,000-$9,999&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar orange&#x27; style=&#x27;width:7.3%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;2,099&lt;/span&gt;&lt;/div&gt;
+      &lt;p class=&#x27;small&#x27;&gt;Manual TRUE rows only. Product-tier purchases are stronger than total backers because they exclude non-product/support tiers where available.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h2 class=&#x27;blue&#x27;&gt;Product Purchases by Category&lt;/h2&gt;
+      &lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;MICS Fab Machines&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar blue&#x27; style=&#x27;width:100.0%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;25,013&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;3D Printers&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar blue&#x27; style=&#x27;width:99.5%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;24,896&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;Laser Machines&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar yellow&#x27; style=&#x27;width:69.4%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;17,353&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;CNC Machines&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar green&#x27; style=&#x27;width:45.3%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;11,319&lt;/span&gt;&lt;/div&gt;&lt;div class=&#x27;bar-row&#x27;&gt;&lt;span class=&#x27;bar-label-left&#x27;&gt;MISC 2: PCB/Waterjet&lt;/span&gt;&lt;div class=&#x27;bar-track&#x27;&gt;&lt;div class=&#x27;bar green&#x27; style=&#x27;width:3.2%&#x27;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&#x27;bar-value&#x27;&gt;808&lt;/span&gt;&lt;/div&gt;
+      &lt;p class=&#x27;small&#x27;&gt;PCB/waterjet category is smaller but most directly relevant; 3D printers and multi-function machines are broader upper-bound comps.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
 
-<section class='page'>
-  <h2 class='green'>3. Segmentation, Beachhead, and TAM Logic</h2>
-  <div class='grid'>
-    <div class='card span-7'>
-      <h3 class='green'>Primary Beachhead</h3>
-      <p class='green'><b>First 10-50 customers:</b> advanced hobbyists, electronics YouTubers, maker-space leads, university club/lab managers, RF/robotics hobbyists, and small hardware founders who already design PCBs and want same-day boards.</p>
-      <p class='blue'><b>Necessary condition:</b> Raven must accept standard Gerber/Excellon files and hide CAM complexity behind guided, protected, low-calibration software.</p>
-      <table>
-        <tr><th>Segment</th><th>Evidence</th><th>Need</th><th>Confidence</th></tr>
-        <tr><td>High-intent PCB CAM users</td><td class='green'>FlatCAM + pcb2gcode estimated 6k-12k downloads/month</td><td>Reliable Gerber-to-board workflow</td><td class='green'>Green</td></tr>
-        <tr><td>Electronics hobbyists / pro-makers</td><td class='blue'>KiCad 1.8M annual downloads; EasyEDA 3.5M accounts; Wokwi 500k active developers</td><td>Bridge from design/simulation to physical board</td><td class='blue'>Blue</td></tr>
-        <tr><td>Education / clubs / makerspaces</td><td class='yellow'>Maker movement + Arduino/Raspberry Pi ecosystem growth</td><td>Low-maintenance, safe, teachable PCB fabrication</td><td class='yellow'>Yellow</td></tr>
-        <tr><td>Small hardware startups</td><td class='yellow'>PCB fab delays and IP concerns create same-day iteration need</td><td>Iteration speed, privacy, less waiting</td><td class='yellow'>Yellow</td></tr>
-      </table>
-    </div>
-    <div class='card span-5'>
-      <h3 class='blue'>TAM Funnel: Practical Read</h3>
-      <div class='funnel'>
-        <div class='green' style='background:var(--green-bg);width:100%'>3.5M EasyEDA accounts / 1.8M KiCad annual downloads</div>
-        <div class='blue' style='background:var(--blue-bg);width:84%;margin:auto'>500k Wokwi active developers / 150k Flux developers</div>
-        <div class='yellow' style='background:var(--yellow-bg);width:66%;margin:auto'>72k-144k annual high-intent CAM downloads implied</div>
-        <div class='orange' style='background:var(--orange-bg);width:48%;margin:auto'>1%-2% conversion = 720-2,880 potential annual units</div>
+&lt;section class=&#x27;page&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;3. Segmentation, Beachhead, and TAM Logic&lt;/h2&gt;
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-7&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Primary Beachhead&lt;/h3&gt;
+      &lt;p class=&#x27;green&#x27;&gt;&lt;b&gt;First 10-50 customers:&lt;/b&gt; advanced hobbyists, electronics YouTubers, maker-space leads, university club/lab managers, RF/robotics hobbyists, and small hardware founders who already design PCBs and want same-day boards.&lt;/p&gt;
+      &lt;p class=&#x27;blue&#x27;&gt;&lt;b&gt;Necessary condition:&lt;/b&gt; Raven must accept standard Gerber/Excellon files and hide CAM complexity behind guided, protected, low-calibration software.&lt;/p&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Segment&lt;/th&gt;&lt;th&gt;Evidence&lt;/th&gt;&lt;th&gt;Need&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;High-intent PCB CAM users&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;FlatCAM + pcb2gcode estimated 6k-12k downloads/month&lt;/td&gt;&lt;td&gt;Reliable Gerber-to-board workflow&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Green&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Electronics hobbyists / pro-makers&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;KiCad 1.8M annual downloads; EasyEDA 3.5M accounts; Wokwi 500k active developers&lt;/td&gt;&lt;td&gt;Bridge from design/simulation to physical board&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Blue&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Education / clubs / makerspaces&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Maker movement + Arduino/Raspberry Pi ecosystem growth&lt;/td&gt;&lt;td&gt;Low-maintenance, safe, teachable PCB fabrication&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Yellow&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Small hardware startups&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;PCB fab delays and IP concerns create same-day iteration need&lt;/td&gt;&lt;td&gt;Iteration speed, privacy, less waiting&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Yellow&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-5&#x27;&gt;
+      &lt;h3 class=&#x27;blue&#x27;&gt;TAM Funnel: Practical Read&lt;/h3&gt;
+      &lt;div class=&#x27;funnel&#x27;&gt;
+        &lt;div class=&#x27;green&#x27; style=&#x27;background:var(--green-bg);width:100%&#x27;&gt;3.5M EasyEDA accounts / 1.8M KiCad annual downloads&lt;/div&gt;
+        &lt;div class=&#x27;blue&#x27; style=&#x27;background:var(--blue-bg);width:84%;margin:auto&#x27;&gt;500k Wokwi active developers / 150k Flux developers&lt;/div&gt;
+        &lt;div class=&#x27;yellow&#x27; style=&#x27;background:var(--yellow-bg);width:66%;margin:auto&#x27;&gt;72k-144k annual high-intent CAM downloads implied&lt;/div&gt;
+        &lt;div class=&#x27;orange&#x27; style=&#x27;background:var(--orange-bg);width:48%;margin:auto&#x27;&gt;1%-2% conversion = 720-2,880 potential annual units&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p class=&#x27;small&#x27;&gt;Conversion estimate is a planning assumption, not a measured market result.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Kickstarter Price-Band Table&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;MSRP Band&lt;/th&gt;&lt;th&gt;Campaigns&lt;/th&gt;&lt;th&gt;Revenue&lt;/th&gt;&lt;th&gt;Product Purchases&lt;/th&gt;&lt;th&gt;Median Product Purchases&lt;/th&gt;&lt;th&gt;Median MSRP&lt;/th&gt;&lt;th&gt;Median Tier Price&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;orange&#x27;&gt;&lt;$700&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;$3.2M&lt;/td&gt;&lt;td&gt;11,759&lt;/td&gt;&lt;td&gt;3,602&lt;/td&gt;&lt;td&gt;$399&lt;/td&gt;&lt;td&gt;$288&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;$700-$999&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;$27.8M&lt;/td&gt;&lt;td&gt;28,629&lt;/td&gt;&lt;td&gt;6,924&lt;/td&gt;&lt;td&gt;$849&lt;/td&gt;&lt;td&gt;$827&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;$1,000-$1,999&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;$17.0M&lt;/td&gt;&lt;td&gt;12,207&lt;/td&gt;&lt;td&gt;596&lt;/td&gt;&lt;td&gt;$1,399&lt;/td&gt;&lt;td&gt;$956&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;$2,000-$4,999&lt;/td&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;$63.8M&lt;/td&gt;&lt;td&gt;24,695&lt;/td&gt;&lt;td&gt;406&lt;/td&gt;&lt;td&gt;$2,550&lt;/td&gt;&lt;td&gt;$1,935&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;orange&#x27;&gt;$5,000-$9,999&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;$14.8M&lt;/td&gt;&lt;td&gt;2,099&lt;/td&gt;&lt;td&gt;208&lt;/td&gt;&lt;td&gt;$6,149&lt;/td&gt;&lt;td&gt;$5,870&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;blue&#x27;&gt;Category Table&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Campaigns&lt;/th&gt;&lt;th&gt;Revenue&lt;/th&gt;&lt;th&gt;Product Purchases&lt;/th&gt;&lt;th&gt;Median MSRP&lt;/th&gt;&lt;th&gt;Median Tier Price&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;MICS Fab Machines&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;$56.8M&lt;/td&gt;&lt;td&gt;25,013&lt;/td&gt;&lt;td&gt;$2,499&lt;/td&gt;&lt;td&gt;$2,229&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;3D Printers&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;$30.1M&lt;/td&gt;&lt;td&gt;24,896&lt;/td&gt;&lt;td&gt;$1,750&lt;/td&gt;&lt;td&gt;$1,229&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;Laser Machines&lt;/td&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;$20.0M&lt;/td&gt;&lt;td&gt;17,353&lt;/td&gt;&lt;td&gt;$2,499&lt;/td&gt;&lt;td&gt;$1,668&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;CNC Machines&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;$17.4M&lt;/td&gt;&lt;td&gt;11,319&lt;/td&gt;&lt;td&gt;$2,050&lt;/td&gt;&lt;td&gt;$1,503&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;MISC 2: PCB/Waterjet&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;$2.2M&lt;/td&gt;&lt;td&gt;808&lt;/td&gt;&lt;td&gt;$3,099&lt;/td&gt;&lt;td&gt;$2,276&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Hardware / Ecommerce Validation&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Signal&lt;/th&gt;&lt;th&gt;Data&lt;/th&gt;&lt;th&gt;Raven Read&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Raspberry Pi ecosystem&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;73M cumulative units sold by May 2026; FY2025 revenue $323.2M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Large hardware-builder ecosystem exists beyond casual tinkering.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Arduino / Adafruit / SparkFun&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Approx. $40M, $40M, and $25M annual revenue estimates respectively&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Sustained spend exists in hobby/pro-maker electronics channels.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;Arduino-compatible market&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Estimates range from ~$498M-$1.66B today to ~$805M-$5B by 2033-2035&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Directional growth signal; market-report ranges vary widely.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Software Gate Validation&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Layer&lt;/th&gt;&lt;th&gt;Data&lt;/th&gt;&lt;th&gt;Implication&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;CAD&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;KiCad 1.8M annual downloads; EasyEDA 3.5M accounts&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Board design is not the bottleneck.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;CAM&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;FlatCAM + pcb2gcode estimated 6k-12k downloads/month&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Users are actively trying to manufacture boards locally.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;Simulation&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Wokwi 500k active developers; Tinkercad 50M platform users&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Large upstream creator pool, but physical-board conversion is unproven.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;page&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;4. Competitive Landscape, Positioning, and Gate Decision&lt;/h2&gt;
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-7&#x27;&gt;
+      &lt;h3 class=&#x27;blue&#x27;&gt;Most Relevant Campaign Benchmarks&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Campaign&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Revenue&lt;/th&gt;&lt;th&gt;Backers&lt;/th&gt;&lt;th&gt;Product Purchases&lt;/th&gt;&lt;th&gt;MSRP&lt;/th&gt;&lt;th&gt;Weighted Tier&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;eufyMake E1&lt;/td&gt;&lt;td&gt;3D Texture UV Printer&lt;/td&gt;&lt;td&gt;$46.8M&lt;/td&gt;&lt;td&gt;17,822&lt;/td&gt;&lt;td&gt;17,492&lt;/td&gt;&lt;td&gt;$2,499&lt;/td&gt;&lt;td&gt;$2,229&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Apr 29 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Snapmaker U1&lt;/td&gt;&lt;td&gt;Color 3D Printer&lt;/td&gt;&lt;td&gt;$20.6M&lt;/td&gt;&lt;td&gt;20,680&lt;/td&gt;&lt;td&gt;20,373&lt;/td&gt;&lt;td&gt;$999&lt;/td&gt;&lt;td&gt;$810&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Aug 19 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Makera Z1&lt;/td&gt;&lt;td&gt;Desktop Entry-Level CNC&lt;/td&gt;&lt;td&gt;$10.1M&lt;/td&gt;&lt;td&gt;8,088&lt;/td&gt;&lt;td&gt;7,751&lt;/td&gt;&lt;td&gt;$1,199&lt;/td&gt;&lt;td&gt;$910&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Oct 28 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Carvera Air&lt;/td&gt;&lt;td&gt;Desktop CNC Mill&lt;/td&gt;&lt;td&gt;$3.5M&lt;/td&gt;&lt;td&gt;2,098&lt;/td&gt;&lt;td&gt;2,051&lt;/td&gt;&lt;td&gt;$2,199&lt;/td&gt;&lt;td&gt;$1,355&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Apr 9 2024&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Voltera V-One&lt;/td&gt;&lt;td&gt;Desktop PCB printer / solder paste / reflow&lt;/td&gt;&lt;td&gt;$502,310&lt;/td&gt;&lt;td&gt;938&lt;/td&gt;&lt;td&gt;317&lt;/td&gt;&lt;td&gt;$2,199&lt;/td&gt;&lt;td&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Feb 2 2015&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;Othermill&lt;/td&gt;&lt;td&gt;Desktop CNC / PCB milling&lt;/td&gt;&lt;td&gt;$311,657&lt;/td&gt;&lt;td&gt;652&lt;/td&gt;&lt;td&gt;185&lt;/td&gt;&lt;td&gt;$3,199&lt;/td&gt;&lt;td&gt;$1,509&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;May 5 2013&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;Squink&lt;/td&gt;&lt;td&gt;Desktop PCB printer + pick-and-place&lt;/td&gt;&lt;td&gt;$100,380&lt;/td&gt;&lt;td&gt;260&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;$2,999&lt;/td&gt;&lt;td&gt;$3,042&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Jul 11 2014&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;LaserPecker 4&lt;/td&gt;&lt;td&gt;Dual Laser Galvo (Fiber+Diode)&lt;/td&gt;&lt;td&gt;$4.5M&lt;/td&gt;&lt;td&gt;2,829&lt;/td&gt;&lt;td&gt;2,674&lt;/td&gt;&lt;td&gt;$1,899&lt;/td&gt;&lt;td&gt;$1,668&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Dec 15 2022&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;OrangeStorm Giga&lt;/td&gt;&lt;td&gt;Large Format 3D Printer&lt;/td&gt;&lt;td&gt;$3.4M&lt;/td&gt;&lt;td&gt;2,005&lt;/td&gt;&lt;td&gt;1,854&lt;/td&gt;&lt;td&gt;$2,500&lt;/td&gt;&lt;td&gt;$1,487&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Nov 4 2023&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Phrozen Arco&lt;/td&gt;&lt;td&gt;Multi-Material 3D Printer&lt;/td&gt;&lt;td&gt;$1.4M&lt;/td&gt;&lt;td&gt;1,413&lt;/td&gt;&lt;td&gt;1,332&lt;/td&gt;&lt;td&gt;$849&lt;/td&gt;&lt;td&gt;$971&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Feb 22 2024&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;xTool Screen Printer&lt;/td&gt;&lt;td&gt;Digital Screen Printer&lt;/td&gt;&lt;td&gt;$1.1M&lt;/td&gt;&lt;td&gt;2,639&lt;/td&gt;&lt;td&gt;2,516&lt;/td&gt;&lt;td&gt;$399&lt;/td&gt;&lt;td&gt;$399&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Nov 8 2023&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;xTool Apparel Printer&lt;/td&gt;&lt;td&gt;xTool Apparel Printer&lt;/td&gt;&lt;td&gt;$5.7M&lt;/td&gt;&lt;td&gt;980&lt;/td&gt;&lt;td&gt;908&lt;/td&gt;&lt;td&gt;$5,999&lt;/td&gt;&lt;td&gt;$6,221&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Feb 20 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;WAZER Desktop&lt;/td&gt;&lt;td&gt;Desktop waterjet cutter&lt;/td&gt;&lt;td&gt;$1.3M&lt;/td&gt;&lt;td&gt;1,301&lt;/td&gt;&lt;td&gt;283&lt;/td&gt;&lt;td&gt;$5,999&lt;/td&gt;&lt;td&gt;$4,242&lt;/td&gt;&lt;td class=&#x27;small&#x27;&gt;Sep 12 2026&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-5&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Competitive Matrix&lt;/h3&gt;
+      &lt;div class=&#x27;matrix&#x27;&gt;
+        &lt;span class=&#x27;ylab&#x27;&gt;Ease of Use / Appliance Feel&lt;/span&gt;&lt;span class=&#x27;xlab&#x27;&gt;Same-Day PCB Control / Output Quality&lt;/span&gt;
+        &lt;span class=&#x27;dot green&#x27; style=&#x27;left:74%;top:20%&#x27;&gt;Raven target&lt;/span&gt;
+        &lt;span class=&#x27;dot blue&#x27; style=&#x27;left:62%;top:52%&#x27;&gt;Bantam/Othermill&lt;/span&gt;
+        &lt;span class=&#x27;dot yellow&#x27; style=&#x27;left:33%;top:32%&#x27;&gt;PCB fab houses&lt;/span&gt;
+        &lt;span class=&#x27;dot orange&#x27; style=&#x27;left:25%;top:72%&#x27;&gt;DIY CNC + FlatCAM&lt;/span&gt;
+        &lt;span class=&#x27;dot blue&#x27; style=&#x27;left:48%;top:44%&#x27;&gt;V-One legacy&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;p class=&#x27;small&#x27;&gt;Raven must win on the combined axis: same-day control without CNC/CAM burden.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Status Quo vs Raven&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Option&lt;/th&gt;&lt;th&gt;Strength&lt;/th&gt;&lt;th&gt;Weakness Raven Can Exploit&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;PCB fab houses: JLCPCB, PCBWay, OSH Park&lt;/td&gt;&lt;td&gt;Cheap, high-quality boards&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Waiting, shipping, minimums, privacy, and iteration lag.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Generic CNC + FlatCAM&lt;/td&gt;&lt;td&gt;Cheap and flexible&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;CAM setup, autoleveling, tooling, failed boards, unsafe beginner workflow.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Bantam/Othermill class&lt;/td&gt;&lt;td&gt;High-quality desktop milling&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Higher price and narrower hobbyist affordability.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;V-One additive model&lt;/td&gt;&lt;td&gt;Known Voltera trust and education value&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Ink shelf-life, resistance limits, and manual probing pain.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;blue&#x27;&gt;Market Sentiment &amp; Community Intelligence&lt;/h3&gt;
+      &lt;p class=&#x27;blue&#x27;&gt;&lt;b&gt;Core hubs:&lt;/b&gt; r/PrintedCircuitBoard, r/AskElectronics, KiCad forum, EEVblog, maker YouTube, GitHub/SourceForge CAM projects, Arduino/Raspberry Pi communities.&lt;/p&gt;
+      &lt;p class=&#x27;yellow&#x27;&gt;&lt;b&gt;Recurring friction:&lt;/b&gt; cheap fabs are slow for iteration; DIY milling is fragile; CAM/autoleveling is confusing; chemical/additive processes add storage and reliability issues.&lt;/p&gt;
+      &lt;p class=&#x27;yellow&#x27;&gt;&lt;b&gt;Aha signal:&lt;/b&gt; Users still download FlatCAM/pcb2gcode and repurpose generic CNC machines, proving the workaround exists and the workflow is not solved.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&#x27;grid&#x27;&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Strategic Positioning &amp; Moat&lt;/h3&gt;
+      &lt;p class=&#x27;green&#x27;&gt;&lt;b&gt;USP:&lt;/b&gt; Raven should be the simplest same-day PCB fabrication appliance for hobbyists who already design boards but do not want to become CNC/CAM experts.&lt;/p&gt;
+      &lt;p class=&#x27;blue&#x27;&gt;&lt;b&gt;Moat:&lt;/b&gt; integrated Gerber-to-machine software, protected autoleveling, bit/tooling recipes, board-material ecosystem, education content, and Voltera credibility in desktop electronics fabrication.&lt;/p&gt;
+      &lt;p class=&#x27;yellow&#x27;&gt;&lt;b&gt;Pricing hypothesis:&lt;/b&gt; MSRP $1,499-$1,999; launch paid price $999-$1,499; higher bundle for fixtures, bits, blanks, and education/pro-maker accessories.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#x27;card span-6&#x27;&gt;
+      &lt;h3 class=&#x27;green&#x27;&gt;Gate 1 Decision&lt;/h3&gt;
+      &lt;div class=&#x27;callout green&#x27;&gt;
+        &lt;p&gt;&lt;b&gt;PASS to Phase 3 - Customer Discovery.&lt;/b&gt; The evidence is strong enough to test willingness-to-pay, workflows, and result-quality requirements with customers.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Key Question&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Answer&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;How many people face this problem?&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Known enough&lt;/td&gt;&lt;td&gt;High-intent CAM users plus broad ECAD/simulation ecosystems show a reachable pool.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Is the market large enough?&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Likely&lt;/td&gt;&lt;td&gt;1,000 units/year is plausible; 2,000/year requires price and workflow validation.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Do we understand competitors?&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Yes&lt;/td&gt;&lt;td&gt;Status quo is outsourced fab houses and DIY CNC/CAM workarounds.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Do we have a pricing hypothesis?&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Yes&lt;/td&gt;&lt;td&gt;$999-$1,499 paid launch price; $1,499-$1,999 MSRP.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&#x27;callout yellow&#x27;&gt;
+    &lt;p&gt;&lt;b&gt;Leadership caveat:&lt;/b&gt; Kickstarter data validates launch/preorder demand, not steady annual demand. Customer discovery should directly test the willingness to pay at $999, $1,299, $1,499, and $1,999.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;sources-page&#x27;&gt;
+  &lt;h2&gt;Source URLs&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;Source URLs compiled from the uploaded Kickstarter, software, market-data, and prior Kickstarter analysis files. Internal uploaded files used: B1.Kickstarters.csv; Raven Market Research - Software.csv; Raven Market Research_Market Data.csv; Raven Market Research _2025 v-two Market Research.csv; rvn.Market Research_Software Analysis.docx; Market Report Template.&lt;/p&gt;
+  &lt;ol class=&#x27;src-list&#x27;&gt;
+    &lt;li&gt;https://www.kickstarter.com/projects/wecreat/lumos-ultra-worlds-first-one-stop-uv-mopa-laser&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/xlaserlab/xlaserlab-uv-engraver&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/gweike/gweike-g2-portable-20w-handheld-fiber-laser-engraver&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/flux-inc/beamo-worlds-smallest-co2-laser-cutter/description&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/flux-inc/beambox-the-accessible-laser-cutter-and-engraver?ref=creator_tab&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/anylaser/anylaser-x1-the-worlds-smallest-desktop-laser-engraver/description&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/wainlux-laser-tech/wainlux-z5-handheldminimetal-laser-andcutting-machine/description&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/wainlux-laser-tech/most-powerful-10w-dual-laser-cutter-and-engraver-w-autofocus?ref=creator_tab&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;category_id=334&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makeblock/xtool-metalfab-the-next-gen-metal-solution?ref=creator_tab&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makeblock/xtool-screen-printer-1st-screen-printing-solution-with-laser&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makeblock/xtool-apparel-printer-a-new-era-of-apparel-printing?ref=creator_tab&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/revopoint3d/revopoint-inspire-3d-scanner-for-all-creators&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;category_id=331&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/phrozenmake/phrozen-arco-3d-printer-larger-faster-more-colors&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/1763117873/fibreseeker-3-the-first-personal-continuous-fibre-3d-printer&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makera-inc/carvera?ref=creator_tab&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/rowndprecision/rownd-cnc-lathe-machining-for-everybody&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers&lt;/li&gt;
+&lt;li&gt;V-One Kickstarter&lt;/li&gt;
+&lt;li&gt;Wazer Kickstarter&lt;/li&gt;
+&lt;li&gt;Othermill Kickstarter&lt;/li&gt;
+&lt;li&gt;Squink Kickstarter&lt;/li&gt;
+&lt;li&gt;Kickstarter / Kicktraq&lt;/li&gt;
+&lt;li&gt;Kickstarter&lt;/li&gt;
+&lt;li&gt;Kickstarter / BackerKit&lt;/li&gt;
+&lt;li&gt;Kickstarter / Indiegogo reference&lt;/li&gt;
+&lt;li&gt;https://www.kicad.org/about/kicad/&lt;/li&gt;
+&lt;li&gt;https://github.com/KiCad/kicad-source-mirror&lt;/li&gt;
+&lt;li&gt;https://easyeda.com/&lt;/li&gt;
+&lt;li&gt;https://www.altium.com/company/investor-relations&lt;/li&gt;
+&lt;li&gt;https://www.autodesk.com/company&lt;/li&gt;
+&lt;li&gt;https://www.flux.ai/&lt;/li&gt;
+&lt;li&gt;https://librepcb.org/&lt;/li&gt;
+&lt;li&gt;https://www.circuito.io/app?components=512&lt;/li&gt;
+&lt;li&gt;https://www.qualcomm.com/news/releases/2025/10/qualcomm-to-acquire-arduino-accelerating-developers--access-to-i#:~:text=Arduino%20App%20Lab%20is%20a&lt;/li&gt;
+&lt;li&gt;https://www.boldandopen.com/blog/adafruit-case-study#:~:text=She&amp;#x27;s%20grown%20her%20manufacturing%20company&lt;/li&gt;
+&lt;li&gt;https://www.zippia.com/sparkfun-electronics-careers-1569240/&lt;/li&gt;
+&lt;li&gt;https://businessmodelcanvastemplate.com/blogs/target-market/arduino-target-market#:~:text=Core%20makers%3A%20ages%2018%2D45&lt;/li&gt;
+&lt;li&gt;https://leadiq.com/c/adafruit-industries/5a397e28550000a601bba18f#:~:text=Financial%20and%20Market%20Potential%20With&lt;/li&gt;
+&lt;li&gt;https://www.zippia.com/sparkfun-electronics-careers-1569240/revenue/&lt;/li&gt;
+&lt;li&gt;https://tracxn.com/d/companies/arduino/__pTebmNyTTWfIkwprLaIa7jst5W9_B3KGiz6GjtCEp6g&lt;/li&gt;
+&lt;li&gt;https://www.forbes.com/profile/limor-fried/&lt;/li&gt;
+&lt;li&gt;https://leadiq.com/c/sparkfun-electronics/5a1d8d25540000510073d3f2&lt;/li&gt;
+&lt;li&gt;https://prospeo.io/c/sparkfun-electronics-revenue&lt;/li&gt;
+&lt;li&gt;https://civicscience.com/how-americans-are-redefining-free-time-through-budget-friendly-hobbies/&lt;/li&gt;
+&lt;li&gt;https://dataintelo.com/report/open-source-hardware-market&lt;/li&gt;
+&lt;li&gt;https://www.self.inc/info/spend-favorite-hobbies/&lt;/li&gt;
+&lt;li&gt;https://www.businessresearchinsights.com/market-reports/solderless-breadboards-market-109596&lt;/li&gt;
+&lt;li&gt;https://dataintelo.com/report/electronic-building-kit-market&lt;/li&gt;
+&lt;li&gt;https://www.skyquestt.com/report/open-source-hardware-market&lt;/li&gt;
+&lt;li&gt;https://dataintelo.com/report/pcb-prototyping-equipment-market&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;amp;term=carvera%20air&amp;amp;amp;total_hits=2&amp;amp;amp;category_id=335&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;amp;result=project&amp;amp;amp;term=OrangeStorm%20Giga&amp;amp;amp;total_hits=1&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;amp;category_id=334&lt;/li&gt;
+&lt;li&gt;https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;amp;category_id=331&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/section&gt;
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;"></iframe>
       </div>
-      <p class='small'>Conversion estimate is a planning assumption, not a measured market result.</p>
-    </div>
-  </div>
+      <div class="panel panel-kickstarter" role="tabpanel" aria-label="Kickstarter Maker Machine Demand Analysis">
+        <iframe title="Kickstarter Maker Machine Demand Analysis" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&#x27;en&#x27;&gt;
+&lt;head&gt;
+&lt;meta charset=&#x27;UTF-8&#x27; /&gt;
+&lt;meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1.0&#x27; /&gt;
+&lt;title&gt;Voltera Leadership Brief - Kickstarter Maker Machine Analysis&lt;/title&gt;
+&lt;style&gt;
+:root {
+  --green:#17803a; --green-bg:#e9f7ee;
+  --blue:#1d5f9f; --blue-bg:#eaf3fc;
+  --yellow:#9a7200; --yellow-bg:#fff7d7;
+  --orange:#b45309; --orange-bg:#fff0df;
+  --ink:#1f2937; --muted:#6b7280; --border:#d1d5db; --panel:#ffffff; --page:#f6f7f9;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.45}
+.page{max-width:1320px;margin:0 auto;padding:32px 20px 64px}
+header,.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+header{padding:34px;margin-bottom:22px}
+.card{padding:24px;margin-bottom:20px}
+h1,h2,h3{margin:0 0 12px;line-height:1.2} h1{font-size:clamp(30px,4vw,46px);letter-spacing:-.03em} h2{font-size:25px;margin-top:4px} h3{font-size:19px;margin-top:18px}
+p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} .meta{color:var(--muted);font-size:14px;margin-top:16px}
+.green{color:var(--green)} .blue{color:var(--blue)} .yellow{color:var(--yellow)} .orange{color:var(--orange)}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;margin-bottom:8px}
+.pill.green{background:var(--green-bg);color:var(--green)} .pill.blue{background:var(--blue-bg);color:var(--blue)} .pill.yellow{background:var(--yellow-bg);color:var(--yellow)} .pill.orange{background:var(--orange-bg);color:var(--orange)}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px} .legend-item{border-radius:12px;padding:12px;font-size:14px;border:1px solid var(--border);background:#fff}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-bottom:20px} .span-12{grid-column:span 12} .span-6{grid-column:span 6} .span-4{grid-column:span 4} .span-3{grid-column:span 3}
+.metric{min-height:132px} .metric-value{font-size:34px;font-weight:800;letter-spacing:-.03em;display:block;margin-top:4px} .metric-label{color:var(--muted);font-size:14px;display:block;margin-top:6px}
+.callout{border-left:7px solid var(--blue);background:var(--blue-bg);padding:18px 20px;border-radius:12px;margin:16px 0} .callout.green{border-left-color:var(--green);background:var(--green-bg)} .callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)} .callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}
+.table-wrap{overflow-x:auto;margin-top:14px} table{width:100%;min-width:1050px;border-collapse:collapse;font-size:13px;background:#fff} th,td{border:1px solid var(--border);padding:10px 11px;vertical-align:top;text-align:left} th{background:#f1f3f5;color:#111827;font-weight:700;white-space:nowrap} tr:nth-child(even) td{background:#fafafa} .nowrap{white-space:nowrap} .small{font-size:12px;color:var(--muted)}
+.chart-wrap{width:100%;overflow-x:auto;margin-top:12px} svg{max-width:100%;height:auto;font-family:Arial,Helvetica,sans-serif} .axis-label{fill:#6b7280;font-size:12px} .bar-label{fill:#1f2937;font-size:12px;font-weight:700}
+.source-list{columns:2;column-gap:34px;padding-left:20px;font-size:13px;word-break:break-word} .source-list li{margin:0 0 9px;break-inside:avoid}
+@media(max-width:960px){.span-6,.span-4,.span-3{grid-column:span 12}.legend{grid-template-columns:1fr}.source-list{columns:1}header,.card{padding:20px}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main class=&#x27;page&#x27;&gt;
+&lt;header&gt;
+  &lt;p class=&#x27;pill blue&#x27;&gt;Voltera Leadership Brief&lt;/p&gt;
+  &lt;h1&gt;Kickstarter Maker Machine Demand Analysis&lt;/h1&gt;
+  &lt;p class=&#x27;subtitle&#x27;&gt;Updated analysis using the combined Kickstarter CSV. Rows marked &lt;strong&gt;TRUE&lt;/strong&gt; are treated as the validated dataset because tier prices, tier backer counts, campaign dates, and total product purchases were manually confirmed.&lt;/p&gt;
+  &lt;p class=&#x27;meta&#x27;&gt;Prepared date: May 27, 2026. Primary question: can a hobbyist electronics fabrication product sell 1,000-2,000 units/year at a $1,000-$2,000 MSRP?&lt;/p&gt;
+  &lt;div class=&#x27;legend&#x27;&gt;
+    &lt;div class=&#x27;legend-item&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Green&lt;/span&gt;&lt;br&gt;Most confident. Based on TRUE rows or strong direct comparables.&lt;/div&gt;
+    &lt;div class=&#x27;legend-item&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Blue&lt;/span&gt;&lt;br&gt;Decently confident. Supported by the dataset, but less direct to electronics fabrication.&lt;/div&gt;
+    &lt;div class=&#x27;legend-item&#x27;&gt;&lt;span class=&#x27;pill yellow&#x27;&gt;Yellow&lt;/span&gt;&lt;br&gt;Kind of confident. Source-backed but needs assumptions.&lt;/div&gt;
+    &lt;div class=&#x27;legend-item&#x27;&gt;&lt;span class=&#x27;pill orange&#x27;&gt;Orange&lt;/span&gt;&lt;br&gt;Not confident. Mostly inference, mismatch, or warning signal.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
 
-  <div class='grid'>
-    <div class='card span-6'>
-      <h3 class='green'>Kickstarter Price-Band Table</h3>
-      <table>
-        <tr><th>MSRP Band</th><th>Campaigns</th><th>Revenue</th><th>Product Purchases</th><th>Median Product Purchases</th><th>Median MSRP</th><th>Median Tier Price</th></tr>
-        <tr><td class='orange'><$700</td><td>3</td><td>$3.2M</td><td>11,759</td><td>3,602</td><td>$399</td><td>$288</td></tr><tr><td class='green'>$700-$999</td><td>3</td><td>$27.8M</td><td>28,629</td><td>6,924</td><td>$849</td><td>$827</td></tr><tr><td class='blue'>$1,000-$1,999</td><td>6</td><td>$17.0M</td><td>12,207</td><td>596</td><td>$1,399</td><td>$956</td></tr><tr><td class='yellow'>$2,000-$4,999</td><td>12</td><td>$63.8M</td><td>24,695</td><td>406</td><td>$2,550</td><td>$1,935</td></tr><tr><td class='orange'>$5,000-$9,999</td><td>6</td><td>$14.8M</td><td>2,099</td><td>208</td><td>$6,149</td><td>$5,870</td></tr>
-      </table>
-    </div>
-    <div class='card span-6'>
-      <h3 class='blue'>Category Table</h3>
-      <table>
-        <tr><th>Category</th><th>Campaigns</th><th>Revenue</th><th>Product Purchases</th><th>Median MSRP</th><th>Median Tier Price</th></tr>
-        <tr><td class='blue'>MICS Fab Machines</td><td>5</td><td>$56.8M</td><td>25,013</td><td>$2,499</td><td>$2,229</td></tr><tr><td class='blue'>3D Printers</td><td>4</td><td>$30.1M</td><td>24,896</td><td>$1,750</td><td>$1,229</td></tr><tr><td class='yellow'>Laser Machines</td><td>11</td><td>$20.0M</td><td>17,353</td><td>$2,499</td><td>$1,668</td></tr><tr><td class='green'>CNC Machines</td><td>6</td><td>$17.4M</td><td>11,319</td><td>$2,050</td><td>$1,503</td></tr><tr><td class='green'>MISC 2: PCB/Waterjet</td><td>4</td><td>$2.2M</td><td>808</td><td>$3,099</td><td>$2,276</td></tr>
-      </table>
-    </div>
-  </div>
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;Executive Answer&lt;/h2&gt;
+  &lt;div class=&#x27;callout green&#x27;&gt;
+    &lt;p&gt;&lt;strong&gt;A $1,000-$2,000 MSRP is defensible for a Voltera hobbyist electronics fabrication product.&lt;/strong&gt; The validated campaign data includes multiple successful maker/fabrication products in and above this range.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;callout blue&#x27;&gt;
+    &lt;p&gt;&lt;strong&gt;The safer commercial plan is not a true $2,000 paid launch price.&lt;/strong&gt; The data points toward a &lt;strong&gt;$1,499-$1,999 MSRP&lt;/strong&gt; with a &lt;strong&gt;$999-$1,399 early buyer price&lt;/strong&gt; for the first demand test.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;callout yellow&#x27;&gt;
+    &lt;p&gt;&lt;strong&gt;1,000 units/year is credible if the product has clear output quality and workflow value.&lt;/strong&gt; &lt;strong&gt;2,000 units/year is possible but should be treated as a stretch target&lt;/strong&gt; unless the product expands beyond electronics hobbyists into education, prosumers, labs, or creator-business use cases.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;callout orange&#x27;&gt;
+    &lt;p&gt;&lt;strong&gt;A hobbyist-only product at a true paid price near $1,800-$2,000 is risky.&lt;/strong&gt; Direct electronics fabrication comps show lower purchase counts than broad 3D printing, laser, and UV-printing campaigns.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
 
-  <div class='grid'>
-    <div class='card span-6'>
-      <h3 class='green'>Hardware / Ecommerce Validation</h3>
-      <table>
-        <tr><th>Signal</th><th>Data</th><th>Raven Read</th></tr>
-        <tr><td class='green'>Raspberry Pi ecosystem</td><td class='green'>73M cumulative units sold by May 2026; FY2025 revenue $323.2M</td><td class='green'>Large hardware-builder ecosystem exists beyond casual tinkering.</td></tr>
-        <tr><td class='blue'>Arduino / Adafruit / SparkFun</td><td class='blue'>Approx. $40M, $40M, and $25M annual revenue estimates respectively</td><td class='blue'>Sustained spend exists in hobby/pro-maker electronics channels.</td></tr>
-        <tr><td class='yellow'>Arduino-compatible market</td><td class='yellow'>Estimates range from ~$498M-$1.66B today to ~$805M-$5B by 2033-2035</td><td class='yellow'>Directional growth signal; market-report ranges vary widely.</td></tr>
-      </table>
-    </div>
-    <div class='card span-6'>
-      <h3 class='green'>Software Gate Validation</h3>
-      <table>
-        <tr><th>Layer</th><th>Data</th><th>Implication</th></tr>
-        <tr><td class='green'>CAD</td><td class='green'>KiCad 1.8M annual downloads; EasyEDA 3.5M accounts</td><td class='green'>Board design is not the bottleneck.</td></tr>
-        <tr><td class='blue'>CAM</td><td class='blue'>FlatCAM + pcb2gcode estimated 6k-12k downloads/month</td><td class='blue'>Users are actively trying to manufacture boards locally.</td></tr>
-        <tr><td class='yellow'>Simulation</td><td class='yellow'>Wokwi 500k active developers; Tinkercad 50M platform users</td><td class='yellow'>Large upstream creator pool, but physical-board conversion is unproven.</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+&lt;section class=&#x27;grid&#x27;&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Validated Campaigns&lt;/span&gt;&lt;span class=&#x27;metric-value green&#x27;&gt;30&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;TRUE rows used as the main evidence base.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Total Campaign Revenue&lt;/span&gt;&lt;span class=&#x27;metric-value green&#x27;&gt;$126.5M&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Across validated campaigns.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill green&#x27;&gt;Total Product Purchases&lt;/span&gt;&lt;span class=&#x27;metric-value green&#x27;&gt;79,389&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Tier-confirmed product purchases.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Median Product Purchases&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;548&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Median validated campaign product purchases.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Median MSRP&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;$2,349&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Median listed MSRP in TRUE rows.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Median Paid Product AOV&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;$1,555&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Weighted by confirmed tier prices and tier purchases.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill blue&#x27;&gt;Campaigns at 1,000+&lt;/span&gt;&lt;span class=&#x27;metric-value blue&#x27;&gt;12&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Validated campaigns with at least 1,000 product purchases.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#x27;card span-3 metric&#x27;&gt;&lt;span class=&#x27;pill yellow&#x27;&gt;Campaigns at 2,000+&lt;/span&gt;&lt;span class=&#x27;metric-value yellow&#x27;&gt;9&lt;/span&gt;&lt;span class=&#x27;metric-label&#x27;&gt;Validated campaigns with at least 2,000 product purchases.&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
 
-<section class='page'>
-  <h2 class='green'>4. Competitive Landscape, Positioning, and Gate Decision</h2>
-  <div class='grid'>
-    <div class='card span-7'>
-      <h3 class='blue'>Most Relevant Campaign Benchmarks</h3>
-      <table>
-        <tr><th>Campaign</th><th>Type</th><th>Revenue</th><th>Backers</th><th>Product Purchases</th><th>MSRP</th><th>Weighted Tier</th><th>Date</th></tr>
-        <tr><td class='blue'>eufyMake E1</td><td>3D Texture UV Printer</td><td>$46.8M</td><td>17,822</td><td>17,492</td><td>$2,499</td><td>$2,229</td><td class='small'>Apr 29 2025</td></tr><tr><td class='blue'>Snapmaker U1</td><td>Color 3D Printer</td><td>$20.6M</td><td>20,680</td><td>20,373</td><td>$999</td><td>$810</td><td class='small'>Aug 19 2025</td></tr><tr><td class='green'>Makera Z1</td><td>Desktop Entry-Level CNC</td><td>$10.1M</td><td>8,088</td><td>7,751</td><td>$1,199</td><td>$910</td><td class='small'>Oct 28 2025</td></tr><tr><td class='green'>Carvera Air</td><td>Desktop CNC Mill</td><td>$3.5M</td><td>2,098</td><td>2,051</td><td>$2,199</td><td>$1,355</td><td class='small'>Apr 9 2024</td></tr><tr><td class='green'>Voltera V-One</td><td>Desktop PCB printer / solder paste / reflow</td><td>$502,310</td><td>938</td><td>317</td><td>$2,199</td><td>$1,499</td><td class='small'>Feb 2 2015</td></tr><tr><td class='green'>Othermill</td><td>Desktop CNC / PCB milling</td><td>$311,657</td><td>652</td><td>185</td><td>$3,199</td><td>$1,509</td><td class='small'>May 5 2013</td></tr><tr><td class='yellow'>Squink</td><td>Desktop PCB printer + pick-and-place</td><td>$100,380</td><td>260</td><td>23</td><td>$2,999</td><td>$3,042</td><td class='small'>Jul 11 2014</td></tr><tr><td class='blue'>LaserPecker 4</td><td>Dual Laser Galvo (Fiber+Diode)</td><td>$4.5M</td><td>2,829</td><td>2,674</td><td>$1,899</td><td>$1,668</td><td class='small'>Dec 15 2022</td></tr><tr><td class='blue'>OrangeStorm Giga</td><td>Large Format 3D Printer</td><td>$3.4M</td><td>2,005</td><td>1,854</td><td>$2,500</td><td>$1,487</td><td class='small'>Nov 4 2023</td></tr><tr><td class='blue'>Phrozen Arco</td><td>Multi-Material 3D Printer</td><td>$1.4M</td><td>1,413</td><td>1,332</td><td>$849</td><td>$971</td><td class='small'>Feb 22 2024</td></tr><tr><td class='yellow'>xTool Screen Printer</td><td>Digital Screen Printer</td><td>$1.1M</td><td>2,639</td><td>2,516</td><td>$399</td><td>$399</td><td class='small'>Nov 8 2023</td></tr><tr><td class='yellow'>xTool Apparel Printer</td><td>xTool Apparel Printer</td><td>$5.7M</td><td>980</td><td>908</td><td>$5,999</td><td>$6,221</td><td class='small'>Feb 20 2025</td></tr><tr><td class='yellow'>WAZER Desktop</td><td>Desktop waterjet cutter</td><td>$1.3M</td><td>1,301</td><td>283</td><td>$5,999</td><td>$4,242</td><td class='small'>Sep 12 2026</td></tr>
-      </table>
-    </div>
-    <div class='card span-5'>
-      <h3 class='green'>Competitive Matrix</h3>
-      <div class='matrix'>
-        <span class='ylab'>Ease of Use / Appliance Feel</span><span class='xlab'>Same-Day PCB Control / Output Quality</span>
-        <span class='dot green' style='left:74%;top:20%'>Raven target</span>
-        <span class='dot blue' style='left:62%;top:52%'>Bantam/Othermill</span>
-        <span class='dot yellow' style='left:33%;top:32%'>PCB fab houses</span>
-        <span class='dot orange' style='left:25%;top:72%'>DIY CNC + FlatCAM</span>
-        <span class='dot blue' style='left:48%;top:44%'>V-One legacy</span>
+&lt;section class=&#x27;grid&#x27;&gt;
+  &lt;div class=&#x27;card span-6&#x27;&gt;
+    &lt;h2 class=&#x27;blue&#x27;&gt;Chart 1: Top Campaigns by Product Purchases&lt;/h2&gt;
+    &lt;p class=&#x27;blue&#x27;&gt;High purchase counts are concentrated in broad maker categories: 3D printing, UV printing, laser engraving, screen printing, and 3D scanning.&lt;/p&gt;
+    &lt;div class=&#x27;chart-wrap&#x27;&gt;&lt;svg viewBox=&quot;0 0 820 430&quot; role=&quot;img&quot; aria-label=&quot;Top campaigns by product purchases&quot;&gt;&lt;line x1=&quot;150&quot; y1=&quot;342&quot; x2=&quot;790&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;line x1=&quot;150&quot; y1=&quot;40&quot; x2=&quot;150&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;rect x=&quot;163.4&quot; y=&quot;40.0&quot; width=&quot;37.1&quot; height=&quot;302.0&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;182.0&quot; y=&quot;32.0&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;20,373&lt;/text&gt;&lt;text x=&quot;182.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Snapmaker U1&lt;/text&gt;&lt;rect x=&quot;227.4&quot; y=&quot;82.7&quot; width=&quot;37.1&quot; height=&quot;259.3&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;246.0&quot; y=&quot;74.7&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;17,492&lt;/text&gt;&lt;text x=&quot;246.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;eufyMake E1&lt;/text&gt;&lt;rect x=&quot;291.4&quot; y=&quot;227.1&quot; width=&quot;37.1&quot; height=&quot;114.9&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;310.0&quot; y=&quot;219.1&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;7,751&lt;/text&gt;&lt;text x=&quot;310.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Makera Z1&lt;/text&gt;&lt;rect x=&quot;355.4&quot; y=&quot;239.4&quot; width=&quot;37.1&quot; height=&quot;102.6&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;374.0&quot; y=&quot;231.4&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;6,924&lt;/text&gt;&lt;text x=&quot;374.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;LaserPecker 2&lt;/text&gt;&lt;rect x=&quot;419.4&quot; y=&quot;258.4&quot; width=&quot;37.1&quot; height=&quot;83.6&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;438.0&quot; y=&quot;250.4&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;5,641&lt;/text&gt;&lt;text x=&quot;438.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;AnyLaser&lt;/text&gt;&lt;rect x=&quot;483.4&quot; y=&quot;288.6&quot; width=&quot;37.1&quot; height=&quot;53.4&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;502.0&quot; y=&quot;280.6&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;3,602&lt;/text&gt;&lt;text x=&quot;502.0&quot; y=&quot;366&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Revopoint Inspire&lt;/text&gt;&lt;rect x=&quot;547.4&quot; y=&quot;302.4&quot; width=&quot;37.1&quot; height=&quot;39.6&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;566.0&quot; y=&quot;294.4&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;2,674&lt;/text&gt;&lt;text x=&quot;566.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;LaserPecker 4&lt;/text&gt;&lt;rect x=&quot;611.4&quot; y=&quot;304.7&quot; width=&quot;37.1&quot; height=&quot;37.3&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;630.0&quot; y=&quot;296.7&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;2,516&lt;/text&gt;&lt;text x=&quot;630.0&quot; y=&quot;366&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;xTool Screen&lt;/text&gt;&lt;text x=&quot;630.0&quot; y=&quot;382&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Printer&lt;/text&gt;&lt;rect x=&quot;675.4&quot; y=&quot;311.6&quot; width=&quot;37.1&quot; height=&quot;30.4&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;694.0&quot; y=&quot;303.6&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;2,051&lt;/text&gt;&lt;text x=&quot;694.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Carvera Air&lt;/text&gt;&lt;rect x=&quot;739.4&quot; y=&quot;314.5&quot; width=&quot;37.1&quot; height=&quot;27.5&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;758.0&quot; y=&quot;306.5&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;1,854&lt;/text&gt;&lt;text x=&quot;758.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;OrangeStorm Giga&lt;/text&gt;&lt;/svg&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;card span-6&#x27;&gt;
+    &lt;h2 class=&#x27;blue&#x27;&gt;Chart 2: Top Campaigns by Revenue&lt;/h2&gt;
+    &lt;p class=&#x27;yellow&#x27;&gt;Revenue strength does not always equal hobbyist volume. High-AOV tools can raise large totals with fewer product purchases.&lt;/p&gt;
+    &lt;div class=&#x27;chart-wrap&#x27;&gt;&lt;svg viewBox=&quot;0 0 820 430&quot; role=&quot;img&quot; aria-label=&quot;Top campaigns by revenue&quot;&gt;&lt;line x1=&quot;150&quot; y1=&quot;342&quot; x2=&quot;790&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;line x1=&quot;150&quot; y1=&quot;40&quot; x2=&quot;150&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;rect x=&quot;163.4&quot; y=&quot;40.0&quot; width=&quot;37.1&quot; height=&quot;302.0&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;182.0&quot; y=&quot;32.0&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$46.8M&lt;/text&gt;&lt;text x=&quot;182.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;eufyMake E1&lt;/text&gt;&lt;rect x=&quot;227.4&quot; y=&quot;208.9&quot; width=&quot;37.1&quot; height=&quot;133.1&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;246.0&quot; y=&quot;200.9&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$20.6M&lt;/text&gt;&lt;text x=&quot;246.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Snapmaker U1&lt;/text&gt;&lt;rect x=&quot;291.4&quot; y=&quot;276.5&quot; width=&quot;37.1&quot; height=&quot;65.5&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;310.0&quot; y=&quot;268.5&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$10.1M&lt;/text&gt;&lt;text x=&quot;310.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Makera Z1&lt;/text&gt;&lt;rect x=&quot;355.4&quot; y=&quot;304.5&quot; width=&quot;37.1&quot; height=&quot;37.5&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;374.0&quot; y=&quot;296.5&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$5.8M&lt;/text&gt;&lt;text x=&quot;374.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;LaserPecker 2&lt;/text&gt;&lt;rect x=&quot;419.4&quot; y=&quot;305.2&quot; width=&quot;37.1&quot; height=&quot;36.8&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;438.0&quot; y=&quot;297.2&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$5.7M&lt;/text&gt;&lt;text x=&quot;438.0&quot; y=&quot;366&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;xTool Apparel&lt;/text&gt;&lt;text x=&quot;438.0&quot; y=&quot;382&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Printer&lt;/text&gt;&lt;rect x=&quot;483.4&quot; y=&quot;311.7&quot; width=&quot;37.1&quot; height=&quot;30.3&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;502.0&quot; y=&quot;303.7&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$4.7M&lt;/text&gt;&lt;text x=&quot;502.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;FibreSeeker 3&lt;/text&gt;&lt;rect x=&quot;547.4&quot; y=&quot;312.9&quot; width=&quot;37.1&quot; height=&quot;29.1&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;566.0&quot; y=&quot;304.9&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$4.5M&lt;/text&gt;&lt;text x=&quot;566.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;LaserPecker 4&lt;/text&gt;&lt;rect x=&quot;611.4&quot; y=&quot;314.2&quot; width=&quot;37.1&quot; height=&quot;27.8&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;630.0&quot; y=&quot;306.2&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$4.3M&lt;/text&gt;&lt;text x=&quot;630.0&quot; y=&quot;366&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Lumos Ultra&lt;/text&gt;&lt;text x=&quot;630.0&quot; y=&quot;382&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;(Laser)&lt;/text&gt;&lt;rect x=&quot;675.4&quot; y=&quot;319.6&quot; width=&quot;37.1&quot; height=&quot;22.4&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;694.0&quot; y=&quot;311.6&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$3.5M&lt;/text&gt;&lt;text x=&quot;694.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;Carvera Air&lt;/text&gt;&lt;rect x=&quot;739.4&quot; y=&quot;320.1&quot; width=&quot;37.1&quot; height=&quot;21.9&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;758.0&quot; y=&quot;312.1&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$3.4M&lt;/text&gt;&lt;text x=&quot;758.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;OrangeStorm Giga&lt;/text&gt;&lt;/svg&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;Leadership Decision Table&lt;/h2&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Question&lt;/th&gt;&lt;th&gt;Answer&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;th&gt;Reason&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Can maker/fabrication buyers pay above the Bambu $500-$1,000 anchor?&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Yes.&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Green&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;The validated data shows confirmed product purchases across tier prices from $99 to $13,999, with median MSRP at $2,349 and median paid product AOV at $1,555.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Can Voltera target $1,000-$2,000 MSRP?&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Yes, if launch pricing is managed.&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Green&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;The $1,000-$1,999 MSRP band includes successful validated campaigns, including Makera Z1 and LaserPecker 4.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Can Voltera sell 1,000 units/year?&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Plausible.&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Blue&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;12 of 30 validated campaigns reached at least 1,000 product purchases. The product must clearly outperform cheaper alternatives.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Can Voltera sell 2,000 units/year?&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Possible, but stretch.&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Yellow&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;9 validated campaigns reached at least 2,000 product purchases, but most were broader than electronics fabrication.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Can a hobbyist-only electronics product sell 1,000-2,000/year at a true $1,800-$2,000 paid price?&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;Not proven.&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;Orange&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;Direct electronics comps had lower confirmed product purchases: Voltera V-One 317, Othermill 185, Squink 23.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;grid&#x27;&gt;
+  &lt;div class=&#x27;card span-6&#x27;&gt;
+    &lt;h2 class=&#x27;blue&#x27;&gt;Chart 3: Median Product Purchases by Paid Product AOV Band&lt;/h2&gt;
+    &lt;p class=&#x27;blue&#x27;&gt;Actual paid price is the stronger demand signal than MSRP.&lt;/p&gt;
+    &lt;div class=&#x27;chart-wrap&#x27;&gt;&lt;svg viewBox=&quot;0 0 820 430&quot; role=&quot;img&quot; aria-label=&quot;Median product purchases by paid product AOV band&quot;&gt;&lt;line x1=&quot;150&quot; y1=&quot;342&quot; x2=&quot;790&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;line x1=&quot;150&quot; y1=&quot;40&quot; x2=&quot;150&quot; y2=&quot;342&quot; stroke=&quot;#d1d5db&quot; /&gt;&lt;rect x=&quot;176.9&quot; y=&quot;118.2&quot; width=&quot;74.2&quot; height=&quot;223.8&quot; fill=&quot;#b45309&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;214.0&quot; y=&quot;110.2&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;3,059&lt;/text&gt;&lt;text x=&quot;214.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;&amp;lt;$700&lt;/text&gt;&lt;rect x=&quot;304.9&quot; y=&quot;40.0&quot; width=&quot;74.2&quot; height=&quot;302.0&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;342.0&quot; y=&quot;32.0&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;4,128&lt;/text&gt;&lt;text x=&quot;342.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;$700-$999&lt;/text&gt;&lt;rect x=&quot;432.9&quot; y=&quot;292.5&quot; width=&quot;74.2&quot; height=&quot;49.5&quot; fill=&quot;#17803a&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;470.0&quot; y=&quot;284.5&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;677&lt;/text&gt;&lt;text x=&quot;470.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;$1,000-$1,999&lt;/text&gt;&lt;rect x=&quot;560.9&quot; y=&quot;321.3&quot; width=&quot;74.2&quot; height=&quot;20.7&quot; fill=&quot;#9a7200&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;598.0&quot; y=&quot;313.3&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;283&lt;/text&gt;&lt;text x=&quot;598.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;$2,000-$4,999&lt;/text&gt;&lt;rect x=&quot;688.9&quot; y=&quot;316.4&quot; width=&quot;74.2&quot; height=&quot;25.6&quot; fill=&quot;#b45309&quot; opacity=&quot;0.86&quot; /&gt;&lt;text x=&quot;726.0&quot; y=&quot;308.4&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;350&lt;/text&gt;&lt;text x=&quot;726.0&quot; y=&quot;370&quot; text-anchor=&quot;middle&quot; class=&quot;axis-label&quot;&gt;$5,000+&lt;/text&gt;&lt;/svg&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;card span-6&#x27;&gt;
+    &lt;h2 class=&#x27;yellow&#x27;&gt;Interpretation&lt;/h2&gt;
+    &lt;div class=&#x27;callout blue&#x27;&gt;&lt;p&gt;&lt;strong&gt;The $700-$999 paid-price band produced the strongest median product-purchase volume.&lt;/strong&gt; This is the clearest hobbyist-volume zone.&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&#x27;callout blue&#x27;&gt;&lt;p&gt;&lt;strong&gt;The $1,000-$1,999 paid-price band is viable but less predictable.&lt;/strong&gt; It contains strong winners such as eufyMake E1, Carvera Air, LaserPecker 4, and OrangeStorm Giga, but the median campaign is below 1,000 product purchases.&lt;/p&gt;&lt;/div&gt;
+    &lt;div class=&#x27;callout orange&#x27;&gt;&lt;p&gt;&lt;strong&gt;Above $2,000 paid AOV, volume usually falls.&lt;/strong&gt; These products can still produce strong revenue, but they behave more like prosumer, lab, creator-business, or specialist tools.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;blue&#x27;&gt;Price Band Analysis - MSRP Basis&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;MSRP is useful for market positioning, but it is weaker than actual paid tier price.&lt;/p&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;MSRP Band&lt;/th&gt;&lt;th&gt;Campaigns&lt;/th&gt;&lt;th&gt;Total Product Purchases&lt;/th&gt;&lt;th&gt;Median Product Purchases&lt;/th&gt;&lt;th&gt;Total Revenue&lt;/th&gt;&lt;th&gt;Median Paid AOV&lt;/th&gt;&lt;th&gt;Campaigns 1,000+&lt;/th&gt;&lt;th&gt;Campaigns 2,000+&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;&amp;lt;$700&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;11,759&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3,602&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$3.2M&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$288&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;$700-$999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;28,629&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6,924&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$27.8M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$827&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,000-$1,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;12,207&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;596&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$17.0M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$954&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;yellow&#x27;&gt;$2,000-$4,999&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;12&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;24,695&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;406&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$63.8M&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$1,841&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;2&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;orange&#x27;&gt;$5,000+&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;6&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;2,099&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;208&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;$14.8M&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;$5,844&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;0&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;0&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;Price Band Analysis - Actual Paid Product AOV Basis&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;Paid product AOV is calculated from confirmed tier prices and confirmed tier product purchases.&lt;/p&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Paid Product AOV Band&lt;/th&gt;&lt;th&gt;Campaigns&lt;/th&gt;&lt;th&gt;Total Product Purchases&lt;/th&gt;&lt;th&gt;Median Product Purchases&lt;/th&gt;&lt;th&gt;Total Revenue&lt;/th&gt;&lt;th&gt;Median Paid AOV&lt;/th&gt;&lt;th&gt;Campaigns 1,000+&lt;/th&gt;&lt;th&gt;Campaigns 2,000+&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;&amp;lt;$700&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;12,274&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3,059&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$3.6M&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$314&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;3&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;$700-$999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;36,970&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;4,128&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$38.7M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$916&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,000-$1,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;9&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;25,533&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;677&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$60.7M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,552&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;yellow&#x27;&gt;$2,000-$4,999&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;7&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;2,930&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;283&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$10.7M&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$3,145&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;1&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;0&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;orange&#x27;&gt;$5,000+&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;1,682&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;350&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;$12.8M&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;$6,618&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;0&lt;/td&gt;&lt;td class=&#x27;orange&#x27;&gt;0&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;blue&#x27;&gt;Category Analysis&lt;/h2&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Campaigns&lt;/th&gt;&lt;th&gt;Total Revenue&lt;/th&gt;&lt;th&gt;Total Product Purchases&lt;/th&gt;&lt;th&gt;Median Product Purchases&lt;/th&gt;&lt;th&gt;Median Paid Product AOV&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;Laser Machines&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;11&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$20.0M&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;17,353&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;394&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$1,558&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;yellow&#x27;&gt;MICS Fab Machines&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;5&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$56.8M&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;25,013&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;2,516&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;$1,914&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;blue&#x27;&gt;3D Printers&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$30.1M&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;24,896&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;1,595&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;$1,225&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;CNC Machines&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$17.4M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;11,319&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;593&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,503&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#x27;green&#x27;&gt;MISC 2: PCB/Waterjet&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2.2M&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;808&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;234&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,276&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+  &lt;div class=&#x27;callout yellow&#x27;&gt;&lt;p&gt;&lt;strong&gt;Direct PCB/waterjet-style technical fabrication is the most relevant category, but it has the lowest total product purchase count in the validated set.&lt;/strong&gt; This is the main caution for leadership.&lt;/p&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;Most Relevant Comparable Campaigns&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;These are the rows most useful for Voltera pricing and volume judgment. They include direct electronics fabrication and close technical-fabrication comps.&lt;/p&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Product Type&lt;/th&gt;&lt;th&gt;Revenue&lt;/th&gt;&lt;th&gt;Total Backers&lt;/th&gt;&lt;th&gt;Product Purchases&lt;/th&gt;&lt;th&gt;MSRP&lt;/th&gt;&lt;th&gt;Paid Product AOV&lt;/th&gt;&lt;th&gt;Product Purchase Share&lt;/th&gt;&lt;th&gt;Source&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;Voltera V-One&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;MISC 2: PCB/Waterjet&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Feb 2 2015&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Desktop PCB printer / solder paste / reflow&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$502,310&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;938&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;317&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$2,199&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;34%&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;V-One Kickstarter&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;Othermill&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;MISC 2: PCB/Waterjet&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;May 5 2013&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Desktop CNC / PCB milling&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$311,657&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;652&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;185&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$3,199&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,509&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;28%&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Othermill Kickstarter&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;Squink&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;MISC 2: PCB/Waterjet&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Jul 11 2014&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Desktop PCB printer + pick-and-place&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$100,380&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;260&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;23&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$2,999&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$3,042&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;9%&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Squink Kickstarter&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;Carvera Air&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;CNC Machines&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Apr 9 2024&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Desktop CNC Mill&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$3.5M&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;2,098&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;2,051&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$2,199&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,355&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;98%&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;Makera Z1&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;CNC Machines&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Oct 28 2025&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;Desktop Entry-Level CNC&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$10.1M&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;8,088&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;7,751&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;$910&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;96%&lt;/td&gt;
+&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Cubiio X&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;CNC Machines&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Mar 9 2023&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Portable CNC Robot&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1.2M&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;733&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;677&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,900&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,650&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;92%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Duroxen CNC Lathe&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;CNC Machines&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Apr 21 2026&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Precision CNC Lathe&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$269,234&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;211&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;196&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,299&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$922&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;93%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;OrangeStorm Giga&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;3D Printers&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Nov 4 2023&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Large Format 3D Printer&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$3.4M&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;2,005&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;1,854&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$2,500&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,487&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;92%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;LaserPecker 4&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Laser Machines&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Dec 15 2022&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Dual Laser Galvo (Fiber+Diode)&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$4.5M&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;2,829&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;2,674&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,899&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,558&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;95%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Snapmaker U1&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;3D Printers&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Aug 19 2025&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Color 3D Printer&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$20.6M&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;20,680&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;20,373&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$999&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$810&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;99%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;blue&#x27;&gt;eufyMake E1&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;MICS Fab Machines&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;Apr 29 2025&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;3D Texture UV Printer&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$46.8M&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;17,822&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;17,492&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$2,499&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;$1,914&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;98%&lt;/td&gt;
+&lt;td class=&#x27;blue&#x27;&gt;https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer&lt;/td&gt;
+&lt;/tr&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;green&#x27;&gt;Product Strategy Recommendation&lt;/h2&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Recommendation&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;th&gt;Reason&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Use $1,499-$1,999 MSRP, but test demand with $999-$1,399 early pricing.&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Green&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;The strongest relevant evidence is actual paid product AOV, not MSRP. Successful technical-fabrication campaigns often convert at discounted launch prices.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Do not frame the product as a pure hobbyist machine at $2,000 paid price.&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Green&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Direct electronics comps do not support that as a low-risk mass-volume strategy.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Design one base SKU for hobbyists and one higher bundle for education/prosumer/lab users.&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Blue&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;The dataset shows volume at lower paid prices and revenue strength at higher paid prices. A two-SKU strategy can serve both.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Use product output quality as the main proof point.&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;Blue&lt;/td&gt;&lt;td class=&#x27;blue&#x27;&gt;The product needs to overcome cheap outsourced PCB fabrication and low-cost maker-machine expectations.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Treat 1,000/year as the main launch goal and 2,000/year as a stretch goal.&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;Yellow&lt;/td&gt;&lt;td class=&#x27;yellow&#x27;&gt;The validated dataset supports 1,000+ purchases across many campaigns, but electronics-specific purchase counts are lower.&lt;/td&gt;&lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;blue&#x27;&gt;Full Validated Campaign Table&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;Rows below are TRUE rows from the updated CSV. Tier columns are kept in the same structure as the original data.&lt;/p&gt;
+  &lt;div class=&#x27;table-wrap&#x27;&gt;
+    &lt;table&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Selected&lt;/th&gt;&lt;th&gt;Product Name&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Kickstarter URL&lt;/th&gt;&lt;th&gt;Company URL&lt;/th&gt;&lt;th&gt;Company&lt;/th&gt;&lt;th&gt;Product Type&lt;/th&gt;&lt;th&gt;Campaign Revenue USD&lt;/th&gt;&lt;th&gt;Backers&lt;/th&gt;&lt;th&gt;MSRP USD&lt;/th&gt;&lt;th&gt;Total Product Backers&lt;/th&gt;&lt;th&gt;T1$&lt;/th&gt;&lt;th&gt;B1#&lt;/th&gt;&lt;th&gt;T2$&lt;/th&gt;&lt;th&gt;B2#&lt;/th&gt;&lt;th&gt;T3$&lt;/th&gt;&lt;th&gt;B3#&lt;/th&gt;&lt;th&gt;T4&lt;/th&gt;&lt;th&gt;B4#&lt;/th&gt;&lt;th&gt;T5&lt;/th&gt;&lt;th&gt;B5#&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Lumos Ultra (Laser)&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;May 1st 2026&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/wecreat/lumos-ultra-worlds-first-one-stop-uv-mopa-laser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;wecreat.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;WeCreat&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;UV + MOPA Laser Engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,300,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;601&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;581&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;37&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,790&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;134&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,990&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;176&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$8,390&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;234&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xLaserLab E3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Oct 30 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/xlaserlab/xlaserlab-uv-engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xlaserlab.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xLaserLab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Ultrafast 10W UV Engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,100,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;214&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,299&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;73&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,397&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;10&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,697&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;63&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Gweike G2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Jul 27 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/gweike/gweike-g2-portable-20w-handheld-fiber-laser-engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;gweikecloud.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Gweike Cloud&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;20W Fiber Laser Galvo&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$408,605&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;206&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;198&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;64&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;12&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;100&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;22&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Flux Beamo&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Oct 16 2019&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/flux-inc/beamo-worlds-smallest-co2-laser-cutter/description&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;flux3dp.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;FLUX&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;High-Speed Laser Engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$457,777&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;442&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;394&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$849&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;97&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;98&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Flux BeamBox&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;May 15 2018&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/flux-inc/beambox-the-accessible-laser-cutter-and-engraver?ref=creator_tab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;flux3dp.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;FLUX&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;High-Speed Laser Engraver&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$341,801&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;201&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;148&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;48&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;20&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,399&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;49&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;31&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;AnyLaser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Apr 7 2026&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/anylaser/anylaser-x1-the-worlds-smallest-desktop-laser-engraver/description&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;anylaser.net&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;AnyLaser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Portable Diode Hybrid&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$790,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;5,675&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$187&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;5,641&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$99&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1341&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$125&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3892&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$129&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;152&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$189&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;62&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;194&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Wainlux Z5&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Jun 21 2022&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/wainlux-laser-tech/wainlux-z5-handheldminimetal-laser-andcutting-machine/description&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;wainlux.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Wainlux&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Compact Fiber Laser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$140,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;97&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;85&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,369&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;18&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;64&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,649&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Wainlux L3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;May 11 2021&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/wainlux-laser-tech/most-powerful-10w-dual-laser-cutter-and-engraver-w-autofocus?ref=creator_tab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;wainlux.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Wainlux&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Dual Laser Machine&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$425,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;558&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,098&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;515&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$544&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;85&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$649&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;209&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;151&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$779&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;70&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;LaserPecker 4&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Dec 15 2022&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;laserpecker.net&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;LaserPecker&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Dual Laser Galvo (Fiber+Diode)&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,500,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,829&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,674&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,234&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;35&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,329&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;84&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,469&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;239&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,624&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;781&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1535&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;LaserPecker 2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Dec 15 2020&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;category_id=334&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;laserpecker.net&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;LaserPecker&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Diode Galvo Laser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,800,000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;7,037&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$849&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6,924&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;830&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2496&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3598&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool MetalFab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Apr 24 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makeblock/xtool-metalfab-the-next-gen-metal-solution?ref=creator_tab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xtool.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Laser Metal Cutter, welder, cleaner&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,734,050&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;242&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;120&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$11,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;4&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$13,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;108&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;eufyMake E1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Apr 29 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;eufymake.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Anker Innovations&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3D Texture UV Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$46,762,258&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;17,822&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;17,492&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2214&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;231&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,970&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;5822&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,170&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;591&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;8634&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool Screen Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Nov 8 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makeblock/xtool-screen-printer-1st-screen-printing-solution-with-laser&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xtool.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Digital Screen Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,115,109&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,639&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$399&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,516&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$229&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;60&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$369&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;400&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;686&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;571&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool Apparel Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Feb 20 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makeblock/xtool-apparel-printer-a-new-era-of-apparel-printing?ref=creator_tab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xtool.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;xTool Apparel Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,691,987&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;980&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;908&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;46&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;13&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,299&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;816&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;25&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;8&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Revopoint Inspire&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Aug 16 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/revopoint3d/revopoint-inspire-3d-scanner-for-all-creators&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;revopoint3d.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Revopoint&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3D Scanner&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,279,281&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3,801&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$439&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3,602&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$272&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,532&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$299&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$329&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;71&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Revopoint Trackit&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;May 28 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;category_id=331&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;revopoint3d.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Revopoint&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3D Tracking Scanner&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,935,193&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;581&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,980&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;495&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,988&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;100&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,137&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;141&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,305&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;200&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,415&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;41&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;13&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Snapmaker U1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Aug 19 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;snapmaker.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Snapmaker&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Color 3D Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$20,614,548&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;20,680&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;20,373&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$750&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;9997&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;8928&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$849&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;448&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,498&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1000&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;OrangeStorm Giga&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Nov 4 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;ELEGOO US&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;ELEGOO&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Large Format 3D Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,386,996&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,005&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,500&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,854&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,250&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;100&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,500&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1754&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Phrozen Arco&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Feb 22 2024&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/phrozenmake/phrozen-arco-3d-printer-larger-faster-more-colors&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;phrozen3d.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Phrozen&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Multi-Material 3D Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,408,493&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,413&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$849&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,332&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$649&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;96&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$758&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;57&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$808&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;230&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,048&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;911&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;38&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;FibreSeeker 3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Nov 17 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/1763117873/fibreseeker-3-the-first-personal-continuous-fibre-3d-printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;FibreSeek&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Fibre 3D Printer&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,698,825&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,539&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,337&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,699&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1148&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;76&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,349&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;102&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$9,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;11&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Carvera&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Sep 21 2021&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makera-inc/carvera?ref=creator_tab&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;makera.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Makera&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop CNC Mill&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,703,669&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;588&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;510&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,550&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;75&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,099&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;47&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,250&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;386&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,300&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Carvera Air&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Apr 9 2024&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;makera.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Makera&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop CNC Mill&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,469,320&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,098&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2,051&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;500&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,399&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,500&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;51&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Makera Z1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Oct 28 2025&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;makera.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Makera&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop Entry-Level CNC&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$10,134,800&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;8,088&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;7,751&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$899&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;6,655&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$979&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1096&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Rownd CNC Lathe&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Jul 11 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/rowndprecision/rownd-cnc-lathe-machining-for-everybody&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;rowndcnc.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Rownd Precision&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop CNC Lathe&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$636,150&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;207&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$6,550&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;134&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;65&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,299&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;8&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;60&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Cubiio X&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Mar 9 2023&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;cubiio.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Muherz&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Portable CNC Robot&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,185,071&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;733&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,900&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;677&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,250&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;23&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,550&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;17&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,650&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;582&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,850&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;55&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Duroxen CNC Lathe&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Apr 21 2026&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;duroxen.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Duroxen&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Precision CNC Lathe&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$269,234&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;211&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,299&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;196&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$769&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;60&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;25&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,029&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;109&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Voltera V-One&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Feb 2 2015&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;V-One Kickstarter&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;voltera.io&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Voltera&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop PCB printer / solder paste / reflow&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$502,310&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;938&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;317&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;5&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;15&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;277&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,799&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;20&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;WAZER Desktop&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Sep 12 2026&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Wazer Kickstarter&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;wazer.com&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;WAZER&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop waterjet cutter&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,331,936&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;1,301&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$5,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;283&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;29&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;93&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;137&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$4,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;24&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Othermill&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;May 5 2013&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Othermill Kickstarter&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Bantam Tools / legacy&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Other Machine Co.&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop CNC / PCB milling&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$311,657&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;652&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;185&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,199&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;25&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,399&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;78&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$1,599&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;72&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;10&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+&lt;td class=&#x27;green&#x27;&gt;TRUE&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Squink&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Jul 11 2014&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Squink Kickstarter&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;botfactory.co&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;BotFactory&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;Desktop PCB printer + pick-and-place&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$100,380&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;260&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;23&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;5&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$2,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;13&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,499&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;3&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;$3,999&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;2&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;td class=&#x27;green&#x27;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2 class=&#x27;orange&#x27;&gt;Data Caveats&lt;/h2&gt;
+  &lt;div class=&#x27;callout yellow&#x27;&gt;&lt;p&gt;&lt;strong&gt;Kickstarter is launch/preorder demand, not steady-state annual demand.&lt;/strong&gt; It concentrates discounts, urgency, press, and early adopters into a short window.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&#x27;callout yellow&#x27;&gt;&lt;p&gt;&lt;strong&gt;Product purchases are more useful than total backers.&lt;/strong&gt; This analysis prioritizes confirmed tier product purchases from TRUE rows.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class=&#x27;callout orange&#x27;&gt;&lt;p&gt;&lt;strong&gt;Potential date caveat:&lt;/strong&gt; the following TRUE campaign date is after the prepared date and should be rechecked before board use: WAZER Desktop (Sep 12 2026).&lt;/p&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class=&#x27;card&#x27;&gt;
+  &lt;h2&gt;Source URLs&lt;/h2&gt;
+  &lt;p class=&#x27;small&#x27;&gt;Sources are taken from the updated CSV. Placeholder labels such as &quot;V-One Kickstarter&quot; or &quot;Wazer Kickstarter&quot; are preserved as entered.&lt;/p&gt;
+  &lt;ol class=&#x27;source-list&#x27;&gt;&lt;li&gt;&lt;strong&gt;Lumos Ultra (Laser):&lt;/strong&gt; https://www.kickstarter.com/projects/wecreat/lumos-ultra-worlds-first-one-stop-uv-mopa-laser&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Lumos Ultra (Laser) company:&lt;/strong&gt; wecreat.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xLaserLab E3:&lt;/strong&gt; https://www.kickstarter.com/projects/xlaserlab/xlaserlab-uv-engraver&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xLaserLab E3 company:&lt;/strong&gt; xlaserlab.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Gweike G2:&lt;/strong&gt; https://www.kickstarter.com/projects/gweike/gweike-g2-portable-20w-handheld-fiber-laser-engraver&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Gweike G2 company:&lt;/strong&gt; gweikecloud.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Flux Beamo:&lt;/strong&gt; https://www.kickstarter.com/projects/flux-inc/beamo-worlds-smallest-co2-laser-cutter/description&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Flux Beamo company:&lt;/strong&gt; flux3dp.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Flux BeamBox:&lt;/strong&gt; https://www.kickstarter.com/projects/flux-inc/beambox-the-accessible-laser-cutter-and-engraver?ref=creator_tab&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Flux BeamBox company:&lt;/strong&gt; flux3dp.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;AnyLaser:&lt;/strong&gt; https://www.kickstarter.com/projects/anylaser/anylaser-x1-the-worlds-smallest-desktop-laser-engraver/description&lt;/li&gt;&lt;li&gt;&lt;strong&gt;AnyLaser company:&lt;/strong&gt; anylaser.net&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Wainlux Z5:&lt;/strong&gt; https://www.kickstarter.com/projects/wainlux-laser-tech/wainlux-z5-handheldminimetal-laser-andcutting-machine/description&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Wainlux Z5 company:&lt;/strong&gt; wainlux.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Wainlux L3:&lt;/strong&gt; https://www.kickstarter.com/projects/wainlux-laser-tech/most-powerful-10w-dual-laser-cutter-and-engraver-w-autofocus?ref=creator_tab&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Wainlux L3 company:&lt;/strong&gt; wainlux.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;LaserPecker 4:&lt;/strong&gt; https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material&lt;/li&gt;&lt;li&gt;&lt;strong&gt;LaserPecker 4 company:&lt;/strong&gt; laserpecker.net&lt;/li&gt;&lt;li&gt;&lt;strong&gt;LaserPecker 2:&lt;/strong&gt; https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;category_id=334&lt;/li&gt;&lt;li&gt;&lt;strong&gt;LaserPecker 2 company:&lt;/strong&gt; laserpecker.net&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool MetalFab:&lt;/strong&gt; https://www.kickstarter.com/projects/makeblock/xtool-metalfab-the-next-gen-metal-solution?ref=creator_tab&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool MetalFab company:&lt;/strong&gt; xtool.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;eufyMake E1:&lt;/strong&gt; https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer&lt;/li&gt;&lt;li&gt;&lt;strong&gt;eufyMake E1 company:&lt;/strong&gt; eufymake.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool Screen Printer:&lt;/strong&gt; https://www.kickstarter.com/projects/makeblock/xtool-screen-printer-1st-screen-printing-solution-with-laser&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool Screen Printer company:&lt;/strong&gt; xtool.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool Apparel Printer:&lt;/strong&gt; https://www.kickstarter.com/projects/makeblock/xtool-apparel-printer-a-new-era-of-apparel-printing?ref=creator_tab&lt;/li&gt;&lt;li&gt;&lt;strong&gt;xTool Apparel Printer company:&lt;/strong&gt; xtool.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Revopoint Inspire:&lt;/strong&gt; https://www.kickstarter.com/projects/revopoint3d/revopoint-inspire-3d-scanner-for-all-creators&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Revopoint Inspire company:&lt;/strong&gt; revopoint3d.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Revopoint Trackit:&lt;/strong&gt; https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;category_id=331&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Revopoint Trackit company:&lt;/strong&gt; revopoint3d.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker U1:&lt;/strong&gt; https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker U1 company:&lt;/strong&gt; snapmaker.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;OrangeStorm Giga:&lt;/strong&gt; https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1&lt;/li&gt;&lt;li&gt;&lt;strong&gt;OrangeStorm Giga company:&lt;/strong&gt; ELEGOO US&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Phrozen Arco:&lt;/strong&gt; https://www.kickstarter.com/projects/phrozenmake/phrozen-arco-3d-printer-larger-faster-more-colors&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Phrozen Arco company:&lt;/strong&gt; phrozen3d.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;FibreSeeker 3:&lt;/strong&gt; https://www.kickstarter.com/projects/1763117873/fibreseeker-3-the-first-personal-continuous-fibre-3d-printer&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvera:&lt;/strong&gt; https://www.kickstarter.com/projects/makera-inc/carvera?ref=creator_tab&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvera company:&lt;/strong&gt; makera.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvera Air:&lt;/strong&gt; https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvera Air company:&lt;/strong&gt; makera.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Makera Z1:&lt;/strong&gt; https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Makera Z1 company:&lt;/strong&gt; makera.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Rownd CNC Lathe:&lt;/strong&gt; https://www.kickstarter.com/projects/rowndprecision/rownd-cnc-lathe-machining-for-everybody&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Rownd CNC Lathe company:&lt;/strong&gt; rowndcnc.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Cubiio X:&lt;/strong&gt; https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Cubiio X company:&lt;/strong&gt; cubiio.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Duroxen CNC Lathe:&lt;/strong&gt; https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Duroxen CNC Lathe company:&lt;/strong&gt; duroxen.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Voltera V-One:&lt;/strong&gt; V-One Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Voltera V-One company:&lt;/strong&gt; voltera.io&lt;/li&gt;&lt;li&gt;&lt;strong&gt;WAZER Desktop:&lt;/strong&gt; Wazer Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;WAZER Desktop company:&lt;/strong&gt; wazer.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Othermill:&lt;/strong&gt; Othermill Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Othermill company:&lt;/strong&gt; Bantam Tools / legacy&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Squink:&lt;/strong&gt; Squink Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Squink company:&lt;/strong&gt; botfactory.co&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Prometheus:&lt;/strong&gt; Kickstarter / Kicktraq&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Prometheus company:&lt;/strong&gt; zippyrobotics.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Nomad CNC Mill:&lt;/strong&gt; Kickstarter / Kicktraq&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Nomad CNC Mill company:&lt;/strong&gt; carbide3d.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvey:&lt;/strong&gt; Kickstarter / Kicktraq&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Carvey company:&lt;/strong&gt; inventables.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker 2.0:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker 2.0 company:&lt;/strong&gt; snapmaker.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker Original:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Snapmaker Original company:&lt;/strong&gt; snapmaker.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Formlabs Form 1:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Formlabs Form 1 company:&lt;/strong&gt; formlabs.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Glowforge:&lt;/strong&gt; Direct preorder crowdfunding&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Glowforge company:&lt;/strong&gt; glowforge.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Mayku FormBox:&lt;/strong&gt; Kickstarter / BackerKit&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Mayku FormBox company:&lt;/strong&gt; mayku.me&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vaquform:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Vaquform company:&lt;/strong&gt; vaquform.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;FLUX Delta:&lt;/strong&gt; Kickstarter / Indiegogo reference&lt;/li&gt;&lt;li&gt;&lt;strong&gt;FLUX Delta company:&lt;/strong&gt; flux3dp.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Mr Beam II:&lt;/strong&gt; Kickstarter / BackerKit&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Mr Beam II company:&lt;/strong&gt; mr-beam.org&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Pocket NC:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Pocket NC company:&lt;/strong&gt; pentamachine.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Sienci Mill One:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Sienci Mill One company:&lt;/strong&gt; sienci.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;CNC ONE:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;CNC ONE company:&lt;/strong&gt; cnc-one.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;B9Creator:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;B9Creator company:&lt;/strong&gt; b9creations.com&lt;/li&gt;&lt;li&gt;&lt;strong&gt;M3D Micro:&lt;/strong&gt; Kickstarter&lt;/li&gt;&lt;li&gt;&lt;strong&gt;M3D Micro company:&lt;/strong&gt; m3d.com / legacy&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Reflowster:&lt;/strong&gt; Kickstarter / Kicktraq&lt;/li&gt;&lt;/ol&gt;
+&lt;/section&gt;
+
+&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
       </div>
-      <p class='small'>Raven must win on the combined axis: same-day control without CNC/CAM burden.</p>
-    </div>
+    </section>
   </div>
-
-  <div class='grid'>
-    <div class='card span-6'>
-      <h3 class='green'>Status Quo vs Raven</h3>
-      <table>
-        <tr><th>Option</th><th>Strength</th><th>Weakness Raven Can Exploit</th></tr>
-        <tr><td class='green'>PCB fab houses: JLCPCB, PCBWay, OSH Park</td><td>Cheap, high-quality boards</td><td class='yellow'>Waiting, shipping, minimums, privacy, and iteration lag.</td></tr>
-        <tr><td class='blue'>Generic CNC + FlatCAM</td><td>Cheap and flexible</td><td class='green'>CAM setup, autoleveling, tooling, failed boards, unsafe beginner workflow.</td></tr>
-        <tr><td class='blue'>Bantam/Othermill class</td><td>High-quality desktop milling</td><td class='blue'>Higher price and narrower hobbyist affordability.</td></tr>
-        <tr><td class='yellow'>V-One additive model</td><td>Known Voltera trust and education value</td><td class='green'>Ink shelf-life, resistance limits, and manual probing pain.</td></tr>
-      </table>
-    </div>
-    <div class='card span-6'>
-      <h3 class='blue'>Market Sentiment & Community Intelligence</h3>
-      <p class='blue'><b>Core hubs:</b> r/PrintedCircuitBoard, r/AskElectronics, KiCad forum, EEVblog, maker YouTube, GitHub/SourceForge CAM projects, Arduino/Raspberry Pi communities.</p>
-      <p class='yellow'><b>Recurring friction:</b> cheap fabs are slow for iteration; DIY milling is fragile; CAM/autoleveling is confusing; chemical/additive processes add storage and reliability issues.</p>
-      <p class='yellow'><b>Aha signal:</b> Users still download FlatCAM/pcb2gcode and repurpose generic CNC machines, proving the workaround exists and the workflow is not solved.</p>
-    </div>
-  </div>
-
-  <div class='grid'>
-    <div class='card span-6'>
-      <h3 class='green'>Strategic Positioning & Moat</h3>
-      <p class='green'><b>USP:</b> Raven should be the simplest same-day PCB fabrication appliance for hobbyists who already design boards but do not want to become CNC/CAM experts.</p>
-      <p class='blue'><b>Moat:</b> integrated Gerber-to-machine software, protected autoleveling, bit/tooling recipes, board-material ecosystem, education content, and Voltera credibility in desktop electronics fabrication.</p>
-      <p class='yellow'><b>Pricing hypothesis:</b> MSRP $1,499-$1,999; launch paid price $999-$1,499; higher bundle for fixtures, bits, blanks, and education/pro-maker accessories.</p>
-    </div>
-    <div class='card span-6'>
-      <h3 class='green'>Gate 1 Decision</h3>
-      <div class='callout green'>
-        <p><b>PASS to Phase 3 - Customer Discovery.</b> The evidence is strong enough to test willingness-to-pay, workflows, and result-quality requirements with customers.</p>
-      </div>
-      <table>
-        <tr><th>Key Question</th><th>Status</th><th>Answer</th></tr>
-        <tr><td>How many people face this problem?</td><td class='blue'>Known enough</td><td>High-intent CAM users plus broad ECAD/simulation ecosystems show a reachable pool.</td></tr>
-        <tr><td>Is the market large enough?</td><td class='blue'>Likely</td><td>1,000 units/year is plausible; 2,000/year requires price and workflow validation.</td></tr>
-        <tr><td>Do we understand competitors?</td><td class='green'>Yes</td><td>Status quo is outsourced fab houses and DIY CNC/CAM workarounds.</td></tr>
-        <tr><td>Do we have a pricing hypothesis?</td><td class='green'>Yes</td><td>$999-$1,499 paid launch price; $1,499-$1,999 MSRP.</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class='callout yellow'>
-    <p><b>Leadership caveat:</b> Kickstarter data validates launch/preorder demand, not steady annual demand. Customer discovery should directly test the willingness to pay at $999, $1,299, $1,499, and $1,999.</p>
-  </div>
-</section>
-
-<section class='sources-page'>
-  <h2>Source URLs</h2>
-  <p class='small'>Source URLs compiled from the uploaded Kickstarter, software, market-data, and prior Kickstarter analysis files. Internal uploaded files used: B1.Kickstarters.csv; Raven Market Research - Software.csv; Raven Market Research_Market Data.csv; Raven Market Research _2025 v-two Market Research.csv; rvn.Market Research_Software Analysis.docx; Market Report Template.</p>
-  <ol class='src-list'>
-    <li>https://www.kickstarter.com/projects/wecreat/lumos-ultra-worlds-first-one-stop-uv-mopa-laser</li>
-<li>https://www.kickstarter.com/projects/xlaserlab/xlaserlab-uv-engraver</li>
-<li>https://www.kickstarter.com/projects/gweike/gweike-g2-portable-20w-handheld-fiber-laser-engraver</li>
-<li>https://www.kickstarter.com/projects/flux-inc/beamo-worlds-smallest-co2-laser-cutter/description</li>
-<li>https://www.kickstarter.com/projects/flux-inc/beambox-the-accessible-laser-cutter-and-engraver?ref=creator_tab</li>
-<li>https://www.kickstarter.com/projects/anylaser/anylaser-x1-the-worlds-smallest-desktop-laser-engraver/description</li>
-<li>https://www.kickstarter.com/projects/wainlux-laser-tech/wainlux-z5-handheldminimetal-laser-andcutting-machine/description</li>
-<li>https://www.kickstarter.com/projects/wainlux-laser-tech/most-powerful-10w-dual-laser-cutter-and-engraver-w-autofocus?ref=creator_tab</li>
-<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material</li>
-<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;category_id=334</li>
-<li>https://www.kickstarter.com/projects/makeblock/xtool-metalfab-the-next-gen-metal-solution?ref=creator_tab</li>
-<li>https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer</li>
-<li>https://www.kickstarter.com/projects/makeblock/xtool-screen-printer-1st-screen-printing-solution-with-laser</li>
-<li>https://www.kickstarter.com/projects/makeblock/xtool-apparel-printer-a-new-era-of-apparel-printing?ref=creator_tab</li>
-<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-inspire-3d-scanner-for-all-creators</li>
-<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;category_id=331</li>
-<li>https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste</li>
-<li>https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;result=project&amp;term=OrangeStorm%20Giga&amp;total_hits=1</li>
-<li>https://www.kickstarter.com/projects/phrozenmake/phrozen-arco-3d-printer-larger-faster-more-colors</li>
-<li>https://www.kickstarter.com/projects/1763117873/fibreseeker-3-the-first-personal-continuous-fibre-3d-printer</li>
-<li>https://www.kickstarter.com/projects/makera-inc/carvera?ref=creator_tab</li>
-<li>https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;term=carvera%20air&amp;total_hits=2&amp;category_id=335</li>
-<li>https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power</li>
-<li>https://www.kickstarter.com/projects/rowndprecision/rownd-cnc-lathe-machining-for-everybody</li>
-<li>https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers</li>
-<li>https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers</li>
-<li>V-One Kickstarter</li>
-<li>Wazer Kickstarter</li>
-<li>Othermill Kickstarter</li>
-<li>Squink Kickstarter</li>
-<li>Kickstarter / Kicktraq</li>
-<li>Kickstarter</li>
-<li>Kickstarter / BackerKit</li>
-<li>Kickstarter / Indiegogo reference</li>
-<li>https://www.kicad.org/about/kicad/</li>
-<li>https://github.com/KiCad/kicad-source-mirror</li>
-<li>https://easyeda.com/</li>
-<li>https://www.altium.com/company/investor-relations</li>
-<li>https://www.autodesk.com/company</li>
-<li>https://www.flux.ai/</li>
-<li>https://librepcb.org/</li>
-<li>https://www.circuito.io/app?components=512</li>
-<li>https://www.qualcomm.com/news/releases/2025/10/qualcomm-to-acquire-arduino-accelerating-developers--access-to-i#:~:text=Arduino%20App%20Lab%20is%20a</li>
-<li>https://www.boldandopen.com/blog/adafruit-case-study#:~:text=She&#x27;s%20grown%20her%20manufacturing%20company</li>
-<li>https://www.zippia.com/sparkfun-electronics-careers-1569240/</li>
-<li>https://businessmodelcanvastemplate.com/blogs/target-market/arduino-target-market#:~:text=Core%20makers%3A%20ages%2018%2D45</li>
-<li>https://leadiq.com/c/adafruit-industries/5a397e28550000a601bba18f#:~:text=Financial%20and%20Market%20Potential%20With</li>
-<li>https://www.zippia.com/sparkfun-electronics-careers-1569240/revenue/</li>
-<li>https://tracxn.com/d/companies/arduino/__pTebmNyTTWfIkwprLaIa7jst5W9_B3KGiz6GjtCEp6g</li>
-<li>https://www.forbes.com/profile/limor-fried/</li>
-<li>https://leadiq.com/c/sparkfun-electronics/5a1d8d25540000510073d3f2</li>
-<li>https://prospeo.io/c/sparkfun-electronics-revenue</li>
-<li>https://civicscience.com/how-americans-are-redefining-free-time-through-budget-friendly-hobbies/</li>
-<li>https://dataintelo.com/report/open-source-hardware-market</li>
-<li>https://www.self.inc/info/spend-favorite-hobbies/</li>
-<li>https://www.businessresearchinsights.com/market-reports/solderless-breadboards-market-109596</li>
-<li>https://dataintelo.com/report/electronic-building-kit-market</li>
-<li>https://www.skyquestt.com/report/open-source-hardware-market</li>
-<li>https://dataintelo.com/report/pcb-prototyping-equipment-market</li>
-<li>https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335</li>
-<li>https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1</li>
-<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;category_id=334</li>
-<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;category_id=331</li>
-  </ol>
-</section>
-</main>
 </body>
 </html>
