@@ -6,26 +6,46 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Raven Market Research Report + Kickstarter + Deep Dive Data</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
     :root {
-      --green:#17803a;
-      --blue:#1d5f9f;
-      --ink:#1f2937;
-      --muted:#6b7280;
-      --line:#d6d9de;
-      --page:#f5f6f8;
-      --tab-bg:#ffffff;
-      --tab-inactive:#eef2f6;
+      --green: #10b981;
+      --green-bg: #ecfdf5;
+      --green-border: #bbf7d0;
+      --green-text: #065f46;
+      
+      --blue: #3b82f6;
+      --blue-bg: #eff6ff;
+      --blue-border: #bfdbfe;
+      --blue-text: #1e40af;
+      
+      --yellow: #f59e0b;
+      --yellow-bg: #fffbeb;
+      --yellow-border: #fef3c7;
+      --yellow-text: #854d0e;
+      
+      --orange: #f97316;
+      --orange-bg: #fff7ed;
+      --orange-border: #ffedd5;
+      --orange-text: #9a3412;
+
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --page: #f8fafc;
+      --tab-bg: rgba(255, 255, 255, 0.85);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background: var(--page);
       color: var(--ink);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
     }
     .tab-shell {
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -34,24 +54,128 @@
       top: 0;
       z-index: 50;
       background: var(--tab-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
-      box-shadow: 0 4px 14px rgba(15,23,42,.06);
-      padding: 10px 18px 0;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+      padding: 12px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .tab-title {
-      max-width: 1320px;
-      margin: 0 auto 8px;
-      font-size: 13px;
+    
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-title svg {
+      color: var(--blue);
+      fill: none;
+      stroke: currentColor;
+    }
+    .brand-title h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .brand-title span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .global-legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      border: 1px solid var(--line);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .legend-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
     }
-    .tab-title strong { color: var(--ink); }
-    .tab-controls {
-      max-width: 1320px;
-      margin: 0 auto;
+    .legend-pills {
       display: flex;
-      gap: 8px;
-      align-items: flex-end;
-      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+    }
+    .legend-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    
+    .legend-pill.green {
+      background: var(--green-bg);
+      color: var(--green-text);
+      border-color: var(--green-border);
+    }
+    .legend-pill.green .dot { background: var(--green); }
+
+    .legend-pill.blue {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      border-color: var(--blue-border);
+    }
+    .legend-pill.blue .dot { background: var(--blue); }
+
+    .legend-pill.yellow {
+      background: var(--yellow-bg);
+      color: var(--yellow-text);
+      border-color: var(--yellow-border);
+    }
+    .legend-pill.yellow .dot { background: var(--yellow); }
+
+    .legend-pill.orange {
+      background: var(--orange-bg);
+      color: var(--orange-text);
+      border-color: var(--orange-border);
+    }
+    .legend-pill.orange .dot { background: var(--orange); }
+
+    .tab-controls {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: inline-flex;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 10px;
+      gap: 2px;
+      align-self: flex-start;
+      margin-bottom: 8px;
+      border: 1px solid rgba(226, 232, 240, 0.5);
     }
     .tab-controls input {
       position: absolute;
@@ -60,85 +184,125 @@
     }
     .tab-controls label {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border: 1px solid var(--line);
-      border-bottom: none;
-      border-radius: 12px 12px 0 0;
-      background: var(--tab-inactive);
-      color: var(--ink);
-      font-size: 14px;
-      font-weight: 700;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 6px 14px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       user-select: none;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      background: transparent;
+      line-height: 1.25;
     }
     .tab-controls label span {
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .04em;
       color: var(--muted);
+      opacity: 0.8;
+      margin-bottom: 1px;
     }
+    .tab-controls label:hover {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.4);
+    }
+    
     #tab-raven:checked ~ label[for="tab-raven"],
     #tab-kickstarter:checked ~ label[for="tab-kickstarter"],
     #tab-deep:checked ~ label[for="tab-deep"] {
       background: #ffffff;
-      color: var(--blue);
-      border-top: 4px solid var(--green);
-      padding-top: 9px;
+      color: var(--blue-text);
+      box-shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
     }
+    
+    #tab-raven:checked ~ label[for="tab-raven"] span,
+    #tab-kickstarter:checked ~ label[for="tab-kickstarter"] span,
+    #tab-deep:checked ~ label[for="tab-deep"] span {
+      color: var(--blue);
+      opacity: 1;
+    }
+    
     .tab-panels {
       flex: 1;
       min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
     .panel {
       display: none;
       width: 100%;
-      height: calc(100vh - 92px);
-      min-height: 720px;
+      flex: 1;
       background: var(--page);
     }
     body:has(#tab-raven:checked) .panel-raven,
     body:has(#tab-kickstarter:checked) .panel-kickstarter,
     body:has(#tab-deep:checked) .panel-deep {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
     iframe {
       width: 100%;
-      height: 100%;
+      flex: 1;
       border: 0;
       background: #fff;
       display: block;
     }
     @media print {
+      body {
+        overflow: visible;
+      }
       .top-tabs { display: none; }
       .panel { display: block !important; height: auto; min-height: 0; }
       .panel-kickstarter { break-before: page; }
       .panel-deep { break-before: page; }
       iframe { height: 1100px; overflow: visible; }
     }
-    @media (max-width: 720px) {
-      .top-tabs { padding: 8px 10px 0; }
-      .tab-title { font-size: 12px; }
-      .tab-controls label { padding: 10px 11px; font-size: 12px; }
-      #tab-raven:checked ~ label[for="tab-raven"],
-      #tab-kickstarter:checked ~ label[for="tab-kickstarter"],
-      #tab-deep:checked ~ label[for="tab-deep"] { padding-top: 7px; }
-      .panel { height: calc(100vh - 86px); min-height: 640px; }
+    @media (max-width: 900px) {
+      .top-tabs { padding: 10px 14px 0; gap: 8px; }
+      .header-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .global-legend { width: 100%; justify-content: space-between; }
+      .tab-controls { display: flex; flex-direction: column; width: 100%; }
+      .tab-controls label { width: 100%; }
     }
   </style>
 </head>
 <body>
 <div class="tab-shell">
 <nav aria-label="Raven report tabs" class="top-tabs">
+  <div class="header-top">
+    <div class="brand-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue);">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+      <h1>Raven Market Research Suite</h1>
+      <span>v2.0</span>
+    </div>
+    <div class="global-legend" id="global-confidence-legend">
+      <span class="legend-label">Confidence:</span>
+      <div class="legend-pills">
+        <span class="legend-pill green" title="Multi-source / verified data"><span class="dot"></span>Verified</span>
+        <span class="legend-pill blue" title="1-2 strong sources"><span class="dot"></span>Strong Sources</span>
+        <span class="legend-pill yellow" title="Source-backed assumptions"><span class="dot"></span>Assumptions</span>
+        <span class="legend-pill orange" title="Inference / weak data"><span class="dot"></span>Inferences</span>
+      </div>
+    </div>
+  </div>
 
-<div class="tab-controls">
-<input checked="" id="tab-raven" name="report-tab" type="radio"/>
-<input id="tab-kickstarter" name="report-tab" type="radio"/><input id="tab-deep" name="report-tab" type="radio"/>
-<label for="tab-raven"><span>Main</span> Raven Market Research Report</label>
-<label for="tab-kickstarter"><span>Deep Dive</span> Kickstarter Maker Machine Demand Analysis</label>
-<label for="tab-deep"><span>Deep Dive</span> Research Data + Market Signals</label></div>
+  <div class="tab-controls">
+    <input checked="" id="tab-raven" name="report-tab" type="radio"/>
+    <input id="tab-kickstarter" name="report-tab" type="radio"/>
+    <input id="tab-deep" name="report-tab" type="radio"/>
+    <label for="tab-raven"><span>Main</span>Raven Market Research Report</label>
+    <label for="tab-kickstarter"><span>Deep Dive</span>Kickstarter Maker Machine Demand Analysis</label>
+    <label for="tab-deep"><span>Deep Dive</span>Research Data + Market Signals</label>
+  </div>
 </nav>
 <section class="tab-panels">
 <div aria-label="Raven Market Research Report" class="panel panel-raven" role="tabpanel">
@@ -149,22 +313,23 @@
 &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
 &lt;title&gt;Raven Market Research Report&lt;/title&gt;
 &lt;style&gt;
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
 :root {
-  --green:#17803a; --green-bg:#e8f6ee; --blue:#1d5f9f; --blue-bg:#e9f3fc; --yellow:#9a7200; --yellow-bg:#fff7d8; --orange:#b45309; --orange-bg:#fff0df;
-  --ink:#1f2937; --muted:#6b7280; --line:#d6d9de; --panel:#fff; --page:#f5f6f8;
+  --green:#10b981; --green-bg:#ecfdf5; --blue:#3b82f6; --blue-bg:#eff6ff; --yellow:#f59e0b; --yellow-bg:#fffbeb; --orange:#f97316; --orange-bg:#fff7ed;
+  --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --panel:#fff; --page:#f8fafc;
 }
-*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.35;font-size:13px}
+*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;line-height:1.5;font-size:13px}
 .report{max-width:1180px;margin:0 auto;padding:24px 18px 60px}
 .page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin:0 0 20px;box-shadow:0 8px 26px rgba(15,23,42,.06);min-height:920px}
 .sources-page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:20px;box-shadow:0 8px 26px rgba(15,23,42,.06)}
 h1{font-size:34px;line-height:1.08;margin:0 0 8px;letter-spacing:-.03em} h2{font-size:20px;margin:0 0 10px} h3{font-size:15px;margin:14px 0 7px} p{margin:0 0 8px}
-.header-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;align-items:start}
+.header-grid{display:grid;grid-template-columns:1fr;gap:16px;align-items:start}
 .meta{color:var(--muted);font-size:12px} .small{font-size:11px;color:var(--muted)}
 .green{color:var(--green)} .blue{color:var(--blue)} .yellow{color:var(--yellow)} .orange{color:var(--orange)}
 .pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:700;margin:0 4px 4px 0} .pill.green{background:var(--green-bg);color:var(--green)} .pill.blue{background:var(--blue-bg);color:var(--blue)} .pill.yellow{background:var(--yellow-bg);color:var(--yellow)} .pill.orange{background:var(--orange-bg);color:var(--orange)}
 .callout{border-left:6px solid var(--blue);background:var(--blue-bg);border-radius:10px;padding:12px 14px;margin:10px 0} .callout.green{border-color:var(--green);background:var(--green-bg)} .callout.yellow{border-color:var(--yellow);background:var(--yellow-bg)} .callout.orange{border-color:var(--orange);background:var(--orange-bg)}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px} .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-5{grid-column:span 5} .span-6{grid-column:span 6} .span-7{grid-column:span 7} .span-8{grid-column:span 8} .span-12{grid-column:span 12}
-.card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;margin-bottom:12px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff;margin-bottom:12px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}
 .metric-value{display:block;font-size:25px;font-weight:800;letter-spacing:-.02em;margin-top:2px} .metric-label{display:block;color:var(--muted);font-size:11px}
 table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td{border:1px solid var(--line);padding:6px 7px;vertical-align:top;text-align:left} th{background:#f1f3f5;color:#111827;font-weight:700} tr:nth-child(even) td{background:#fafafa}
 .bar-row{display:grid;grid-template-columns:122px 1fr 70px;gap:8px;align-items:center;margin:8px 0} .bar-label-left{font-size:11px;color:#374151} .bar-track{height:17px;background:#eef1f4;border-radius:999px;overflow:hidden} .bar{height:100%;border-radius:999px} .bar.green{background:var(--green)} .bar.blue{background:var(--blue)} .bar.yellow{background:var(--yellow)} .bar.orange{background:var(--orange)} .bar-value{font-size:11px;color:#374151;text-align:right}
@@ -182,13 +347,6 @@ table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td
       &lt;span class='pill blue'&gt;Raven: Market Report&lt;/span&gt;&lt;span class='pill green'&gt;Gate 1 Recommendation: PASS to Customer Discovery&lt;/span&gt;
       &lt;h1&gt;Raven Market Research Report&lt;/h1&gt;
       &lt;p class='meta'&gt;Product: Raven, desktop PCB fabrication for hobbyists and pro-makers | Phase: 2/9 Market Research | Date: May 27, 2026&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div class='card'&gt;
-      &lt;b&gt;Confidence Legend&lt;/b&gt;&lt;br&gt;
-      &lt;span class='pill green'&gt;Green&lt;/span&gt; multi-source / verified data&lt;br&gt;
-      &lt;span class='pill blue'&gt;Blue&lt;/span&gt; 1-2 strong sources&lt;br&gt;
-      &lt;span class='pill yellow'&gt;Yellow&lt;/span&gt; source-backed assumptions&lt;br&gt;
-      &lt;span class='pill orange'&gt;Orange&lt;/span&gt; inference / weak data
     &lt;/div&gt;
   &lt;/div&gt;
 
@@ -462,17 +620,15 @@ table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td
 &lt;meta name='viewport' content='width=device-width, initial-scale=1.0' /&gt;
 &lt;title&gt;Voltera Leadership Brief - Kickstarter Maker Machine Analysis&lt;/title&gt;
 &lt;style&gt;
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
 :root {
-  --green:#17803a; --green-bg:#e9f7ee;
-  --blue:#1d5f9f; --blue-bg:#eaf3fc;
-  --yellow:#9a7200; --yellow-bg:#fff7d7;
-  --orange:#b45309; --orange-bg:#fff0df;
-  --ink:#1f2937; --muted:#6b7280; --border:#d1d5db; --panel:#ffffff; --page:#f6f7f9;
+  --green:#10b981; --green-bg:#ecfdf5; --blue:#3b82f6; --blue-bg:#eff6ff; --yellow:#f59e0b; --yellow-bg:#fffbeb; --orange:#f97316; --orange-bg:#fff7ed;
+  --ink:#0f172a; --muted:#64748b; --border:#e2e8f0; --panel:#ffffff; --page:#f8fafc;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.45}
+body{margin:0;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}
 .page{max-width:1320px;margin:0 auto;padding:32px 20px 64px}
-header,.card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+header,.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}
 header{padding:34px;margin-bottom:22px}
 .card{padding:24px;margin-bottom:20px}
 h1,h2,h3{margin:0 0 12px;line-height:1.2} h1{font-size:clamp(30px,4vw,46px);letter-spacing:-.03em} h2{font-size:25px;margin-top:4px} h3{font-size:19px;margin-top:18px}
@@ -485,7 +641,7 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 .metric{min-height:132px} .metric-value{font-size:34px;font-weight:800;letter-spacing:-.03em;display:block;margin-top:4px} .metric-label{color:var(--muted);font-size:14px;display:block;margin-top:6px}
 .callout{border-left:7px solid var(--blue);background:var(--blue-bg);padding:18px 20px;border-radius:12px;margin:16px 0} .callout.green{border-left-color:var(--green);background:var(--green-bg)} .callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)} .callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}
 .table-wrap{overflow-x:auto;margin-top:14px} table{width:100%;min-width:1050px;border-collapse:collapse;font-size:13px;background:#fff} th,td{border:1px solid var(--border);padding:10px 11px;vertical-align:top;text-align:left} th{background:#f1f3f5;color:#111827;font-weight:700;white-space:nowrap} tr:nth-child(even) td{background:#fafafa} .nowrap{white-space:nowrap} .small{font-size:12px;color:var(--muted)}
-.chart-wrap{width:100%;overflow-x:auto;margin-top:12px} svg{max-width:100%;height:auto;font-family:Arial,Helvetica,sans-serif} .axis-label{fill:#6b7280;font-size:12px} .bar-label{fill:#1f2937;font-size:12px;font-weight:700}
+.chart-wrap{width:100%;overflow-x:auto;margin-top:12px} svg{max-width:100%;height:auto;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif} .axis-label{fill:#64748b;font-size:12px} .bar-label{fill:#0f172a;font-size:12px;font-weight:700}
 .source-list{columns:2;column-gap:34px;padding-left:20px;font-size:13px;word-break:break-word} .source-list li{margin:0 0 9px;break-inside:avoid}
 @media(max-width:960px){.span-6,.span-4,.span-3{grid-column:span 12}.legend{grid-template-columns:1fr}.source-list{columns:1}header,.card{padding:20px}}
 &lt;/style&gt;
@@ -497,12 +653,6 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
   &lt;h1&gt;Kickstarter Maker Machine Demand Analysis&lt;/h1&gt;
   &lt;p class='subtitle'&gt;Updated analysis using the combined Kickstarter CSV. Rows marked &lt;strong&gt;TRUE&lt;/strong&gt; are treated as the validated dataset because tier prices, tier backer counts, campaign dates, and total product purchases were manually confirmed.&lt;/p&gt;
   &lt;p class='meta'&gt;Prepared date: May 27, 2026. Primary question: can a hobbyist electronics fabrication product sell 1,000-2,000 units/year at a $1,000-$2,000 MSRP?&lt;/p&gt;
-  &lt;div class='legend'&gt;
-    &lt;div class='legend-item'&gt;&lt;span class='pill green'&gt;Green&lt;/span&gt;&lt;br&gt;Most confident. Based on TRUE rows or strong direct comparables.&lt;/div&gt;
-    &lt;div class='legend-item'&gt;&lt;span class='pill blue'&gt;Blue&lt;/span&gt;&lt;br&gt;Decently confident. Supported by the dataset, but less direct to electronics fabrication.&lt;/div&gt;
-    &lt;div class='legend-item'&gt;&lt;span class='pill yellow'&gt;Yellow&lt;/span&gt;&lt;br&gt;Kind of confident. Source-backed but needs assumptions.&lt;/div&gt;
-    &lt;div class='legend-item'&gt;&lt;span class='pill orange'&gt;Orange&lt;/span&gt;&lt;br&gt;Not confident. Mostly inference, mismatch, or warning signal.&lt;/div&gt;
-  &lt;/div&gt;
 &lt;/header&gt;
 
 &lt;section class='card'&gt;
@@ -853,8 +1003,9 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
 &lt;title&gt;Raven Deep Dive Research Data&lt;/title&gt;
 &lt;style&gt;
-:root{--green:#17803a;--green-bg:#e9f7ee;--blue:#1d5f9f;--blue-bg:#eaf3fc;--yellow:#9a7200;--yellow-bg:#fff7d7;--orange:#b45309;--orange-bg:#fff0df;--ink:#1f2937;--muted:#6b7280;--line:#d1d5db;--panel:#ffffff;--page:#f6f7f9}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.42}.page{max-width:1280px;margin:0 auto;padding:28px 18px 60px}header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 22px rgba(15,23,42,.05)}header{padding:28px;margin-bottom:18px}.card{padding:20px;margin-bottom:18px}h1,h2,h3{margin:0 0 10px;line-height:1.18}h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em}h2{font-size:24px}h3{font-size:18px}.sub{color:var(--muted);font-size:16px;max-width:980px}.green{color:var(--green)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}.pill.green{background:var(--green-bg);color:var(--green)}.pill.blue{background:var(--blue-bg);color:var(--blue)}.pill.yellow{background:var(--yellow-bg);color:var(--yellow)}.pill.orange{background:var(--orange-bg);color:var(--orange)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.metric{min-height:128px}.metric-value{display:block;font-size:32px;font-weight:800;letter-spacing:-.03em}.metric-label{display:block;color:var(--muted);font-size:13px;margin-top:6px}.callout{border-left:7px solid var(--blue);background:var(--blue-bg);border-radius:12px;padding:15px 17px;margin:13px 0}.callout.green{border-left-color:var(--green);background:var(--green-bg)}.callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)}.callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px;background:#fff}th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}th{background:#f1f3f5;color:#111827;font-weight:700}tr:nth-child(even) td{background:#fafafa}.table-wrap{overflow-x:auto}.chart-wrap{overflow-x:auto;margin-top:8px}svg{max-width:100%;height:auto;font-family:Arial,Helvetica,sans-serif}.axis{fill:#6b7280;font-size:12px}.bar-label{fill:#1f2937;font-size:12px;font-weight:700}.note{font-size:12px;color:var(--muted)}.sources{columns:2;column-gap:32px;font-size:12px;word-break:break-word}.sources li{break-inside:avoid;margin-bottom:7px}@media(max-width:900px){.span-8,.span-6,.span-4,.span-3{grid-column:span 12}.sources{columns:1}header,.card{padding:18px}}
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
+:root{--green:#10b981;--green-bg:#ecfdf5;--blue:#3b82f6;--blue-bg:#eff6ff;--yellow:#f59e0b;--yellow-bg:#fffbeb;--orange:#f97316;--orange-bg:#fff7ed;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--panel:#ffffff;--page:#f8fafc}
+*{box-sizing:border-box}body{margin:0;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}.page{max-width:1280px;margin:0 auto;padding:28px 18px 60px}header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}header{padding:28px;margin-bottom:18px}.card{padding:20px;margin-bottom:18px}h1,h2,h3{margin:0 0 10px;line-height:1.18}h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em}h2{font-size:24px}h3{font-size:18px}.sub{color:var(--muted);font-size:16px;max-width:980px}.green{color:var(--green)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}.pill.green{background:var(--green-bg);color:var(--green)}.pill.blue{background:var(--blue-bg);color:var(--blue)}.pill.yellow{background:var(--yellow-bg);color:var(--yellow)}.pill.orange{background:var(--orange-bg);color:var(--orange)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.metric{min-height:128px}.metric-value{display:block;font-size:32px;font-weight:800;letter-spacing:-.03em}.metric-label{display:block;color:var(--muted);font-size:13px;margin-top:6px}.callout{border-left:7px solid var(--blue);background:var(--blue-bg);border-radius:12px;padding:15px 17px;margin:13px 0}.callout.green{border-left-color:var(--green);background:var(--green-bg)}.callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)}.callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px;background:#fff}th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}th{background:#f8fafc;color:#0f172a;font-weight:600}tr:nth-child(even) td{background:#fafafa}.table-wrap{overflow-x:auto}.chart-wrap{overflow-x:auto;margin-top:8px}svg{max-width:100%;height:auto;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif}.axis{fill:#64748b;font-size:12px}.bar-label{fill:#0f172a;font-size:12px;font-weight:700}.note{font-size:12px;color:var(--muted)}.sources{columns:2;column-gap:32px;font-size:12px;word-break:break-word}.sources li{break-inside:avoid;margin-bottom:7px}@media(max-width:900px){.span-8,.span-6,.span-4,.span-3{grid-column:span 12}.sources{columns:1}header,.card{padding:18px}}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
