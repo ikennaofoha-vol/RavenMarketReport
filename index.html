@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Raven Market Research Report</title>
+<style>
+:root {
+  --green:#17803a; --green-bg:#e8f6ee; --blue:#1d5f9f; --blue-bg:#e9f3fc; --yellow:#9a7200; --yellow-bg:#fff7d8; --orange:#b45309; --orange-bg:#fff0df;
+  --ink:#1f2937; --muted:#6b7280; --line:#d6d9de; --panel:#fff; --page:#f5f6f8;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.35;font-size:13px}
+.report{max-width:1180px;margin:0 auto;padding:24px 18px 60px}
+.page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin:0 0 20px;box-shadow:0 8px 26px rgba(15,23,42,.06);min-height:920px}
+.sources-page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:20px;box-shadow:0 8px 26px rgba(15,23,42,.06)}
+h1{font-size:34px;line-height:1.08;margin:0 0 8px;letter-spacing:-.03em} h2{font-size:20px;margin:0 0 10px} h3{font-size:15px;margin:14px 0 7px} p{margin:0 0 8px}
+.header-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;align-items:start}
+.meta{color:var(--muted);font-size:12px} .small{font-size:11px;color:var(--muted)}
+.green{color:var(--green)} .blue{color:var(--blue)} .yellow{color:var(--yellow)} .orange{color:var(--orange)}
+.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:700;margin:0 4px 4px 0} .pill.green{background:var(--green-bg);color:var(--green)} .pill.blue{background:var(--blue-bg);color:var(--blue)} .pill.yellow{background:var(--yellow-bg);color:var(--yellow)} .pill.orange{background:var(--orange-bg);color:var(--orange)}
+.callout{border-left:6px solid var(--blue);background:var(--blue-bg);border-radius:10px;padding:12px 14px;margin:10px 0} .callout.green{border-color:var(--green);background:var(--green-bg)} .callout.yellow{border-color:var(--yellow);background:var(--yellow-bg)} .callout.orange{border-color:var(--orange);background:var(--orange-bg)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px} .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-5{grid-column:span 5} .span-6{grid-column:span 6} .span-7{grid-column:span 7} .span-8{grid-column:span 8} .span-12{grid-column:span 12}
+.card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;margin-bottom:12px}
+.metric-value{display:block;font-size:25px;font-weight:800;letter-spacing:-.02em;margin-top:2px} .metric-label{display:block;color:var(--muted);font-size:11px}
+table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td{border:1px solid var(--line);padding:6px 7px;vertical-align:top;text-align:left} th{background:#f1f3f5;color:#111827;font-weight:700} tr:nth-child(even) td{background:#fafafa}
+.bar-row{display:grid;grid-template-columns:122px 1fr 70px;gap:8px;align-items:center;margin:8px 0} .bar-label-left{font-size:11px;color:#374151} .bar-track{height:17px;background:#eef1f4;border-radius:999px;overflow:hidden} .bar{height:100%;border-radius:999px} .bar.green{background:var(--green)} .bar.blue{background:var(--blue)} .bar.yellow{background:var(--yellow)} .bar.orange{background:var(--orange)} .bar-value{font-size:11px;color:#374151;text-align:right}
+.matrix{position:relative;height:230px;border-left:2px solid #9ca3af;border-bottom:2px solid #9ca3af;margin:16px 8px 34px 26px;background:linear-gradient(#f9fafb,#fff)} .matrix .xlab{position:absolute;bottom:-24px;left:32%;font-size:11px;color:var(--muted)} .matrix .ylab{position:absolute;left:-24px;top:32%;font-size:11px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg)} .dot{position:absolute;transform:translate(-50%,-50%);padding:4px 7px;border-radius:999px;background:#fff;border:2px solid var(--blue);font-size:10px;white-space:nowrap;font-weight:700} .dot.green{border-color:var(--green);color:var(--green)} .dot.blue{border-color:var(--blue);color:var(--blue)} .dot.yellow{border-color:var(--yellow);color:var(--yellow)} .dot.orange{border-color:var(--orange);color:var(--orange)}
+.funnel{display:grid;grid-template-columns:1fr;gap:7px} .funnel div{border-radius:10px;padding:9px 12px;font-weight:700;text-align:center} .src-list{columns:2;column-gap:28px;font-size:10px;word-break:break-word;padding-left:18px} .src-list li{margin:0 0 6px;break-inside:avoid}
+@media print{body{background:#fff} .report{padding:0;max-width:none} .page{border:none;box-shadow:none;border-radius:0;min-height:0;height:10.45in;page-break-after:always;margin:0;padding:.35in} .sources-page{border:none;box-shadow:none;border-radius:0;page-break-before:always;margin:0;padding:.35in} h1{font-size:28px} .card{break-inside:avoid} .src-list{font-size:8px} @page{size:letter;margin:.25in}}
+@media(max-width:900px){.header-grid,.grid{display:block} .card{margin-bottom:12px} .src-list{columns:1} .page{min-height:0}}
+</style>
+</head>
+<body>
+<main class='report'>
+<section class='page'>
+  <div class='header-grid'>
+    <div>
+      <span class='pill blue'>Raven: Market Report</span><span class='pill green'>Gate 1 Recommendation: PASS to Customer Discovery</span>
+      <h1>Raven Market Research Report</h1>
+      <p class='meta'>Product: Raven, desktop PCB fabrication for hobbyists and pro-makers | Phase: 2/9 Market Research | Date: May 27, 2026</p>
+    </div>
+    <div class='card'>
+      <b>Confidence Legend</b><br>
+      <span class='pill green'>Green</span> multi-source / verified data<br>
+      <span class='pill blue'>Blue</span> 1-2 strong sources<br>
+      <span class='pill yellow'>Yellow</span> source-backed assumptions<br>
+      <span class='pill orange'>Orange</span> inference / weak data
+    </div>
+  </div>
+
+  <div class='callout green'>
+    <p><b>Leadership answer:</b> The market supports a Raven MSRP in the <b>$1,499-$1,999</b> range, but the strongest path to 1,000-2,000 units/year is a launch paid price around <b>$999-$1,499</b>, not a true hobbyist price near $2,000.</p>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-3'><span class='pill green'>Kickstarter</span><span class='metric-value green'>30</span><span class='metric-label'>manually confirmed TRUE campaigns</span></div>
+    <div class='card span-3'><span class='pill green'>Demand Proof</span><span class='metric-value green'>$126.5M</span><span class='metric-label'>confirmed campaign revenue</span></div>
+    <div class='card span-3'><span class='pill blue'>Unit Signal</span><span class='metric-value blue'>79,389</span><span class='metric-label'>confirmed product-tier purchases</span></div>
+    <div class='card span-3'><span class='pill blue'>Pricing Signal</span><span class='metric-value blue'>$1,601</span><span class='metric-label'>median weighted product-tier price</span></div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h2 class='green'>1. Executive Summary: Opportunity Narrative</h2>
+      <p class='green'><b>Market gap:</b> Hobbyists can design boards in KiCad/EasyEDA, but the path from Gerber files to reliable same-day physical PCB output is still fragmented by CAM setup, tooling, failed boards, and outsourced fab delays.</p>
+      <p class='blue'><b>Beachhead:</b> High-intent electronics makers already trying desktop PCB production with FlatCAM, pcb2gcode, generic CNC mills, Othermill/Bantam-style machines, or Voltera V-One-like workflows.</p>
+      <p class='blue'><b>Price anchor:</b> Prosumer fabrication buyers have paid $800-$2,300 weighted campaign prices for successful desktop tools; Raven should avoid being framed as a pure $2,000 hobby toy.</p>
+      <p class='green'><b>Investment thesis:</b> Kickstarter confirms a broad paid market for desktop fabrication machines, and software telemetry confirms a specific PCB fabrication pain point. Raven is justified if it converts CAM complexity into a reliable appliance-like workflow.</p>
+    </div>
+    <div class='card span-6'>
+      <h2 class='blue'>2. Core Evidence Weighting</h2>
+      <table>
+        <tr><th>Data Map</th><th>Weight</th><th>PM Read</th></tr>
+        <tr><td class='green'>Kickstarter maker machines</td><td class='green'>Highest</td><td class='green'>Closest public evidence of hobbyist/prosumer willingness to pay for desktop fabrication hardware.</td></tr>
+        <tr><td class='blue'>Hobby electronics hardware/ecommerce</td><td class='blue'>High</td><td class='blue'>Raspberry Pi, Arduino, Adafruit, SparkFun show large and growing hardware creation ecosystems.</td></tr>
+        <tr><td class='blue'>Software data</td><td class='blue'>High</td><td class='blue'>CAD/simulation size shows creator pool; CAM download velocity shows high-intent physical PCB users.</td></tr>
+        <tr><td class='yellow'>PCB fab houses</td><td class='yellow'>Medium</td><td class='yellow'>Large status-quo competitor; validates demand but also makes price/value hard for hobbyists.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h2 class='blue'>Kickstarter Product Purchases by MSRP Band</h2>
+      <div class='bar-row'><span class='bar-label-left'><$700</span><div class='bar-track'><div class='bar orange' style='width:41.1%'></div></div><span class='bar-value'>11,759</span></div><div class='bar-row'><span class='bar-label-left'>$700-$999</span><div class='bar-track'><div class='bar green' style='width:100.0%'></div></div><span class='bar-value'>28,629</span></div><div class='bar-row'><span class='bar-label-left'>$1,000-$1,999</span><div class='bar-track'><div class='bar blue' style='width:42.6%'></div></div><span class='bar-value'>12,207</span></div><div class='bar-row'><span class='bar-label-left'>$2,000-$4,999</span><div class='bar-track'><div class='bar yellow' style='width:86.3%'></div></div><span class='bar-value'>24,695</span></div><div class='bar-row'><span class='bar-label-left'>$5,000-$9,999</span><div class='bar-track'><div class='bar orange' style='width:7.3%'></div></div><span class='bar-value'>2,099</span></div>
+      <p class='small'>Manual TRUE rows only. Product-tier purchases are stronger than total backers because they exclude non-product/support tiers where available.</p>
+    </div>
+    <div class='card span-6'>
+      <h2 class='blue'>Product Purchases by Category</h2>
+      <div class='bar-row'><span class='bar-label-left'>MICS Fab Machines</span><div class='bar-track'><div class='bar blue' style='width:100.0%'></div></div><span class='bar-value'>25,013</span></div><div class='bar-row'><span class='bar-label-left'>3D Printers</span><div class='bar-track'><div class='bar blue' style='width:99.5%'></div></div><span class='bar-value'>24,896</span></div><div class='bar-row'><span class='bar-label-left'>Laser Machines</span><div class='bar-track'><div class='bar yellow' style='width:69.4%'></div></div><span class='bar-value'>17,353</span></div><div class='bar-row'><span class='bar-label-left'>CNC Machines</span><div class='bar-track'><div class='bar green' style='width:45.3%'></div></div><span class='bar-value'>11,319</span></div><div class='bar-row'><span class='bar-label-left'>MISC 2: PCB/Waterjet</span><div class='bar-track'><div class='bar green' style='width:3.2%'></div></div><span class='bar-value'>808</span></div>
+      <p class='small'>PCB/waterjet category is smaller but most directly relevant; 3D printers and multi-function machines are broader upper-bound comps.</p>
+    </div>
+  </div>
+</section>
+
+<section class='page'>
+  <h2 class='green'>3. Segmentation, Beachhead, and TAM Logic</h2>
+  <div class='grid'>
+    <div class='card span-7'>
+      <h3 class='green'>Primary Beachhead</h3>
+      <p class='green'><b>First 10-50 customers:</b> advanced hobbyists, electronics YouTubers, maker-space leads, university club/lab managers, RF/robotics hobbyists, and small hardware founders who already design PCBs and want same-day boards.</p>
+      <p class='blue'><b>Necessary condition:</b> Raven must accept standard Gerber/Excellon files and hide CAM complexity behind guided, protected, low-calibration software.</p>
+      <table>
+        <tr><th>Segment</th><th>Evidence</th><th>Need</th><th>Confidence</th></tr>
+        <tr><td>High-intent PCB CAM users</td><td class='green'>FlatCAM + pcb2gcode estimated 6k-12k downloads/month</td><td>Reliable Gerber-to-board workflow</td><td class='green'>Green</td></tr>
+        <tr><td>Electronics hobbyists / pro-makers</td><td class='blue'>KiCad 1.8M annual downloads; EasyEDA 3.5M accounts; Wokwi 500k active developers</td><td>Bridge from design/simulation to physical board</td><td class='blue'>Blue</td></tr>
+        <tr><td>Education / clubs / makerspaces</td><td class='yellow'>Maker movement + Arduino/Raspberry Pi ecosystem growth</td><td>Low-maintenance, safe, teachable PCB fabrication</td><td class='yellow'>Yellow</td></tr>
+        <tr><td>Small hardware startups</td><td class='yellow'>PCB fab delays and IP concerns create same-day iteration need</td><td>Iteration speed, privacy, less waiting</td><td class='yellow'>Yellow</td></tr>
+      </table>
+    </div>
+    <div class='card span-5'>
+      <h3 class='blue'>TAM Funnel: Practical Read</h3>
+      <div class='funnel'>
+        <div class='green' style='background:var(--green-bg);width:100%'>3.5M EasyEDA accounts / 1.8M KiCad annual downloads</div>
+        <div class='blue' style='background:var(--blue-bg);width:84%;margin:auto'>500k Wokwi active developers / 150k Flux developers</div>
+        <div class='yellow' style='background:var(--yellow-bg);width:66%;margin:auto'>72k-144k annual high-intent CAM downloads implied</div>
+        <div class='orange' style='background:var(--orange-bg);width:48%;margin:auto'>1%-2% conversion = 720-2,880 potential annual units</div>
+      </div>
+      <p class='small'>Conversion estimate is a planning assumption, not a measured market result.</p>
+    </div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h3 class='green'>Kickstarter Price-Band Table</h3>
+      <table>
+        <tr><th>MSRP Band</th><th>Campaigns</th><th>Revenue</th><th>Product Purchases</th><th>Median Product Purchases</th><th>Median MSRP</th><th>Median Tier Price</th></tr>
+        <tr><td class='orange'><$700</td><td>3</td><td>$3.2M</td><td>11,759</td><td>3,602</td><td>$399</td><td>$288</td></tr><tr><td class='green'>$700-$999</td><td>3</td><td>$27.8M</td><td>28,629</td><td>6,924</td><td>$849</td><td>$827</td></tr><tr><td class='blue'>$1,000-$1,999</td><td>6</td><td>$17.0M</td><td>12,207</td><td>596</td><td>$1,399</td><td>$956</td></tr><tr><td class='yellow'>$2,000-$4,999</td><td>12</td><td>$63.8M</td><td>24,695</td><td>406</td><td>$2,550</td><td>$1,935</td></tr><tr><td class='orange'>$5,000-$9,999</td><td>6</td><td>$14.8M</td><td>2,099</td><td>208</td><td>$6,149</td><td>$5,870</td></tr>
+      </table>
+    </div>
+    <div class='card span-6'>
+      <h3 class='blue'>Category Table</h3>
+      <table>
+        <tr><th>Category</th><th>Campaigns</th><th>Revenue</th><th>Product Purchases</th><th>Median MSRP</th><th>Median Tier Price</th></tr>
+        <tr><td class='blue'>MICS Fab Machines</td><td>5</td><td>$56.8M</td><td>25,013</td><td>$2,499</td><td>$2,229</td></tr><tr><td class='blue'>3D Printers</td><td>4</td><td>$30.1M</td><td>24,896</td><td>$1,750</td><td>$1,229</td></tr><tr><td class='yellow'>Laser Machines</td><td>11</td><td>$20.0M</td><td>17,353</td><td>$2,499</td><td>$1,668</td></tr><tr><td class='green'>CNC Machines</td><td>6</td><td>$17.4M</td><td>11,319</td><td>$2,050</td><td>$1,503</td></tr><tr><td class='green'>MISC 2: PCB/Waterjet</td><td>4</td><td>$2.2M</td><td>808</td><td>$3,099</td><td>$2,276</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h3 class='green'>Hardware / Ecommerce Validation</h3>
+      <table>
+        <tr><th>Signal</th><th>Data</th><th>Raven Read</th></tr>
+        <tr><td class='green'>Raspberry Pi ecosystem</td><td class='green'>73M cumulative units sold by May 2026; FY2025 revenue $323.2M</td><td class='green'>Large hardware-builder ecosystem exists beyond casual tinkering.</td></tr>
+        <tr><td class='blue'>Arduino / Adafruit / SparkFun</td><td class='blue'>Approx. $40M, $40M, and $25M annual revenue estimates respectively</td><td class='blue'>Sustained spend exists in hobby/pro-maker electronics channels.</td></tr>
+        <tr><td class='yellow'>Arduino-compatible market</td><td class='yellow'>Estimates range from ~$498M-$1.66B today to ~$805M-$5B by 2033-2035</td><td class='yellow'>Directional growth signal; market-report ranges vary widely.</td></tr>
+      </table>
+    </div>
+    <div class='card span-6'>
+      <h3 class='green'>Software Gate Validation</h3>
+      <table>
+        <tr><th>Layer</th><th>Data</th><th>Implication</th></tr>
+        <tr><td class='green'>CAD</td><td class='green'>KiCad 1.8M annual downloads; EasyEDA 3.5M accounts</td><td class='green'>Board design is not the bottleneck.</td></tr>
+        <tr><td class='blue'>CAM</td><td class='blue'>FlatCAM + pcb2gcode estimated 6k-12k downloads/month</td><td class='blue'>Users are actively trying to manufacture boards locally.</td></tr>
+        <tr><td class='yellow'>Simulation</td><td class='yellow'>Wokwi 500k active developers; Tinkercad 50M platform users</td><td class='yellow'>Large upstream creator pool, but physical-board conversion is unproven.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class='page'>
+  <h2 class='green'>4. Competitive Landscape, Positioning, and Gate Decision</h2>
+  <div class='grid'>
+    <div class='card span-7'>
+      <h3 class='blue'>Most Relevant Campaign Benchmarks</h3>
+      <table>
+        <tr><th>Campaign</th><th>Type</th><th>Revenue</th><th>Backers</th><th>Product Purchases</th><th>MSRP</th><th>Weighted Tier</th><th>Date</th></tr>
+        <tr><td class='blue'>eufyMake E1</td><td>3D Texture UV Printer</td><td>$46.8M</td><td>17,822</td><td>17,492</td><td>$2,499</td><td>$2,229</td><td class='small'>Apr 29 2025</td></tr><tr><td class='blue'>Snapmaker U1</td><td>Color 3D Printer</td><td>$20.6M</td><td>20,680</td><td>20,373</td><td>$999</td><td>$810</td><td class='small'>Aug 19 2025</td></tr><tr><td class='green'>Makera Z1</td><td>Desktop Entry-Level CNC</td><td>$10.1M</td><td>8,088</td><td>7,751</td><td>$1,199</td><td>$910</td><td class='small'>Oct 28 2025</td></tr><tr><td class='green'>Carvera Air</td><td>Desktop CNC Mill</td><td>$3.5M</td><td>2,098</td><td>2,051</td><td>$2,199</td><td>$1,355</td><td class='small'>Apr 9 2024</td></tr><tr><td class='green'>Voltera V-One</td><td>Desktop PCB printer / solder paste / reflow</td><td>$502,310</td><td>938</td><td>317</td><td>$2,199</td><td>$1,499</td><td class='small'>Feb 2 2015</td></tr><tr><td class='green'>Othermill</td><td>Desktop CNC / PCB milling</td><td>$311,657</td><td>652</td><td>185</td><td>$3,199</td><td>$1,509</td><td class='small'>May 5 2013</td></tr><tr><td class='yellow'>Squink</td><td>Desktop PCB printer + pick-and-place</td><td>$100,380</td><td>260</td><td>23</td><td>$2,999</td><td>$3,042</td><td class='small'>Jul 11 2014</td></tr><tr><td class='blue'>LaserPecker 4</td><td>Dual Laser Galvo (Fiber+Diode)</td><td>$4.5M</td><td>2,829</td><td>2,674</td><td>$1,899</td><td>$1,668</td><td class='small'>Dec 15 2022</td></tr><tr><td class='blue'>OrangeStorm Giga</td><td>Large Format 3D Printer</td><td>$3.4M</td><td>2,005</td><td>1,854</td><td>$2,500</td><td>$1,487</td><td class='small'>Nov 4 2023</td></tr><tr><td class='blue'>Phrozen Arco</td><td>Multi-Material 3D Printer</td><td>$1.4M</td><td>1,413</td><td>1,332</td><td>$849</td><td>$971</td><td class='small'>Feb 22 2024</td></tr><tr><td class='yellow'>xTool Screen Printer</td><td>Digital Screen Printer</td><td>$1.1M</td><td>2,639</td><td>2,516</td><td>$399</td><td>$399</td><td class='small'>Nov 8 2023</td></tr><tr><td class='yellow'>xTool Apparel Printer</td><td>xTool Apparel Printer</td><td>$5.7M</td><td>980</td><td>908</td><td>$5,999</td><td>$6,221</td><td class='small'>Feb 20 2025</td></tr><tr><td class='yellow'>WAZER Desktop</td><td>Desktop waterjet cutter</td><td>$1.3M</td><td>1,301</td><td>283</td><td>$5,999</td><td>$4,242</td><td class='small'>Sep 12 2026</td></tr>
+      </table>
+    </div>
+    <div class='card span-5'>
+      <h3 class='green'>Competitive Matrix</h3>
+      <div class='matrix'>
+        <span class='ylab'>Ease of Use / Appliance Feel</span><span class='xlab'>Same-Day PCB Control / Output Quality</span>
+        <span class='dot green' style='left:74%;top:20%'>Raven target</span>
+        <span class='dot blue' style='left:62%;top:52%'>Bantam/Othermill</span>
+        <span class='dot yellow' style='left:33%;top:32%'>PCB fab houses</span>
+        <span class='dot orange' style='left:25%;top:72%'>DIY CNC + FlatCAM</span>
+        <span class='dot blue' style='left:48%;top:44%'>V-One legacy</span>
+      </div>
+      <p class='small'>Raven must win on the combined axis: same-day control without CNC/CAM burden.</p>
+    </div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h3 class='green'>Status Quo vs Raven</h3>
+      <table>
+        <tr><th>Option</th><th>Strength</th><th>Weakness Raven Can Exploit</th></tr>
+        <tr><td class='green'>PCB fab houses: JLCPCB, PCBWay, OSH Park</td><td>Cheap, high-quality boards</td><td class='yellow'>Waiting, shipping, minimums, privacy, and iteration lag.</td></tr>
+        <tr><td class='blue'>Generic CNC + FlatCAM</td><td>Cheap and flexible</td><td class='green'>CAM setup, autoleveling, tooling, failed boards, unsafe beginner workflow.</td></tr>
+        <tr><td class='blue'>Bantam/Othermill class</td><td>High-quality desktop milling</td><td class='blue'>Higher price and narrower hobbyist affordability.</td></tr>
+        <tr><td class='yellow'>V-One additive model</td><td>Known Voltera trust and education value</td><td class='green'>Ink shelf-life, resistance limits, and manual probing pain.</td></tr>
+      </table>
+    </div>
+    <div class='card span-6'>
+      <h3 class='blue'>Market Sentiment & Community Intelligence</h3>
+      <p class='blue'><b>Core hubs:</b> r/PrintedCircuitBoard, r/AskElectronics, KiCad forum, EEVblog, maker YouTube, GitHub/SourceForge CAM projects, Arduino/Raspberry Pi communities.</p>
+      <p class='yellow'><b>Recurring friction:</b> cheap fabs are slow for iteration; DIY milling is fragile; CAM/autoleveling is confusing; chemical/additive processes add storage and reliability issues.</p>
+      <p class='yellow'><b>Aha signal:</b> Users still download FlatCAM/pcb2gcode and repurpose generic CNC machines, proving the workaround exists and the workflow is not solved.</p>
+    </div>
+  </div>
+
+  <div class='grid'>
+    <div class='card span-6'>
+      <h3 class='green'>Strategic Positioning & Moat</h3>
+      <p class='green'><b>USP:</b> Raven should be the simplest same-day PCB fabrication appliance for hobbyists who already design boards but do not want to become CNC/CAM experts.</p>
+      <p class='blue'><b>Moat:</b> integrated Gerber-to-machine software, protected autoleveling, bit/tooling recipes, board-material ecosystem, education content, and Voltera credibility in desktop electronics fabrication.</p>
+      <p class='yellow'><b>Pricing hypothesis:</b> MSRP $1,499-$1,999; launch paid price $999-$1,499; higher bundle for fixtures, bits, blanks, and education/pro-maker accessories.</p>
+    </div>
+    <div class='card span-6'>
+      <h3 class='green'>Gate 1 Decision</h3>
+      <div class='callout green'>
+        <p><b>PASS to Phase 3 - Customer Discovery.</b> The evidence is strong enough to test willingness-to-pay, workflows, and result-quality requirements with customers.</p>
+      </div>
+      <table>
+        <tr><th>Key Question</th><th>Status</th><th>Answer</th></tr>
+        <tr><td>How many people face this problem?</td><td class='blue'>Known enough</td><td>High-intent CAM users plus broad ECAD/simulation ecosystems show a reachable pool.</td></tr>
+        <tr><td>Is the market large enough?</td><td class='blue'>Likely</td><td>1,000 units/year is plausible; 2,000/year requires price and workflow validation.</td></tr>
+        <tr><td>Do we understand competitors?</td><td class='green'>Yes</td><td>Status quo is outsourced fab houses and DIY CNC/CAM workarounds.</td></tr>
+        <tr><td>Do we have a pricing hypothesis?</td><td class='green'>Yes</td><td>$999-$1,499 paid launch price; $1,499-$1,999 MSRP.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class='callout yellow'>
+    <p><b>Leadership caveat:</b> Kickstarter data validates launch/preorder demand, not steady annual demand. Customer discovery should directly test the willingness to pay at $999, $1,299, $1,499, and $1,999.</p>
+  </div>
+</section>
+
+<section class='sources-page'>
+  <h2>Source URLs</h2>
+  <p class='small'>Source URLs compiled from the uploaded Kickstarter, software, market-data, and prior Kickstarter analysis files. Internal uploaded files used: B1.Kickstarters.csv; Raven Market Research - Software.csv; Raven Market Research_Market Data.csv; Raven Market Research _2025 v-two Market Research.csv; rvn.Market Research_Software Analysis.docx; Market Report Template.</p>
+  <ol class='src-list'>
+    <li>https://www.kickstarter.com/projects/wecreat/lumos-ultra-worlds-first-one-stop-uv-mopa-laser</li>
+<li>https://www.kickstarter.com/projects/xlaserlab/xlaserlab-uv-engraver</li>
+<li>https://www.kickstarter.com/projects/gweike/gweike-g2-portable-20w-handheld-fiber-laser-engraver</li>
+<li>https://www.kickstarter.com/projects/flux-inc/beamo-worlds-smallest-co2-laser-cutter/description</li>
+<li>https://www.kickstarter.com/projects/flux-inc/beambox-the-accessible-laser-cutter-and-engraver?ref=creator_tab</li>
+<li>https://www.kickstarter.com/projects/anylaser/anylaser-x1-the-worlds-smallest-desktop-laser-engraver/description</li>
+<li>https://www.kickstarter.com/projects/wainlux-laser-tech/wainlux-z5-handheldminimetal-laser-andcutting-machine/description</li>
+<li>https://www.kickstarter.com/projects/wainlux-laser-tech/most-powerful-10w-dual-laser-cutter-and-engraver-w-autofocus?ref=creator_tab</li>
+<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-4-dual-laser-engraver-for-almost-all-material</li>
+<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;category_id=334</li>
+<li>https://www.kickstarter.com/projects/makeblock/xtool-metalfab-the-next-gen-metal-solution?ref=creator_tab</li>
+<li>https://www.kickstarter.com/projects/ankermake/eufymake-e1-the-first-personal-3d-textured-uv-printer</li>
+<li>https://www.kickstarter.com/projects/makeblock/xtool-screen-printer-1st-screen-printing-solution-with-laser</li>
+<li>https://www.kickstarter.com/projects/makeblock/xtool-apparel-printer-a-new-era-of-apparel-printing?ref=creator_tab</li>
+<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-inspire-3d-scanner-for-all-creators</li>
+<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;category_id=331</li>
+<li>https://www.kickstarter.com/projects/snapmaker/snapmaker-u1-color-3d-printer-5x-more-speed-5x-less-waste</li>
+<li>https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;result=project&amp;term=OrangeStorm%20Giga&amp;total_hits=1</li>
+<li>https://www.kickstarter.com/projects/phrozenmake/phrozen-arco-3d-printer-larger-faster-more-colors</li>
+<li>https://www.kickstarter.com/projects/1763117873/fibreseeker-3-the-first-personal-continuous-fibre-3d-printer</li>
+<li>https://www.kickstarter.com/projects/makera-inc/carvera?ref=creator_tab</li>
+<li>https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;term=carvera%20air&amp;total_hits=2&amp;category_id=335</li>
+<li>https://www.kickstarter.com/projects/makera-inc/makera-z1-entry-level-cnc-pro-level-power</li>
+<li>https://www.kickstarter.com/projects/rowndprecision/rownd-cnc-lathe-machining-for-everybody</li>
+<li>https://www.kickstarter.com/projects/cubiio/cubiio-x-portable-cnc-robot-for-makers</li>
+<li>https://www.kickstarter.com/projects/874801633/duroxen-compact-cnc-lathe-built-for-precision-makers</li>
+<li>V-One Kickstarter</li>
+<li>Wazer Kickstarter</li>
+<li>Othermill Kickstarter</li>
+<li>Squink Kickstarter</li>
+<li>Kickstarter / Kicktraq</li>
+<li>Kickstarter</li>
+<li>Kickstarter / BackerKit</li>
+<li>Kickstarter / Indiegogo reference</li>
+<li>https://www.kicad.org/about/kicad/</li>
+<li>https://github.com/KiCad/kicad-source-mirror</li>
+<li>https://easyeda.com/</li>
+<li>https://www.altium.com/company/investor-relations</li>
+<li>https://www.autodesk.com/company</li>
+<li>https://www.flux.ai/</li>
+<li>https://librepcb.org/</li>
+<li>https://www.circuito.io/app?components=512</li>
+<li>https://www.qualcomm.com/news/releases/2025/10/qualcomm-to-acquire-arduino-accelerating-developers--access-to-i#:~:text=Arduino%20App%20Lab%20is%20a</li>
+<li>https://www.boldandopen.com/blog/adafruit-case-study#:~:text=She&#x27;s%20grown%20her%20manufacturing%20company</li>
+<li>https://www.zippia.com/sparkfun-electronics-careers-1569240/</li>
+<li>https://businessmodelcanvastemplate.com/blogs/target-market/arduino-target-market#:~:text=Core%20makers%3A%20ages%2018%2D45</li>
+<li>https://leadiq.com/c/adafruit-industries/5a397e28550000a601bba18f#:~:text=Financial%20and%20Market%20Potential%20With</li>
+<li>https://www.zippia.com/sparkfun-electronics-careers-1569240/revenue/</li>
+<li>https://tracxn.com/d/companies/arduino/__pTebmNyTTWfIkwprLaIa7jst5W9_B3KGiz6GjtCEp6g</li>
+<li>https://www.forbes.com/profile/limor-fried/</li>
+<li>https://leadiq.com/c/sparkfun-electronics/5a1d8d25540000510073d3f2</li>
+<li>https://prospeo.io/c/sparkfun-electronics-revenue</li>
+<li>https://civicscience.com/how-americans-are-redefining-free-time-through-budget-friendly-hobbies/</li>
+<li>https://dataintelo.com/report/open-source-hardware-market</li>
+<li>https://www.self.inc/info/spend-favorite-hobbies/</li>
+<li>https://www.businessresearchinsights.com/market-reports/solderless-breadboards-market-109596</li>
+<li>https://dataintelo.com/report/electronic-building-kit-market</li>
+<li>https://www.skyquestt.com/report/open-source-hardware-market</li>
+<li>https://dataintelo.com/report/pcb-prototyping-equipment-market</li>
+<li>https://www.kickstarter.com/projects/makera-inc/carvera-air?ref=discovery&amp;amp;term=carvera%20air&amp;amp;total_hits=2&amp;amp;category_id=335</li>
+<li>https://www.kickstarter.com/projects/elegooofficial/elegoo-orangestorm-giga-gigantic-volume-fast-fdm-3d-printer?ref=nav_search&amp;amp;result=project&amp;amp;term=OrangeStorm%20Giga&amp;amp;total_hits=1</li>
+<li>https://www.kickstarter.com/projects/laserpecker-pro/laserpecker-2-the-best-handheld-laser-engraverandcutter?ref=profile_created&amp;amp;category_id=334</li>
+<li>https://www.kickstarter.com/projects/revopoint3d/revopoint-trackit-optical-tracking-3d-scanner?ref=profile_created&amp;amp;category_id=331</li>
+  </ol>
+</section>
+</main>
+</body>
+</html>
