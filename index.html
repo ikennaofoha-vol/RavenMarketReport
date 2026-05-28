@@ -216,7 +216,8 @@
     
     #tab-raven:checked ~ label[for="tab-raven"],
     #tab-kickstarter:checked ~ label[for="tab-kickstarter"],
-    #tab-deep:checked ~ label[for="tab-deep"] {
+    #tab-deep:checked ~ label[for="tab-deep"],
+    #tab-competitive:checked ~ label[for="tab-competitive"] {
       background: #ffffff;
       color: var(--blue-text);
       box-shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
@@ -224,7 +225,8 @@
     
     #tab-raven:checked ~ label[for="tab-raven"] span,
     #tab-kickstarter:checked ~ label[for="tab-kickstarter"] span,
-    #tab-deep:checked ~ label[for="tab-deep"] span {
+    #tab-deep:checked ~ label[for="tab-deep"] span,
+    #tab-competitive:checked ~ label[for="tab-competitive"] span {
       color: var(--blue);
       opacity: 1;
     }
@@ -243,7 +245,8 @@
     }
     body:has(#tab-raven:checked) .panel-raven,
     body:has(#tab-kickstarter:checked) .panel-kickstarter,
-    body:has(#tab-deep:checked) .panel-deep {
+    body:has(#tab-deep:checked) .panel-deep,
+    body:has(#tab-competitive:checked) .panel-competitive {
       display: flex;
       flex-direction: column;
     }
@@ -262,6 +265,7 @@
       .panel { display: block !important; height: auto; min-height: 0; }
       .panel-kickstarter { break-before: page; }
       .panel-deep { break-before: page; }
+      .panel-competitive { break-before: page; }
       iframe { height: 1100px; overflow: visible; }
     }
     @media (max-width: 900px) {
@@ -332,7 +336,8 @@
 
     [data-theme="dark"] #tab-raven:checked ~ label[for="tab-raven"],
     [data-theme="dark"] #tab-kickstarter:checked ~ label[for="tab-kickstarter"],
-    [data-theme="dark"] #tab-deep:checked ~ label[for="tab-deep"] {
+    [data-theme="dark"] #tab-deep:checked ~ label[for="tab-deep"],
+    [data-theme="dark"] #tab-competitive:checked ~ label[for="tab-competitive"] {
       background: #1e293b;
       color: var(--blue-text);
       box-shadow: 0 1px 3px rgba(0,0,0,0.4);
@@ -381,39 +386,40 @@
 <body>
 <div class="tab-shell">
 <nav aria-label="Raven report tabs" class="top-tabs">
-  <div class="header-top">
-    <div class="brand-title">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue);">
-        <line x1="18" y1="20" x2="18" y2="10"></line>
-        <line x1="12" y1="20" x2="12" y2="4"></line>
-        <line x1="6" y1="20" x2="6" y2="14"></line>
-      </svg>
-      <h1>Raven Market Research Suite</h1>
-      <span>v2.0</span>
-    </div>
-    <div class="global-legend" id="global-confidence-legend">
-      <span class="legend-label">Confidence:</span>
-      <div class="legend-pills">
-        <span class="legend-pill green" title="Multi-source / verified data"><span class="dot"></span>Verified</span>
-        <span class="legend-pill blue" title="1-2 strong sources"><span class="dot"></span>Strong Sources</span>
-        <span class="legend-pill yellow" title="Source-backed assumptions"><span class="dot"></span>Assumptions</span>
-        <span class="legend-pill orange" title="Inference / weak data"><span class="dot"></span>Inferences</span>
-      </div>
-    </div>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" title="Switch day/night mode">
-      <span class="theme-icon" aria-hidden="true">☀️</span>
-      <span class="theme-text">Day</span>
-    </button>
-  </div>
-
-  <div class="tab-controls">
-    <input checked="" id="tab-raven" name="report-tab" type="radio"/>
-    <input id="tab-kickstarter" name="report-tab" type="radio"/>
-    <input id="tab-deep" name="report-tab" type="radio"/>
-    <label for="tab-raven"><span>Main</span>Raven Market Research Report</label>
-    <label for="tab-kickstarter"><span>Deep Dive</span>Kickstarter Maker Machine Demand Analysis</label>
-    <label for="tab-deep"><span>Deep Dive</span>Research Data + Market Signals</label>
-  </div>
+<div class="header-top">
+<div class="brand-title">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" style="color: var(--blue);" viewbox="0 0 24 24" width="20">
+<line x1="18" x2="18" y1="20" y2="10"></line>
+<line x1="12" x2="12" y1="20" y2="4"></line>
+<line x1="6" x2="6" y1="20" y2="14"></line>
+</svg>
+<h1>Raven Market Research Suite</h1>
+<span>v2.0</span>
+</div>
+<div class="global-legend" id="global-confidence-legend">
+<span class="legend-label">Confidence:</span>
+<div class="legend-pills">
+<span class="legend-pill green" title="Multi-source / verified data"><span class="dot"></span>Verified</span>
+<span class="legend-pill blue" title="1-2 strong sources"><span class="dot"></span>Strong Sources</span>
+<span class="legend-pill yellow" title="Source-backed assumptions"><span class="dot"></span>Assumptions</span>
+<span class="legend-pill orange" title="Inference / weak data"><span class="dot"></span>Inferences</span>
+</div>
+</div>
+<button aria-label="Switch to night mode" class="theme-toggle" id="theme-toggle" title="Switch day/night mode" type="button">
+<span aria-hidden="true" class="theme-icon">☀️</span>
+<span class="theme-text">Day</span>
+</button>
+</div>
+<div class="tab-controls">
+<input checked="" id="tab-raven" name="report-tab" type="radio"/>
+<input id="tab-kickstarter" name="report-tab" type="radio"/>
+<input id="tab-deep" name="report-tab" type="radio"/>
+<input id="tab-competitive" name="report-tab" type="radio"/>
+<label for="tab-raven"><span>Main</span>Raven Market Research Report</label>
+<label for="tab-kickstarter"><span>Deep Dive</span>Kickstarter Maker Machine Demand Analysis</label>
+<label for="tab-deep"><span>Deep Dive</span>Research Data + Market Signals</label>
+<label for="tab-competitive"><span>Deep Dive</span>Raven Competitive Analysis</label>
+</div>
 </nav>
 <section class="tab-panels">
 <div aria-label="Raven Market Research Report" class="panel panel-raven" role="tabpanel">
@@ -424,12 +430,12 @@
 &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
 &lt;title&gt;Raven Market Research Report&lt;/title&gt;
 &lt;style&gt;
-@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');
 :root {
   --green:#10b981; --green-bg:#ecfdf5; --blue:#3b82f6; --blue-bg:#eff6ff; --yellow:#f59e0b; --yellow-bg:#fffbeb; --orange:#f97316; --orange-bg:#fff7ed;
   --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --panel:#fff; --page:#f8fafc;
 }
-*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;line-height:1.5;font-size:13px}
+*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:'Inter',Arial,Helvetica,sans-serif;line-height:1.5;font-size:13px}
 .report{max-width:1180px;margin:0 auto;padding:24px 18px 60px}
 .page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin:0 0 20px;box-shadow:0 8px 26px rgba(15,23,42,.06);min-height:920px}
 .sources-page{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:20px;box-shadow:0 8px 26px rgba(15,23,42,.06)}
@@ -582,71 +588,102 @@ table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td
 
 &lt;section class='page'&gt;
   &lt;h2 class='green'&gt;4. Competitive Landscape, Positioning, and Gate Decision&lt;/h2&gt;
+  &lt;div class='callout blue'&gt;
+    &lt;p&gt;&lt;b&gt;Competitive realignment:&lt;/b&gt; Raven's competitive set is not primarily Kickstarter maker machines. Kickstarter is useful for pricing and maker-market demand, but the actual competitor section should focus on what customers use today to solve the PCB prototyping problem: fab houses, breadboards/protoboards, lasers, generic CNC + CAM, premium desktop mills, V-One additive workflows, and chemical etching.&lt;/p&gt;
+  &lt;/div&gt;
+
   &lt;div class='grid'&gt;
     &lt;div class='card span-7'&gt;
-      &lt;h3 class='blue'&gt;Most Relevant Campaign Benchmarks&lt;/h3&gt;
+      &lt;h3 class='green'&gt;Expanded Competitor Landscape&lt;/h3&gt;
       &lt;table&gt;
-        &lt;tr&gt;&lt;th&gt;Campaign&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Revenue&lt;/th&gt;&lt;th&gt;Backers&lt;/th&gt;&lt;th&gt;Product Purchases&lt;/th&gt;&lt;th&gt;MSRP&lt;/th&gt;&lt;th&gt;Weighted Tier&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td class='blue'&gt;eufyMake E1&lt;/td&gt;&lt;td&gt;3D Texture UV Printer&lt;/td&gt;&lt;td&gt;$46.8M&lt;/td&gt;&lt;td&gt;17,822&lt;/td&gt;&lt;td&gt;17,492&lt;/td&gt;&lt;td&gt;$2,499&lt;/td&gt;&lt;td&gt;$2,229&lt;/td&gt;&lt;td class='small'&gt;Apr 29 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='blue'&gt;Snapmaker U1&lt;/td&gt;&lt;td&gt;Color 3D Printer&lt;/td&gt;&lt;td&gt;$20.6M&lt;/td&gt;&lt;td&gt;20,680&lt;/td&gt;&lt;td&gt;20,373&lt;/td&gt;&lt;td&gt;$999&lt;/td&gt;&lt;td&gt;$810&lt;/td&gt;&lt;td class='small'&gt;Aug 19 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='green'&gt;Makera Z1&lt;/td&gt;&lt;td&gt;Desktop Entry-Level CNC&lt;/td&gt;&lt;td&gt;$10.1M&lt;/td&gt;&lt;td&gt;8,088&lt;/td&gt;&lt;td&gt;7,751&lt;/td&gt;&lt;td&gt;$1,199&lt;/td&gt;&lt;td&gt;$910&lt;/td&gt;&lt;td class='small'&gt;Oct 28 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='green'&gt;Carvera Air&lt;/td&gt;&lt;td&gt;Desktop CNC Mill&lt;/td&gt;&lt;td&gt;$3.5M&lt;/td&gt;&lt;td&gt;2,098&lt;/td&gt;&lt;td&gt;2,051&lt;/td&gt;&lt;td&gt;$2,199&lt;/td&gt;&lt;td&gt;$1,355&lt;/td&gt;&lt;td class='small'&gt;Apr 9 2024&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='green'&gt;Voltera V-One&lt;/td&gt;&lt;td&gt;Desktop PCB printer / solder paste / reflow&lt;/td&gt;&lt;td&gt;$502,310&lt;/td&gt;&lt;td&gt;938&lt;/td&gt;&lt;td&gt;317&lt;/td&gt;&lt;td&gt;$2,199&lt;/td&gt;&lt;td&gt;$1,499&lt;/td&gt;&lt;td class='small'&gt;Feb 2 2015&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='green'&gt;Othermill&lt;/td&gt;&lt;td&gt;Desktop CNC / PCB milling&lt;/td&gt;&lt;td&gt;$311,657&lt;/td&gt;&lt;td&gt;652&lt;/td&gt;&lt;td&gt;185&lt;/td&gt;&lt;td&gt;$3,199&lt;/td&gt;&lt;td&gt;$1,509&lt;/td&gt;&lt;td class='small'&gt;May 5 2013&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='yellow'&gt;Squink&lt;/td&gt;&lt;td&gt;Desktop PCB printer + pick-and-place&lt;/td&gt;&lt;td&gt;$100,380&lt;/td&gt;&lt;td&gt;260&lt;/td&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;$2,999&lt;/td&gt;&lt;td&gt;$3,042&lt;/td&gt;&lt;td class='small'&gt;Jul 11 2014&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='blue'&gt;LaserPecker 4&lt;/td&gt;&lt;td&gt;Dual Laser Galvo (Fiber+Diode)&lt;/td&gt;&lt;td&gt;$4.5M&lt;/td&gt;&lt;td&gt;2,829&lt;/td&gt;&lt;td&gt;2,674&lt;/td&gt;&lt;td&gt;$1,899&lt;/td&gt;&lt;td&gt;$1,668&lt;/td&gt;&lt;td class='small'&gt;Dec 15 2022&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='blue'&gt;OrangeStorm Giga&lt;/td&gt;&lt;td&gt;Large Format 3D Printer&lt;/td&gt;&lt;td&gt;$3.4M&lt;/td&gt;&lt;td&gt;2,005&lt;/td&gt;&lt;td&gt;1,854&lt;/td&gt;&lt;td&gt;$2,500&lt;/td&gt;&lt;td&gt;$1,487&lt;/td&gt;&lt;td class='small'&gt;Nov 4 2023&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='blue'&gt;Phrozen Arco&lt;/td&gt;&lt;td&gt;Multi-Material 3D Printer&lt;/td&gt;&lt;td&gt;$1.4M&lt;/td&gt;&lt;td&gt;1,413&lt;/td&gt;&lt;td&gt;1,332&lt;/td&gt;&lt;td&gt;$849&lt;/td&gt;&lt;td&gt;$971&lt;/td&gt;&lt;td class='small'&gt;Feb 22 2024&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='yellow'&gt;xTool Screen Printer&lt;/td&gt;&lt;td&gt;Digital Screen Printer&lt;/td&gt;&lt;td&gt;$1.1M&lt;/td&gt;&lt;td&gt;2,639&lt;/td&gt;&lt;td&gt;2,516&lt;/td&gt;&lt;td&gt;$399&lt;/td&gt;&lt;td&gt;$399&lt;/td&gt;&lt;td class='small'&gt;Nov 8 2023&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='yellow'&gt;xTool Apparel Printer&lt;/td&gt;&lt;td&gt;xTool Apparel Printer&lt;/td&gt;&lt;td&gt;$5.7M&lt;/td&gt;&lt;td&gt;980&lt;/td&gt;&lt;td&gt;908&lt;/td&gt;&lt;td&gt;$5,999&lt;/td&gt;&lt;td&gt;$6,221&lt;/td&gt;&lt;td class='small'&gt;Feb 20 2025&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class='yellow'&gt;WAZER Desktop&lt;/td&gt;&lt;td&gt;Desktop waterjet cutter&lt;/td&gt;&lt;td&gt;$1.3M&lt;/td&gt;&lt;td&gt;1,301&lt;/td&gt;&lt;td&gt;283&lt;/td&gt;&lt;td&gt;$5,999&lt;/td&gt;&lt;td&gt;$4,242&lt;/td&gt;&lt;td class='small'&gt;Sep 12 2026&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;Option&lt;/th&gt;&lt;th&gt;Competitor Type&lt;/th&gt;&lt;th&gt;Strength&lt;/th&gt;&lt;th&gt;Weakness Raven Can Exploit&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;PCB fab houses: JLCPCB, PCBWay, OSH Park&lt;/td&gt;&lt;td&gt;Indirect / status quo&lt;/td&gt;&lt;td&gt;Cheap, high-quality boards.&lt;/td&gt;&lt;td class='yellow'&gt;Waiting, shipping, minimums, privacy, and iteration lag. Community notes specifically validate the “momentum gap” from 5-7 day board delays.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;Breadboards, protoboards, dev kits, terminal boards, breakout boards&lt;/td&gt;&lt;td&gt;Indirect / current workaround&lt;/td&gt;&lt;td&gt;Cheap, flexible, immediately available, and beginner-friendly.&lt;/td&gt;&lt;td class='blue'&gt;Time-consuming and fragile. They act as an unreliable first physical prototype and usually do not scale into a clean custom solution.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;Fiber, MOPA, and UV lasers&lt;/td&gt;&lt;td&gt;Direct / adjacent fabrication tool&lt;/td&gt;&lt;td&gt;Can create high-quality traces with the right laser type, power, pulse control, settings, enclosure, and workflow.&lt;/td&gt;&lt;td class='yellow'&gt;Expensive for hobbyists, sold as generalist tools, and not default-tuned for PCB design, Gerber import, registration, copper ablation, FR4 safety, or board repeatability.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;Generic CNC + FlatCAM&lt;/td&gt;&lt;td&gt;Direct workflow competitor&lt;/td&gt;&lt;td&gt;Cheap, flexible, widely available, and capable of local copper isolation routing.&lt;/td&gt;&lt;td class='green'&gt;CAM setup, autoleveling, tooling, broken bits, failed boards, noise, FR4 dust, and unsafe beginner workflow. Community VOC repeatedly flags FlatCAM and manual Z-zeroing as pain points.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;Bantam / Carvera / Othermill class&lt;/td&gt;&lt;td&gt;Direct premium machine class&lt;/td&gt;&lt;td&gt;High-quality desktop milling and better workflow packaging than generic CNC.&lt;/td&gt;&lt;td class='blue'&gt;Higher price, narrower hobbyist affordability, and still mechanical/tooling-heavy relative to a true PCB appliance.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;V-One additive model&lt;/td&gt;&lt;td&gt;Internal legacy / adjacent Voltera product&lt;/td&gt;&lt;td&gt;Known Voltera trust, education value, and proof that desktop electronics fabrication demand exists.&lt;/td&gt;&lt;td class='green'&gt;Ink shelf-life, nozzle clogging, resistance limits for RF/high-frequency work, and manual probing pain.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;Chemical etching&lt;/td&gt;&lt;td&gt;Indirect old-school workaround&lt;/td&gt;&lt;td&gt;Low equipment cost and can create usable copper traces.&lt;/td&gt;&lt;td class='blue'&gt;Messy, hazardous, disposal burden, poor apartment/classroom fit, inconsistent results, and manual alignment friction.&lt;/td&gt;&lt;/tr&gt;
       &lt;/table&gt;
     &lt;/div&gt;
     &lt;div class='card span-5'&gt;
-      &lt;h3 class='green'&gt;Competitive Matrix&lt;/h3&gt;
+      &lt;h3 class='green'&gt;Competitive Matrix 1: Control vs Ease&lt;/h3&gt;
       &lt;div class='matrix'&gt;
         &lt;span class='ylab'&gt;Ease of Use / Appliance Feel&lt;/span&gt;&lt;span class='xlab'&gt;Same-Day PCB Control / Output Quality&lt;/span&gt;
-        &lt;span class='dot green' style='left:74%;top:20%'&gt;Raven target&lt;/span&gt;
-        &lt;span class='dot blue' style='left:62%;top:52%'&gt;Bantam/Othermill&lt;/span&gt;
-        &lt;span class='dot yellow' style='left:33%;top:32%'&gt;PCB fab houses&lt;/span&gt;
-        &lt;span class='dot orange' style='left:25%;top:72%'&gt;DIY CNC + FlatCAM&lt;/span&gt;
-        &lt;span class='dot blue' style='left:48%;top:44%'&gt;V-One legacy&lt;/span&gt;
+        &lt;span class='dot green' style='left:78%;top:18%'&gt;Raven target&lt;/span&gt;
+        &lt;span class='dot yellow' style='left:36%;top:34%'&gt;PCB fab houses&lt;/span&gt;
+        &lt;span class='dot blue' style='left:30%;top:22%'&gt;Breadboards&lt;/span&gt;
+        &lt;span class='dot blue' style='left:66%;top:48%'&gt;MOPA / UV lasers&lt;/span&gt;
+        &lt;span class='dot orange' style='left:54%;top:74%'&gt;CNC + FlatCAM&lt;/span&gt;
+        &lt;span class='dot blue' style='left:66%;top:40%'&gt;Bantam / Carvera&lt;/span&gt;
+        &lt;span class='dot blue' style='left:50%;top:42%'&gt;V-One legacy&lt;/span&gt;
+        &lt;span class='dot orange' style='left:42%;top:82%'&gt;Chemical etching&lt;/span&gt;
       &lt;/div&gt;
-      &lt;p class='small'&gt;Raven must win on the combined axis: same-day control without CNC/CAM burden.&lt;/p&gt;
+      &lt;p class='small'&gt;Raven's target position is high PCB-specific control without forcing the buyer into CNC/CAM, laser-settings, or chemistry expertise.&lt;/p&gt;
+
+      &lt;h3 class='green'&gt;Competitive Matrix 2: Cost vs PCB Fit&lt;/h3&gt;
+      &lt;div class='matrix'&gt;
+        &lt;span class='ylab'&gt;PCB-Ready Output / Workflow Fit&lt;/span&gt;&lt;span class='xlab'&gt;Lower Total Cost / Hobbyist Affordability&lt;/span&gt;
+        &lt;span class='dot green' style='left:58%;top:24%'&gt;Raven target&lt;/span&gt;
+        &lt;span class='dot yellow' style='left:88%;top:20%'&gt;PCB fab houses&lt;/span&gt;
+        &lt;span class='dot blue' style='left:90%;top:72%'&gt;Breadboards&lt;/span&gt;
+        &lt;span class='dot blue' style='left:22%;top:30%'&gt;MOPA / UV lasers&lt;/span&gt;
+        &lt;span class='dot orange' style='left:72%;top:62%'&gt;CNC + FlatCAM&lt;/span&gt;
+        &lt;span class='dot blue' style='left:34%;top:34%'&gt;Bantam / Carvera&lt;/span&gt;
+        &lt;span class='dot blue' style='left:42%;top:50%'&gt;V-One legacy&lt;/span&gt;
+        &lt;span class='dot orange' style='left:86%;top:78%'&gt;Chemical etching&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;p class='small'&gt;This cost view shows the strategic tension: the cheapest options are either slow, fragile, or hazardous; the highest PCB-fit options are often too expensive or too complex for the hobbyist/pro-maker wedge.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class='grid'&gt;
     &lt;div class='card span-6'&gt;
-      &lt;h3 class='green'&gt;Status Quo vs Raven&lt;/h3&gt;
+      &lt;h3 class='green'&gt;Feature / Benefit Comparison&lt;/h3&gt;
       &lt;table&gt;
-        &lt;tr&gt;&lt;th&gt;Option&lt;/th&gt;&lt;th&gt;Strength&lt;/th&gt;&lt;th&gt;Weakness Raven Can Exploit&lt;/th&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td class='green'&gt;PCB fab houses: JLCPCB, PCBWay, OSH Park&lt;/td&gt;&lt;td&gt;Cheap, high-quality boards&lt;/td&gt;&lt;td class='yellow'&gt;Waiting, shipping, minimums, privacy, and iteration lag.&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td class='blue'&gt;Generic CNC + FlatCAM&lt;/td&gt;&lt;td&gt;Cheap and flexible&lt;/td&gt;&lt;td class='green'&gt;CAM setup, autoleveling, tooling, failed boards, unsafe beginner workflow.&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td class='blue'&gt;Bantam/Othermill class&lt;/td&gt;&lt;td&gt;High-quality desktop milling&lt;/td&gt;&lt;td class='blue'&gt;Higher price and narrower hobbyist affordability.&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td class='yellow'&gt;V-One additive model&lt;/td&gt;&lt;td&gt;Known Voltera trust and education value&lt;/td&gt;&lt;td class='green'&gt;Ink shelf-life, resistance limits, and manual probing pain.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;th&gt;Customer Priority&lt;/th&gt;&lt;th&gt;Best Current Options&lt;/th&gt;&lt;th&gt;Open Gap for Raven&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;Same-day iteration&lt;/td&gt;&lt;td&gt;Breadboards, CNC, lasers, V-One, chemical etching&lt;/td&gt;&lt;td class='blue'&gt;Only some options are same-day and PCB-like; most require fragile setup or do not produce a scalable custom PCB.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;Custom PCB output quality&lt;/td&gt;&lt;td&gt;Fab houses, premium mills, high-end MOPA/UV lasers&lt;/td&gt;&lt;td class='blue'&gt;High quality usually comes with waiting, high capital cost, or non-PCB-tuned workflows.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;Pure copper / RF viability&lt;/td&gt;&lt;td&gt;Fab houses, CNC milling, premium mills, chemical etching, MOPA/UV lasers&lt;/td&gt;&lt;td class='green'&gt;V-One additive has resistance limitations; Raven must preserve pure-copper performance while improving usability.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='green'&gt;Native Gerber/CAM ease&lt;/td&gt;&lt;td&gt;Fab houses are easiest; most local tools require CAM/setup expertise&lt;/td&gt;&lt;td class='green'&gt;Community VOC strongly supports native Gerber import and removal of FlatCAM-style friction.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;Safe, office-friendly workflow&lt;/td&gt;&lt;td&gt;Fab houses, breadboards, dev kits&lt;/td&gt;&lt;td class='blue'&gt;CNC creates FR4 dust/noise; chemical etching creates hazardous waste; lasers require safety and tuned workflows.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td class='blue'&gt;No closed consumable lock-in&lt;/td&gt;&lt;td&gt;Fab houses, breadboards, CNC, lasers, chemical etching&lt;/td&gt;&lt;td class='green'&gt;Raven should avoid the V-One cartridge shelf-life concern by using standard copper-clad blanks and open consumables.&lt;/td&gt;&lt;/tr&gt;
       &lt;/table&gt;
     &lt;/div&gt;
     &lt;div class='card span-6'&gt;
       &lt;h3 class='blue'&gt;Market Sentiment &amp; Community Intelligence&lt;/h3&gt;
-      &lt;p class='blue'&gt;&lt;b&gt;Core hubs:&lt;/b&gt; r/PrintedCircuitBoard, r/AskElectronics, KiCad forum, EEVblog, maker YouTube, GitHub/SourceForge CAM projects, Arduino/Raspberry Pi communities.&lt;/p&gt;
-      &lt;p class='yellow'&gt;&lt;b&gt;Recurring friction:&lt;/b&gt; cheap fabs are slow for iteration; DIY milling is fragile; CAM/autoleveling is confusing; chemical/additive processes add storage and reliability issues.&lt;/p&gt;
-      &lt;p class='yellow'&gt;&lt;b&gt;Aha signal:&lt;/b&gt; Users still download FlatCAM/pcb2gcode and repurpose generic CNC machines, proving the workaround exists and the workflow is not solved.&lt;/p&gt;
+      &lt;p class='blue'&gt;&lt;b&gt;Core hubs:&lt;/b&gt; r/PrintedCircuitBoard, r/AskElectronics, r/hobbycnc, KiCad forum, EEVblog, GitHub/SourceForge CAM projects, element14, Adafruit/SparkFun communities, and maker YouTube.&lt;/p&gt;
+      &lt;p class='green'&gt;&lt;b&gt;Recurring friction patterns:&lt;/b&gt; outsourced boards interrupt project momentum; FlatCAM/CAM setup is painful; CNC milling breaks bits and creates FR4 dust/noise; V-One-style additive workflows suffer from ink shelf-life and resistance limits; chemical etching is messy and hard to safely dispose of.&lt;/p&gt;
+      &lt;p class='yellow'&gt;&lt;b&gt;New competitor insight:&lt;/b&gt; breadboards/protoboards are not weak because they are expensive. They are weak because they become fragile, non-repeatable, and non-scalable as the project moves from proof-of-concept to custom hardware.&lt;/p&gt;
+      &lt;p class='yellow'&gt;&lt;b&gt;Laser competitor insight:&lt;/b&gt; MOPA/fiber/UV lasers can be technically capable, but the customer still has to solve PCB-specific settings, safety, Gerber workflow, registration, and repeatability themselves.&lt;/p&gt;
+      &lt;p class='blue'&gt;&lt;b&gt;Aha signal:&lt;/b&gt; Users are already stitching together workarounds. Raven wins if it packages the right output quality into a single PCB-specific workflow rather than another general fabrication tool.&lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class='grid'&gt;
     &lt;div class='card span-6'&gt;
       &lt;h3 class='green'&gt;Strategic Positioning &amp; Moat&lt;/h3&gt;
-      &lt;p class='green'&gt;&lt;b&gt;USP:&lt;/b&gt; Raven should be the simplest same-day PCB fabrication appliance for hobbyists who already design boards but do not want to become CNC/CAM experts.&lt;/p&gt;
-      &lt;p class='blue'&gt;&lt;b&gt;Moat:&lt;/b&gt; integrated Gerber-to-machine software, protected autoleveling, bit/tooling recipes, board-material ecosystem, education content, and Voltera credibility in desktop electronics fabrication.&lt;/p&gt;
-      &lt;p class='yellow'&gt;&lt;b&gt;Pricing hypothesis:&lt;/b&gt; MSRP $1,499-$1,999; launch paid price $999-$1,499; higher bundle for fixtures, bits, blanks, and education/pro-maker accessories.&lt;/p&gt;
+      &lt;p class='green'&gt;&lt;b&gt;USP:&lt;/b&gt; Raven should be the simplest same-day PCB fabrication appliance for hobbyists and pro-makers who already design boards but do not want to become CNC/CAM, laser-settings, or chemical-etching experts.&lt;/p&gt;
+      &lt;p class='blue'&gt;&lt;b&gt;Moat:&lt;/b&gt; integrated Gerber-to-machine software, PCB-specific process recipes, safe enclosure, automated board registration/autoleveling, standard copper-clad consumables, education content, and Voltera credibility in desktop electronics fabrication.&lt;/p&gt;
+      &lt;p class='yellow'&gt;&lt;b&gt;Pricing hypothesis:&lt;/b&gt; MSRP $1,499-$1,999; launch paid price $999-$1,499. A higher bundle can serve education/pro-maker users with fixtures, blanks, bits/materials, curing/soldermask workflow accessories, and learning content.&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class='card span-6'&gt;
       &lt;h3 class='green'&gt;Gate 1 Decision&lt;/h3&gt;
       &lt;div class='callout green'&gt;
-        &lt;p&gt;&lt;b&gt;PASS to Phase 3 - Customer Discovery.&lt;/b&gt; The evidence is strong enough to test willingness-to-pay, workflows, and result-quality requirements with customers.&lt;/p&gt;
+        &lt;p&gt;&lt;b&gt;PASS to Phase 3 - Customer Discovery.&lt;/b&gt; The competitive gap is specific enough to test: same-day PCB control with appliance-level usability and standard copper workflows.&lt;/p&gt;
       &lt;/div&gt;
       &lt;table&gt;
         &lt;tr&gt;&lt;th&gt;Key Question&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Answer&lt;/th&gt;&lt;/tr&gt;
         &lt;tr&gt;&lt;td&gt;How many people face this problem?&lt;/td&gt;&lt;td class='blue'&gt;Known enough&lt;/td&gt;&lt;td&gt;High-intent CAM users plus broad ECAD/simulation ecosystems show a reachable pool.&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td&gt;Is the market large enough?&lt;/td&gt;&lt;td class='blue'&gt;Likely&lt;/td&gt;&lt;td&gt;1,000 units/year is plausible; 2,000/year requires price and workflow validation.&lt;/td&gt;&lt;/tr&gt;
-        &lt;tr&gt;&lt;td&gt;Do we understand competitors?&lt;/td&gt;&lt;td class='green'&gt;Yes&lt;/td&gt;&lt;td&gt;Status quo is outsourced fab houses and DIY CNC/CAM workarounds.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Is the market large enough?&lt;/td&gt;&lt;td class='blue'&gt;Likely&lt;/td&gt;&lt;td&gt;1,000 units/year is plausible; 2,000/year requires price, workflow, and output-quality validation.&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Do we understand competitors?&lt;/td&gt;&lt;td class='green'&gt;Yes&lt;/td&gt;&lt;td&gt;The real alternatives are fab houses, breadboards/dev boards, MOPA/UV lasers, CNC + CAM, premium desktop mills, V-One additive, and chemical etching.&lt;/td&gt;&lt;/tr&gt;
         &lt;tr&gt;&lt;td&gt;Do we have a pricing hypothesis?&lt;/td&gt;&lt;td class='green'&gt;Yes&lt;/td&gt;&lt;td&gt;$999-$1,499 paid launch price; $1,499-$1,999 MSRP.&lt;/td&gt;&lt;/tr&gt;
       &lt;/table&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 
   &lt;div class='callout yellow'&gt;
-    &lt;p&gt;&lt;b&gt;Leadership caveat:&lt;/b&gt; Kickstarter data validates launch/preorder demand, not steady annual demand. Customer discovery should directly test the willingness to pay at $999, $1,299, $1,499, and $1,999.&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;Leadership caveat:&lt;/b&gt; The competitor section should not rely on Kickstarter as the primary competitive frame. Kickstarter supports pricing and maker-machine demand; customer alternatives define the true competitive set.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/section&gt;
 
@@ -731,13 +768,13 @@ table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:11px} th,td
 &lt;meta name='viewport' content='width=device-width, initial-scale=1.0' /&gt;
 &lt;title&gt;Voltera Leadership Brief - Kickstarter Maker Machine Analysis&lt;/title&gt;
 &lt;style&gt;
-@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');
 :root {
   --green:#10b981; --green-bg:#ecfdf5; --blue:#3b82f6; --blue-bg:#eff6ff; --yellow:#f59e0b; --yellow-bg:#fffbeb; --orange:#f97316; --orange-bg:#fff7ed;
   --ink:#0f172a; --muted:#64748b; --border:#e2e8f0; --panel:#ffffff; --page:#f8fafc;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}
+body{margin:0;font-family:'Inter',Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}
 .page{max-width:1320px;margin:0 auto;padding:32px 20px 64px}
 header,.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}
 header{padding:34px;margin-bottom:22px}
@@ -752,7 +789,7 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 .metric{min-height:132px} .metric-value{font-size:34px;font-weight:800;letter-spacing:-.03em;display:block;margin-top:4px} .metric-label{color:var(--muted);font-size:14px;display:block;margin-top:6px}
 .callout{border-left:7px solid var(--blue);background:var(--blue-bg);padding:18px 20px;border-radius:12px;margin:16px 0} .callout.green{border-left-color:var(--green);background:var(--green-bg)} .callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)} .callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}
 .table-wrap{overflow-x:auto;margin-top:14px} table{width:100%;min-width:1050px;border-collapse:collapse;font-size:13px;background:#fff} th,td{border:1px solid var(--border);padding:10px 11px;vertical-align:top;text-align:left} th{background:#f1f3f5;color:#111827;font-weight:700;white-space:nowrap} tr:nth-child(even) td{background:#fafafa} .nowrap{white-space:nowrap} .small{font-size:12px;color:var(--muted)}
-.chart-wrap{width:100%;overflow-x:auto;margin-top:12px} svg{max-width:100%;height:auto;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif} .axis-label{fill:#64748b;font-size:12px} .bar-label{fill:#0f172a;font-size:12px;font-weight:700}
+.chart-wrap{width:100%;overflow-x:auto;margin-top:12px} svg{max-width:100%;height:auto;font-family:'Inter',Arial,Helvetica,sans-serif} .axis-label{fill:#64748b;font-size:12px} .bar-label{fill:#0f172a;font-size:12px;font-weight:700}
 .source-list{columns:2;column-gap:34px;padding-left:20px;font-size:13px;word-break:break-word} .source-list li{margin:0 0 9px;break-inside:avoid}
 @media(max-width:960px){.span-6,.span-4,.span-3{grid-column:span 12}.legend{grid-template-columns:1fr}.source-list{columns:1}header,.card{padding:20px}}
 &lt;/style&gt;
@@ -1107,165 +1144,165 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 &lt;/html&gt;
 " title="Kickstarter Maker Machine Demand Analysis"></iframe>
 </div>
-<div aria-label="Research Data and Market Signals" class="panel panel-deep" role="tabpanel"><iframe srcdoc='&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
+<div aria-label="Research Data and Market Signals" class="panel panel-deep" role="tabpanel"><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-&lt;meta charset="UTF-8" /&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+&lt;meta charset=&quot;UTF-8&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
 &lt;title&gt;Raven Deep Dive Research Data&lt;/title&gt;
 &lt;style&gt;
-@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap&#x27;);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');
 :root{--green:#10b981;--green-bg:#ecfdf5;--blue:#3b82f6;--blue-bg:#eff6ff;--yellow:#f59e0b;--yellow-bg:#fffbeb;--orange:#f97316;--orange-bg:#fff7ed;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--panel:#ffffff;--page:#f8fafc}
-*{box-sizing:border-box}body{margin:0;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}.page{max-width:1280px;margin:0 auto;padding:28px 18px 60px}header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}header{padding:28px;margin-bottom:18px}.card{padding:20px;margin-bottom:18px}h1,h2,h3{margin:0 0 10px;line-height:1.18}h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em}h2{font-size:24px}h3{font-size:18px}.sub{color:var(--muted);font-size:16px;max-width:980px}.green{color:var(--green)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}.pill.green{background:var(--green-bg);color:var(--green)}.pill.blue{background:var(--blue-bg);color:var(--blue)}.pill.yellow{background:var(--yellow-bg);color:var(--yellow)}.pill.orange{background:var(--orange-bg);color:var(--orange)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.metric{min-height:128px}.metric-value{display:block;font-size:32px;font-weight:800;letter-spacing:-.03em}.metric-label{display:block;color:var(--muted);font-size:13px;margin-top:6px}.callout{border-left:7px solid var(--blue);background:var(--blue-bg);border-radius:12px;padding:15px 17px;margin:13px 0}.callout.green{border-left-color:var(--green);background:var(--green-bg)}.callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)}.callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px;background:#fff}th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}th{background:#f8fafc;color:#0f172a;font-weight:600}tr:nth-child(even) td{background:#fafafa}.table-wrap{overflow-x:auto}.chart-wrap{overflow-x:auto;margin-top:8px}svg{max-width:100%;height:auto;font-family:&#x27;Inter&#x27;,Arial,Helvetica,sans-serif}.axis{fill:#64748b;font-size:12px}.bar-label{fill:#0f172a;font-size:12px;font-weight:700}.note{font-size:12px;color:var(--muted)}.sources{columns:2;column-gap:32px;font-size:12px;word-break:break-word}.sources li{break-inside:avoid;margin-bottom:7px}@media(max-width:900px){.span-8,.span-6,.span-4,.span-3{grid-column:span 12}.sources{columns:1}header,.card{padding:18px}}
+*{box-sizing:border-box}body{margin:0;font-family:'Inter',Arial,Helvetica,sans-serif;background:var(--page);color:var(--ink);line-height:1.5}.page{max-width:1280px;margin:0 auto;padding:28px 18px 60px}header,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,0.03),0 1px 2px rgba(15,23,42,0.02)}header{padding:28px;margin-bottom:18px}.card{padding:20px;margin-bottom:18px}h1,h2,h3{margin:0 0 10px;line-height:1.18}h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em}h2{font-size:24px}h3{font-size:18px}.sub{color:var(--muted);font-size:16px;max-width:980px}.green{color:var(--green)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}.pill.green{background:var(--green-bg);color:var(--green)}.pill.blue{background:var(--blue-bg);color:var(--blue)}.pill.yellow{background:var(--yellow-bg);color:var(--yellow)}.pill.orange{background:var(--orange-bg);color:var(--orange)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.metric{min-height:128px}.metric-value{display:block;font-size:32px;font-weight:800;letter-spacing:-.03em}.metric-label{display:block;color:var(--muted);font-size:13px;margin-top:6px}.callout{border-left:7px solid var(--blue);background:var(--blue-bg);border-radius:12px;padding:15px 17px;margin:13px 0}.callout.green{border-left-color:var(--green);background:var(--green-bg)}.callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg)}.callout.orange{border-left-color:var(--orange);background:var(--orange-bg)}table{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:13px;background:#fff}th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}th{background:#f8fafc;color:#0f172a;font-weight:600}tr:nth-child(even) td{background:#fafafa}.table-wrap{overflow-x:auto}.chart-wrap{overflow-x:auto;margin-top:8px}svg{max-width:100%;height:auto;font-family:'Inter',Arial,Helvetica,sans-serif}.axis{fill:#64748b;font-size:12px}.bar-label{fill:#0f172a;font-size:12px;font-weight:700}.note{font-size:12px;color:var(--muted)}.sources{columns:2;column-gap:32px;font-size:12px;word-break:break-word}.sources li{break-inside:avoid;margin-bottom:7px}@media(max-width:900px){.span-8,.span-6,.span-4,.span-3{grid-column:span 12}.sources{columns:1}header,.card{padding:18px}}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;main class="page"&gt;
+&lt;main class=&quot;page&quot;&gt;
 &lt;header&gt;
-  &lt;span class="pill blue"&gt;Third Tab&lt;/span&gt;
+  &lt;span class=&quot;pill blue&quot;&gt;Third Tab&lt;/span&gt;
   &lt;h1&gt;Raven Deep Dive: Market Data, Software Signals, and Status-Quo Economics&lt;/h1&gt;
-  &lt;p class="sub"&gt;This tab expands the leadership report with supporting market signals beyond Kickstarter: open-source hardware, hobby electronics commerce, software usage, PCB prototyping equipment, breadboards, 3D printing, CNC, creator markets, and outsourced PCB fabrication.&lt;/p&gt;
-  &lt;div class="callout green"&gt;&lt;strong&gt;Core read:&lt;/strong&gt; Raven is not just competing with hobby tools. It sits at the intersection of a growing open-source hardware base, a large PCB design software funnel, and a status quo where outsourced PCB fabrication is cheap but slow enough to block same-day iteration.&lt;/div&gt;
+  &lt;p class=&quot;sub&quot;&gt;This tab expands the leadership report with supporting market signals beyond Kickstarter: open-source hardware, hobby electronics commerce, software usage, PCB prototyping equipment, breadboards, 3D printing, CNC, creator markets, and outsourced PCB fabrication.&lt;/p&gt;
+  &lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;Core read:&lt;/strong&gt; Raven is not just competing with hobby tools. It sits at the intersection of a growing open-source hardware base, a large PCB design software funnel, and a status quo where outsourced PCB fabrication is cheap but slow enough to block same-day iteration.&lt;/div&gt;
 &lt;/header&gt;
 
-&lt;section class="grid"&gt;
-  &lt;div class="card span-3 metric"&gt;&lt;span class="pill green"&gt;Software Funnel&lt;/span&gt;&lt;span class="metric-value green"&gt;1.8M+&lt;/span&gt;&lt;span class="metric-label"&gt;Estimated annual KiCad downloads in uploaded software data.&lt;/span&gt;&lt;/div&gt;
-  &lt;div class="card span-3 metric"&gt;&lt;span class="pill green"&gt;Browser ECAD&lt;/span&gt;&lt;span class="metric-value green"&gt;3.5M&lt;/span&gt;&lt;span class="metric-label"&gt;EasyEDA registered accounts in uploaded software data.&lt;/span&gt;&lt;/div&gt;
-  &lt;div class="card span-3 metric"&gt;&lt;span class="pill blue"&gt;Raspberry Pi&lt;/span&gt;&lt;span class="metric-value blue"&gt;$323M&lt;/span&gt;&lt;span class="metric-label"&gt;FY2025 revenue reported by public market data.&lt;/span&gt;&lt;/div&gt;
-  &lt;div class="card span-3 metric"&gt;&lt;span class="pill blue"&gt;JLCPCB Scale&lt;/span&gt;&lt;span class="metric-value blue"&gt;20K/day&lt;/span&gt;&lt;span class="metric-label"&gt;PCB orders per day reported by JLCPCB help documentation.&lt;/span&gt;&lt;/div&gt;
+&lt;section class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill green&quot;&gt;Software Funnel&lt;/span&gt;&lt;span class=&quot;metric-value green&quot;&gt;1.8M+&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;Estimated annual KiCad downloads in uploaded software data.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill green&quot;&gt;Browser ECAD&lt;/span&gt;&lt;span class=&quot;metric-value green&quot;&gt;3.5M&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;EasyEDA registered accounts in uploaded software data.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill blue&quot;&gt;Raspberry Pi&lt;/span&gt;&lt;span class=&quot;metric-value blue&quot;&gt;$323M&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;FY2025 revenue reported by public market data.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill blue&quot;&gt;JLCPCB Scale&lt;/span&gt;&lt;span class=&quot;metric-value blue&quot;&gt;20K/day&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;PCB orders per day reported by JLCPCB help documentation.&lt;/span&gt;&lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="grid"&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="blue"&gt;Chart 1: Relevant Market Size Signals&lt;/h2&gt;
-&lt;p class="yellow"&gt;These are different market definitions, so use them as scale signals, not as a single TAM sum.&lt;/p&gt;
-&lt;div class="chart-wrap"&gt;
-&lt;svg viewBox="0 0 760 420" role="img" aria-label="Market size comparison chart"&gt;
-&lt;line x1="150" y1="350" x2="720" y2="350" stroke="#d1d5db"/&gt;&lt;line x1="150" y1="70" x2="150" y2="350" stroke="#d1d5db"/&gt;
-&lt;text x="40" y="76" class="axis"&gt;USD market size&lt;/text&gt;&lt;text x="145" y="355" class="axis" text-anchor="end"&gt;$0B&lt;/text&gt;&lt;text x="145" y="260" class="axis" text-anchor="end"&gt;$50B&lt;/text&gt;&lt;text x="145" y="165" class="axis" text-anchor="end"&gt;$100B&lt;/text&gt;&lt;text x="145" y="70" class="axis" text-anchor="end"&gt;$150B&lt;/text&gt;
-&lt;line x1="150" y1="255" x2="720" y2="255" stroke="#edf0f2"/&gt;&lt;line x1="150" y1="160" x2="720" y2="160" stroke="#edf0f2"/&gt;&lt;line x1="150" y1="65" x2="720" y2="65" stroke="#edf0f2"/&gt;
-&lt;rect x="180" y="304" width="58" height="46" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="209" y="290" text-anchor="middle" class="bar-label"&gt;$23.5B&lt;/text&gt;&lt;text x="209" y="378" text-anchor="middle" class="axis"&gt;3D Printing&lt;/text&gt;
-&lt;rect x="275" y="239" width="58" height="111" fill="#17803a" opacity=".88"/&gt;&lt;text x="304" y="225" text-anchor="middle" class="bar-label"&gt;$80.2B&lt;/text&gt;&lt;text x="304" y="378" text-anchor="middle" class="axis"&gt;PCB Market&lt;/text&gt;
-&lt;rect x="370" y="346" width="58" height="4" fill="#9a7200" opacity=".88"/&gt;&lt;text x="399" y="332" text-anchor="middle" class="bar-label"&gt;$1.5B&lt;/text&gt;&lt;text x="399" y="378" text-anchor="middle" class="axis"&gt;PCB Proto Equip.&lt;/text&gt;
-&lt;rect x="465" y="349" width="58" height="1" fill="#9a7200" opacity=".88"/&gt;&lt;text x="494" y="335" text-anchor="middle" class="bar-label"&gt;$0.63B&lt;/text&gt;&lt;text x="494" y="378" text-anchor="middle" class="axis"&gt;Breadboards&lt;/text&gt;
-&lt;rect x="560" y="340" width="58" height="10" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="589" y="326" text-anchor="middle" class="bar-label"&gt;$5.1B&lt;/text&gt;&lt;text x="589" y="378" text-anchor="middle" class="axis"&gt;Open HW&lt;/text&gt;
-&lt;rect x="655" y="337" width="58" height="13" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="684" y="323" text-anchor="middle" class="bar-label"&gt;$5.9B&lt;/text&gt;&lt;text x="684" y="378" text-anchor="middle" class="axis"&gt;Desktop 3DP&lt;/text&gt;
+&lt;section class=&quot;grid&quot;&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Chart 1: Relevant Market Size Signals&lt;/h2&gt;
+&lt;p class=&quot;yellow&quot;&gt;These are different market definitions, so use them as scale signals, not as a single TAM sum.&lt;/p&gt;
+&lt;div class=&quot;chart-wrap&quot;&gt;
+&lt;svg viewBox=&quot;0 0 760 420&quot; role=&quot;img&quot; aria-label=&quot;Market size comparison chart&quot;&gt;
+&lt;line x1=&quot;150&quot; y1=&quot;350&quot; x2=&quot;720&quot; y2=&quot;350&quot; stroke=&quot;#d1d5db&quot;/&gt;&lt;line x1=&quot;150&quot; y1=&quot;70&quot; x2=&quot;150&quot; y2=&quot;350&quot; stroke=&quot;#d1d5db&quot;/&gt;
+&lt;text x=&quot;40&quot; y=&quot;76&quot; class=&quot;axis&quot;&gt;USD market size&lt;/text&gt;&lt;text x=&quot;145&quot; y=&quot;355&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;$0B&lt;/text&gt;&lt;text x=&quot;145&quot; y=&quot;260&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;$50B&lt;/text&gt;&lt;text x=&quot;145&quot; y=&quot;165&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;$100B&lt;/text&gt;&lt;text x=&quot;145&quot; y=&quot;70&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;$150B&lt;/text&gt;
+&lt;line x1=&quot;150&quot; y1=&quot;255&quot; x2=&quot;720&quot; y2=&quot;255&quot; stroke=&quot;#edf0f2&quot;/&gt;&lt;line x1=&quot;150&quot; y1=&quot;160&quot; x2=&quot;720&quot; y2=&quot;160&quot; stroke=&quot;#edf0f2&quot;/&gt;&lt;line x1=&quot;150&quot; y1=&quot;65&quot; x2=&quot;720&quot; y2=&quot;65&quot; stroke=&quot;#edf0f2&quot;/&gt;
+&lt;rect x=&quot;180&quot; y=&quot;304&quot; width=&quot;58&quot; height=&quot;46&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;209&quot; y=&quot;290&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$23.5B&lt;/text&gt;&lt;text x=&quot;209&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;3D Printing&lt;/text&gt;
+&lt;rect x=&quot;275&quot; y=&quot;239&quot; width=&quot;58&quot; height=&quot;111&quot; fill=&quot;#17803a&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;304&quot; y=&quot;225&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$80.2B&lt;/text&gt;&lt;text x=&quot;304&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;PCB Market&lt;/text&gt;
+&lt;rect x=&quot;370&quot; y=&quot;346&quot; width=&quot;58&quot; height=&quot;4&quot; fill=&quot;#9a7200&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;399&quot; y=&quot;332&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$1.5B&lt;/text&gt;&lt;text x=&quot;399&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;PCB Proto Equip.&lt;/text&gt;
+&lt;rect x=&quot;465&quot; y=&quot;349&quot; width=&quot;58&quot; height=&quot;1&quot; fill=&quot;#9a7200&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;494&quot; y=&quot;335&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$0.63B&lt;/text&gt;&lt;text x=&quot;494&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Breadboards&lt;/text&gt;
+&lt;rect x=&quot;560&quot; y=&quot;340&quot; width=&quot;58&quot; height=&quot;10&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;589&quot; y=&quot;326&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$5.1B&lt;/text&gt;&lt;text x=&quot;589&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Open HW&lt;/text&gt;
+&lt;rect x=&quot;655&quot; y=&quot;337&quot; width=&quot;58&quot; height=&quot;13&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;684&quot; y=&quot;323&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;$5.9B&lt;/text&gt;&lt;text x=&quot;684&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Desktop 3DP&lt;/text&gt;
 &lt;/svg&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="blue"&gt;Chart 2: Growth Rate Signals&lt;/h2&gt;
-&lt;p class="blue"&gt;The broader creator/fabrication markets are growing faster than breadboards and traditional PCB markets.&lt;/p&gt;
-&lt;div class="chart-wrap"&gt;
-&lt;svg viewBox="0 0 760 420" role="img" aria-label="CAGR comparison chart"&gt;
-&lt;line x1="135" y1="350" x2="720" y2="350" stroke="#d1d5db"/&gt;&lt;line x1="135" y1="70" x2="135" y2="350" stroke="#d1d5db"/&gt;
-&lt;text x="28" y="76" class="axis"&gt;CAGR&lt;/text&gt;&lt;text x="128" y="355" class="axis" text-anchor="end"&gt;0%&lt;/text&gt;&lt;text x="128" y="257" class="axis" text-anchor="end"&gt;10%&lt;/text&gt;&lt;text x="128" y="159" class="axis" text-anchor="end"&gt;20%&lt;/text&gt;&lt;text x="128" y="61" class="axis" text-anchor="end"&gt;30%&lt;/text&gt;
-&lt;line x1="135" y1="252" x2="720" y2="252" stroke="#edf0f2"/&gt;&lt;line x1="135" y1="154" x2="720" y2="154" stroke="#edf0f2"/&gt;
-&lt;rect x="165" y="117" width="58" height="233" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="194" y="103" text-anchor="middle" class="bar-label"&gt;23.8%&lt;/text&gt;&lt;text x="194" y="378" text-anchor="middle" class="axis"&gt;Desktop 3DP&lt;/text&gt;
-&lt;rect x="260" y="122" width="58" height="228" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="289" y="108" text-anchor="middle" class="bar-label"&gt;23.3%&lt;/text&gt;&lt;text x="289" y="378" text-anchor="middle" class="axis"&gt;Creator Econ.&lt;/text&gt;
-&lt;rect x="355" y="251" width="58" height="99" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="384" y="237" text-anchor="middle" class="bar-label"&gt;10.1%&lt;/text&gt;&lt;text x="384" y="378" text-anchor="middle" class="axis"&gt;Open HW&lt;/text&gt;
-&lt;rect x="450" y="269" width="58" height="81" fill="#1d5f9f" opacity=".88"/&gt;&lt;text x="479" y="255" text-anchor="middle" class="bar-label"&gt;8.2%&lt;/text&gt;&lt;text x="479" y="378" text-anchor="middle" class="axis"&gt;Desktop CNC&lt;/text&gt;
-&lt;rect x="545" y="293" width="58" height="57" fill="#9a7200" opacity=".88"/&gt;&lt;text x="574" y="279" text-anchor="middle" class="bar-label"&gt;5.9%&lt;/text&gt;&lt;text x="574" y="378" text-anchor="middle" class="axis"&gt;PCB Proto Mach.&lt;/text&gt;
-&lt;rect x="640" y="312" width="58" height="38" fill="#9a7200" opacity=".88"/&gt;&lt;text x="669" y="298" text-anchor="middle" class="bar-label"&gt;3.9%&lt;/text&gt;&lt;text x="669" y="378" text-anchor="middle" class="axis"&gt;Breadboards&lt;/text&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Chart 2: Growth Rate Signals&lt;/h2&gt;
+&lt;p class=&quot;blue&quot;&gt;The broader creator/fabrication markets are growing faster than breadboards and traditional PCB markets.&lt;/p&gt;
+&lt;div class=&quot;chart-wrap&quot;&gt;
+&lt;svg viewBox=&quot;0 0 760 420&quot; role=&quot;img&quot; aria-label=&quot;CAGR comparison chart&quot;&gt;
+&lt;line x1=&quot;135&quot; y1=&quot;350&quot; x2=&quot;720&quot; y2=&quot;350&quot; stroke=&quot;#d1d5db&quot;/&gt;&lt;line x1=&quot;135&quot; y1=&quot;70&quot; x2=&quot;135&quot; y2=&quot;350&quot; stroke=&quot;#d1d5db&quot;/&gt;
+&lt;text x=&quot;28&quot; y=&quot;76&quot; class=&quot;axis&quot;&gt;CAGR&lt;/text&gt;&lt;text x=&quot;128&quot; y=&quot;355&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;0%&lt;/text&gt;&lt;text x=&quot;128&quot; y=&quot;257&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;10%&lt;/text&gt;&lt;text x=&quot;128&quot; y=&quot;159&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;20%&lt;/text&gt;&lt;text x=&quot;128&quot; y=&quot;61&quot; class=&quot;axis&quot; text-anchor=&quot;end&quot;&gt;30%&lt;/text&gt;
+&lt;line x1=&quot;135&quot; y1=&quot;252&quot; x2=&quot;720&quot; y2=&quot;252&quot; stroke=&quot;#edf0f2&quot;/&gt;&lt;line x1=&quot;135&quot; y1=&quot;154&quot; x2=&quot;720&quot; y2=&quot;154&quot; stroke=&quot;#edf0f2&quot;/&gt;
+&lt;rect x=&quot;165&quot; y=&quot;117&quot; width=&quot;58&quot; height=&quot;233&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;194&quot; y=&quot;103&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;23.8%&lt;/text&gt;&lt;text x=&quot;194&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Desktop 3DP&lt;/text&gt;
+&lt;rect x=&quot;260&quot; y=&quot;122&quot; width=&quot;58&quot; height=&quot;228&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;289&quot; y=&quot;108&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;23.3%&lt;/text&gt;&lt;text x=&quot;289&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Creator Econ.&lt;/text&gt;
+&lt;rect x=&quot;355&quot; y=&quot;251&quot; width=&quot;58&quot; height=&quot;99&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;384&quot; y=&quot;237&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;10.1%&lt;/text&gt;&lt;text x=&quot;384&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Open HW&lt;/text&gt;
+&lt;rect x=&quot;450&quot; y=&quot;269&quot; width=&quot;58&quot; height=&quot;81&quot; fill=&quot;#1d5f9f&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;479&quot; y=&quot;255&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;8.2%&lt;/text&gt;&lt;text x=&quot;479&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Desktop CNC&lt;/text&gt;
+&lt;rect x=&quot;545&quot; y=&quot;293&quot; width=&quot;58&quot; height=&quot;57&quot; fill=&quot;#9a7200&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;574&quot; y=&quot;279&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;5.9%&lt;/text&gt;&lt;text x=&quot;574&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;PCB Proto Mach.&lt;/text&gt;
+&lt;rect x=&quot;640&quot; y=&quot;312&quot; width=&quot;58&quot; height=&quot;38&quot; fill=&quot;#9a7200&quot; opacity=&quot;.88&quot;/&gt;&lt;text x=&quot;669&quot; y=&quot;298&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;3.9%&lt;/text&gt;&lt;text x=&quot;669&quot; y=&quot;378&quot; text-anchor=&quot;middle&quot; class=&quot;axis&quot;&gt;Breadboards&lt;/text&gt;
 &lt;/svg&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="card"&gt;
-&lt;h2 class="green"&gt;Data Map: How to Weight the Evidence&lt;/h2&gt;
-&lt;div class="table-wrap"&gt;&lt;table&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Data Map: How to Weight the Evidence&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;&lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Evidence Layer&lt;/th&gt;&lt;th&gt;Weight&lt;/th&gt;&lt;th&gt;What It Proves&lt;/th&gt;&lt;th&gt;What It Does Not Prove&lt;/th&gt;&lt;th&gt;Raven Implication&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;&lt;td class="green"&gt;Kickstarter maker-machine demand&lt;/td&gt;&lt;td class="green"&gt;Highest&lt;/td&gt;&lt;td class="green"&gt;Hobbyist/prosumer buyers will pay $700-$8,000+ for desktop fabrication machines when the output is clear.&lt;/td&gt;&lt;td class="yellow"&gt;Does not prove steady annual demand after launch hype.&lt;/td&gt;&lt;td class="green"&gt;Use as willingness-to-pay proof. TRUE rows remain the strongest pricing signal.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="green"&gt;PCB/ECAD software usage&lt;/td&gt;&lt;td class="green"&gt;Highest&lt;/td&gt;&lt;td class="green"&gt;Large numbers of users are already designing circuits; CAM conversion is the hard gate between design and physical boards.&lt;/td&gt;&lt;td class="yellow"&gt;Does not say how many will buy hardware at $1,299-$1,999.&lt;/td&gt;&lt;td class="green"&gt;Raven must win by hiding CAM and making Gerber-to-board simple.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Hobby electronics hardware commerce&lt;/td&gt;&lt;td class="blue"&gt;High&lt;/td&gt;&lt;td class="blue"&gt;Raspberry Pi, Arduino, Adafruit, and SparkFun show a large paid ecosystem around learning, prototyping, and embedded hardware.&lt;/td&gt;&lt;td class="yellow"&gt;Revenue is not all hobbyist-only; Raspberry Pi has strong industrial/embedded mix.&lt;/td&gt;&lt;td class="blue"&gt;Raven should target serious makers, students, educators, and pro-makers, not casual tinkerers only.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Outsourced PCB fabrication&lt;/td&gt;&lt;td class="blue"&gt;High&lt;/td&gt;&lt;td class="blue"&gt;JLCPCB, PCBWay, and OSH Park prove large demand for low-volume PCB prototyping.&lt;/td&gt;&lt;td class="green"&gt;Cheap fab pricing is also a major competitive threat.&lt;/td&gt;&lt;td class="green"&gt;Raven must win on same-day iteration, privacy, no MOQ, and learning—not lowest board cost.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;Market-research TAM reports&lt;/td&gt;&lt;td class="yellow"&gt;Medium&lt;/td&gt;&lt;td class="yellow"&gt;Open hardware, PCB prototyping equipment, desktop CNC, and desktop 3D printing are growing categories.&lt;/td&gt;&lt;td class="orange"&gt;Definitions vary widely; do not sum them as Raven TAM.&lt;/td&gt;&lt;td class="yellow"&gt;Use as macro validation, not a unit forecast.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Kickstarter maker-machine demand&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Highest&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Hobbyist/prosumer buyers will pay $700-$8,000+ for desktop fabrication machines when the output is clear.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Does not prove steady annual demand after launch hype.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Use as willingness-to-pay proof. TRUE rows remain the strongest pricing signal.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;PCB/ECAD software usage&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Highest&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Large numbers of users are already designing circuits; CAM conversion is the hard gate between design and physical boards.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Does not say how many will buy hardware at $1,299-$1,999.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Raven must win by hiding CAM and making Gerber-to-board simple.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Hobby electronics hardware commerce&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;High&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Raspberry Pi, Arduino, Adafruit, and SparkFun show a large paid ecosystem around learning, prototyping, and embedded hardware.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Revenue is not all hobbyist-only; Raspberry Pi has strong industrial/embedded mix.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Raven should target serious makers, students, educators, and pro-makers, not casual tinkerers only.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Outsourced PCB fabrication&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;High&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;JLCPCB, PCBWay, and OSH Park prove large demand for low-volume PCB prototyping.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Cheap fab pricing is also a major competitive threat.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Raven must win on same-day iteration, privacy, no MOQ, and learning—not lowest board cost.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Market-research TAM reports&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Medium&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Open hardware, PCB prototyping equipment, desktop CNC, and desktop 3D printing are growing categories.&lt;/td&gt;&lt;td class=&quot;orange&quot;&gt;Definitions vary widely; do not sum them as Raven TAM.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Use as macro validation, not a unit forecast.&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="grid"&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="green"&gt;Software Analysis: Raven’s Best Market Gate&lt;/h2&gt;
+&lt;section class=&quot;grid&quot;&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Software Analysis: Raven’s Best Market Gate&lt;/h2&gt;
 &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Signal&lt;/th&gt;&lt;th&gt;Data&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;th&gt;Product Read&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;KiCad&lt;/td&gt;&lt;td class="green"&gt;~1.8M estimated annual downloads; ~110K forum members in uploaded software data.&lt;/td&gt;&lt;td class="green"&gt;Green&lt;/td&gt;&lt;td class="green"&gt;Large free ECAD user base. Raven should support KiCad/Gerber/Excellon cleanly.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;EasyEDA&lt;/td&gt;&lt;td class="green"&gt;~3.5M registered accounts in uploaded software data.&lt;/td&gt;&lt;td class="green"&gt;Green&lt;/td&gt;&lt;td class="green"&gt;Browser-first PCB design is large. Import/export simplicity matters.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;FlatCAM + pcb2gcode&lt;/td&gt;&lt;td class="green"&gt;~6K-12K monthly combined download velocity noted in uploaded software analysis.&lt;/td&gt;&lt;td class="green"&gt;Green&lt;/td&gt;&lt;td class="green"&gt;High-intent users are actively trying to turn PCB files into machine output.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Wokwi&lt;/td&gt;&lt;td class="blue"&gt;~500K active developers and ~25K Discord members in uploaded software data.&lt;/td&gt;&lt;td class="blue"&gt;Blue&lt;/td&gt;&lt;td class="blue"&gt;Simulation-to-physical pipeline is a future growth route.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Tinkercad Circuits&lt;/td&gt;&lt;td class="blue"&gt;~50M registered platform users in uploaded software data.&lt;/td&gt;&lt;td class="yellow"&gt;Yellow&lt;/td&gt;&lt;td class="yellow"&gt;Large education funnel, but many users are beginners who may not buy a $1K+ tool.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;KiCad&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;~1.8M estimated annual downloads; ~110K forum members in uploaded software data.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Green&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Large free ECAD user base. Raven should support KiCad/Gerber/Excellon cleanly.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;EasyEDA&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;~3.5M registered accounts in uploaded software data.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Green&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Browser-first PCB design is large. Import/export simplicity matters.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;FlatCAM + pcb2gcode&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;~6K-12K monthly combined download velocity noted in uploaded software analysis.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Green&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;High-intent users are actively trying to turn PCB files into machine output.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Wokwi&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;~500K active developers and ~25K Discord members in uploaded software data.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Blue&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Simulation-to-physical pipeline is a future growth route.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Tinkercad Circuits&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;~50M registered platform users in uploaded software data.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Yellow&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Large education funnel, but many users are beginners who may not buy a $1K+ tool.&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="blue"&gt;Software Funnel Chart&lt;/h2&gt;
-&lt;p class="yellow"&gt;This is not a conversion forecast. It shows where Raven can intercept demand.&lt;/p&gt;
-&lt;div class="chart-wrap"&gt;
-&lt;svg viewBox="0 0 720 360" role="img" aria-label="Software funnel chart"&gt;
-&lt;rect x="80" y="40" width="560" height="54" rx="10" fill="#e9f7ee" stroke="#17803a"/&gt;&lt;text x="360" y="72" text-anchor="middle" class="bar-label"&gt;Large design/simulation universe: Tinkercad, EasyEDA, KiCad, Wokwi&lt;/text&gt;
-&lt;rect x="135" y="125" width="450" height="54" rx="10" fill="#eaf3fc" stroke="#1d5f9f"/&gt;&lt;text x="360" y="157" text-anchor="middle" class="bar-label"&gt;PCB design intent: KiCad + EasyEDA + Altium + Flux + CircuitMaker&lt;/text&gt;
-&lt;rect x="205" y="210" width="310" height="54" rx="10" fill="#fff7d7" stroke="#9a7200"/&gt;&lt;text x="360" y="235" text-anchor="middle" class="bar-label"&gt;&lt;tspan x="360" dy="0"&gt;CAM pain: FlatCAM, pcb2gcode,&lt;/tspan&gt;&lt;tspan x="360" dy="16"&gt;CopperCAM, G-code tools&lt;/tspan&gt;&lt;/text&gt;
-&lt;rect x="260" y="295" width="200" height="40" rx="10" fill="#fff0df" stroke="#b45309"/&gt;&lt;text x="360" y="320" text-anchor="middle" class="bar-label"&gt;Raven purchase-ready users&lt;/text&gt;
-&lt;path d="M360 94 L360 125" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/&gt;&lt;path d="M360 179 L360 210" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/&gt;&lt;path d="M360 264 L360 295" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/&gt;
-&lt;defs&gt;&lt;marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto" markerUnits="strokeWidth"&gt;&lt;path d="M0,0 L0,6 L6,3 z" fill="#6b7280" /&gt;&lt;/marker&gt;&lt;/defs&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Software Funnel Chart&lt;/h2&gt;
+&lt;p class=&quot;yellow&quot;&gt;This is not a conversion forecast. It shows where Raven can intercept demand.&lt;/p&gt;
+&lt;div class=&quot;chart-wrap&quot;&gt;
+&lt;svg viewBox=&quot;0 0 720 360&quot; role=&quot;img&quot; aria-label=&quot;Software funnel chart&quot;&gt;
+&lt;rect x=&quot;80&quot; y=&quot;40&quot; width=&quot;560&quot; height=&quot;54&quot; rx=&quot;10&quot; fill=&quot;#e9f7ee&quot; stroke=&quot;#17803a&quot;/&gt;&lt;text x=&quot;360&quot; y=&quot;72&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;Large design/simulation universe: Tinkercad, EasyEDA, KiCad, Wokwi&lt;/text&gt;
+&lt;rect x=&quot;135&quot; y=&quot;125&quot; width=&quot;450&quot; height=&quot;54&quot; rx=&quot;10&quot; fill=&quot;#eaf3fc&quot; stroke=&quot;#1d5f9f&quot;/&gt;&lt;text x=&quot;360&quot; y=&quot;157&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;PCB design intent: KiCad + EasyEDA + Altium + Flux + CircuitMaker&lt;/text&gt;
+&lt;rect x=&quot;205&quot; y=&quot;210&quot; width=&quot;310&quot; height=&quot;54&quot; rx=&quot;10&quot; fill=&quot;#fff7d7&quot; stroke=&quot;#9a7200&quot;/&gt;&lt;text x=&quot;360&quot; y=&quot;235&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;&lt;tspan x=&quot;360&quot; dy=&quot;0&quot;&gt;CAM pain: FlatCAM, pcb2gcode,&lt;/tspan&gt;&lt;tspan x=&quot;360&quot; dy=&quot;16&quot;&gt;CopperCAM, G-code tools&lt;/tspan&gt;&lt;/text&gt;
+&lt;rect x=&quot;260&quot; y=&quot;295&quot; width=&quot;200&quot; height=&quot;40&quot; rx=&quot;10&quot; fill=&quot;#fff0df&quot; stroke=&quot;#b45309&quot;/&gt;&lt;text x=&quot;360&quot; y=&quot;320&quot; text-anchor=&quot;middle&quot; class=&quot;bar-label&quot;&gt;Raven purchase-ready users&lt;/text&gt;
+&lt;path d=&quot;M360 94 L360 125&quot; stroke=&quot;#6b7280&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrow)&quot;/&gt;&lt;path d=&quot;M360 179 L360 210&quot; stroke=&quot;#6b7280&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrow)&quot;/&gt;&lt;path d=&quot;M360 264 L360 295&quot; stroke=&quot;#6b7280&quot; stroke-width=&quot;2&quot; marker-end=&quot;url(#arrow)&quot;/&gt;
+&lt;defs&gt;&lt;marker id=&quot;arrow&quot; markerWidth=&quot;10&quot; markerHeight=&quot;10&quot; refX=&quot;5&quot; refY=&quot;3&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;&lt;path d=&quot;M0,0 L0,6 L6,3 z&quot; fill=&quot;#6b7280&quot; /&gt;&lt;/marker&gt;&lt;/defs&gt;
 &lt;/svg&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="card"&gt;
-&lt;h2 class="blue"&gt;Hardware and Ecommerce Signals&lt;/h2&gt;
-&lt;div class="table-wrap"&gt;&lt;table&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Hardware and Ecommerce Signals&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;&lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Company / Ecosystem&lt;/th&gt;&lt;th&gt;Current Data Signal&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;th&gt;Raven Insight&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Raspberry Pi&lt;/td&gt;&lt;td class="blue"&gt;FY2025 revenue reported at $323.2M, up about 25%; uploaded data also tracks 73M cumulative units sold by May 2026 and 72% of FY2024 units in industrial/embedded markets.&lt;/td&gt;&lt;td class="blue"&gt;Blue&lt;/td&gt;&lt;td class="blue"&gt;Large hardware learning/prototyping ecosystem exists, but revenue is increasingly industrial as well as hobbyist.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Arduino / compatible ecosystem&lt;/td&gt;&lt;td class="blue"&gt;Arduino-compatible market estimates vary: one public report cites $718M in 2024 to $1.1B by 2030; another cites $1.33B in 2024 to $2.99B by 2032.&lt;/td&gt;&lt;td class="yellow"&gt;Yellow&lt;/td&gt;&lt;td class="blue"&gt;The ecosystem is big enough to support accessory/tool markets, but reported market sizes vary widely.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;Adafruit&lt;/td&gt;&lt;td class="yellow"&gt;Uploaded data estimates ~$40M annual revenue; public third-party estimates vary lower.&lt;/td&gt;&lt;td class="yellow"&gt;Yellow&lt;/td&gt;&lt;td class="blue"&gt;Shows paid demand for beginner-friendly, well-documented electronics tools and learning paths.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;SparkFun&lt;/td&gt;&lt;td class="yellow"&gt;Uploaded data estimates ~$25M annual revenue; third-party commerce tools show strong online sales signals and high electronics-category traffic.&lt;/td&gt;&lt;td class="yellow"&gt;Yellow&lt;/td&gt;&lt;td class="blue"&gt;Shows a real commerce channel for pro-maker modules, sensors, robotics, and education hardware.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="green"&gt;Raven implication&lt;/td&gt;&lt;td class="green"&gt;The strongest customer is not a pure beginner. It is the serious maker, educator, hardware founder, or engineer who already buys boards, modules, dev kits, and fabrication tools.&lt;/td&gt;&lt;td class="green"&gt;Green&lt;/td&gt;&lt;td class="green"&gt;Position Raven as a serious bench appliance, not a toy.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Raspberry Pi&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;FY2025 revenue reported at $323.2M, up about 25%; uploaded data also tracks 73M cumulative units sold by May 2026 and 72% of FY2024 units in industrial/embedded markets.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Blue&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Large hardware learning/prototyping ecosystem exists, but revenue is increasingly industrial as well as hobbyist.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Arduino / compatible ecosystem&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Arduino-compatible market estimates vary: one public report cites $718M in 2024 to $1.1B by 2030; another cites $1.33B in 2024 to $2.99B by 2032.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Yellow&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;The ecosystem is big enough to support accessory/tool markets, but reported market sizes vary widely.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Adafruit&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Uploaded data estimates ~$40M annual revenue; public third-party estimates vary lower.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Yellow&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Shows paid demand for beginner-friendly, well-documented electronics tools and learning paths.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;SparkFun&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Uploaded data estimates ~$25M annual revenue; third-party commerce tools show strong online sales signals and high electronics-category traffic.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Yellow&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Shows a real commerce channel for pro-maker modules, sensors, robotics, and education hardware.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Raven implication&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;The strongest customer is not a pure beginner. It is the serious maker, educator, hardware founder, or engineer who already buys boards, modules, dev kits, and fabrication tools.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Green&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Position Raven as a serious bench appliance, not a toy.&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="card"&gt;
-&lt;h2 class="blue"&gt;PCB Fab Houses: The Real Status Quo Competitor&lt;/h2&gt;
-&lt;div class="table-wrap"&gt;&lt;table&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;PCB Fab Houses: The Real Status Quo Competitor&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;&lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Provider / Market&lt;/th&gt;&lt;th&gt;Evidence&lt;/th&gt;&lt;th&gt;Why It Matters&lt;/th&gt;&lt;th&gt;Raven Response&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td class="green"&gt;JLCPCB&lt;/td&gt;&lt;td class="green"&gt;JLCPCB reports serving 4.1M+ customers and processing 20,000+ PCB orders per day; other third-party ecommerce estimates put online sales near $273M in 2025.&lt;/td&gt;&lt;td class="green"&gt;This is the most important proof that low-volume PCB fabrication demand is huge.&lt;/td&gt;&lt;td class="green"&gt;Do not compete on cheapest boards. Compete on same-day learning, iteration, IP control, and no shipping wait.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;PCBWay&lt;/td&gt;&lt;td class="blue"&gt;PCBWay states a 99% on-time delivery rate; third-party summaries cite broad global reach and 250K+ clients.&lt;/td&gt;&lt;td class="blue"&gt;PCBWay is a strong low-volume fab option for advanced hobbyists and engineers.&lt;/td&gt;&lt;td class="blue"&gt;Raven must reduce the first-use burden and make one-off boards faster than ordering.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;OSH Park&lt;/td&gt;&lt;td class="blue"&gt;OSH Park is a community-focused pooled-order PCB service; public profiles estimate a small company scale with $1M-$5M revenue.&lt;/td&gt;&lt;td class="blue"&gt;OSH Park is culturally close to hobbyists and open hardware.&lt;/td&gt;&lt;td class="blue"&gt;Raven can win when users value immediate physical iteration over pooled-order economics.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;PCB assembly/manufacturing market&lt;/td&gt;&lt;td class="yellow"&gt;Market reports estimate PCB assembly/manufacturing services in the tens of billions of dollars and growing mid-single digits.&lt;/td&gt;&lt;td class="yellow"&gt;Macro proof of PCB demand, but much of it is industrial production, not Raven’s beachhead.&lt;/td&gt;&lt;td class="yellow"&gt;Use macro market size as background, not as direct TAM.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;JLCPCB&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;JLCPCB reports serving 4.1M+ customers and processing 20,000+ PCB orders per day; other third-party ecommerce estimates put online sales near $273M in 2025.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;This is the most important proof that low-volume PCB fabrication demand is huge.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Do not compete on cheapest boards. Compete on same-day learning, iteration, IP control, and no shipping wait.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;PCBWay&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;PCBWay states a 99% on-time delivery rate; third-party summaries cite broad global reach and 250K+ clients.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;PCBWay is a strong low-volume fab option for advanced hobbyists and engineers.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Raven must reduce the first-use burden and make one-off boards faster than ordering.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;OSH Park&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;OSH Park is a community-focused pooled-order PCB service; public profiles estimate a small company scale with $1M-$5M revenue.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;OSH Park is culturally close to hobbyists and open hardware.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Raven can win when users value immediate physical iteration over pooled-order economics.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;PCB assembly/manufacturing market&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Market reports estimate PCB assembly/manufacturing services in the tens of billions of dollars and growing mid-single digits.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Macro proof of PCB demand, but much of it is industrial production, not Raven’s beachhead.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Use macro market size as background, not as direct TAM.&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="grid"&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="blue"&gt;Additional Market Categories&lt;/h2&gt;
+&lt;section class=&quot;grid&quot;&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Additional Market Categories&lt;/h2&gt;
 &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Market Signal&lt;/th&gt;&lt;th&gt;Raven Read&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Desktop 3D printing&lt;/td&gt;&lt;td class="blue"&gt;Grand View estimates $5.88B in 2024 to $20.93B by 2030 at 23.8% CAGR.&lt;/td&gt;&lt;td class="green"&gt;Best proof that desktop fabrication can scale beyond niche hobbyists.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Desktop CNC&lt;/td&gt;&lt;td class="blue"&gt;Verified Market Research estimates $369.6M in 2023 to $813.7M by 2030 at 8.22% CAGR.&lt;/td&gt;&lt;td class="blue"&gt;Closer to Raven mechanics than 3D printing, but CNC/CAM burden is the exact friction Raven must remove.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;PCB prototyping equipment&lt;/td&gt;&lt;td class="yellow"&gt;Reports vary: $1.5B in 2024 to $2.8B by 2033, or $799M in 2024 to $1.5B by 2035 depending on definition.&lt;/td&gt;&lt;td class="yellow"&gt;Positive category signal, but market-definition variance is high.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="yellow"&gt;Solderless breadboards&lt;/td&gt;&lt;td class="yellow"&gt;Reports vary from ~$145M-$630M current market size depending on scope, with 3.9%-8.1% CAGR estimates.&lt;/td&gt;&lt;td class="yellow"&gt;Breadboards prove education/prototyping baseline, but not direct Raven willingness-to-pay.&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="blue"&gt;Creator economy&lt;/td&gt;&lt;td class="blue"&gt;Grand View estimates $252B in 2025 to $1.35T by 2033 at 23.3% CAGR.&lt;/td&gt;&lt;td class="yellow"&gt;Useful context for creator-business buyers, but not a direct electronics hardware TAM.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Desktop 3D printing&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Grand View estimates $5.88B in 2024 to $20.93B by 2030 at 23.8% CAGR.&lt;/td&gt;&lt;td class=&quot;green&quot;&gt;Best proof that desktop fabrication can scale beyond niche hobbyists.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Desktop CNC&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Verified Market Research estimates $369.6M in 2023 to $813.7M by 2030 at 8.22% CAGR.&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Closer to Raven mechanics than 3D printing, but CNC/CAM burden is the exact friction Raven must remove.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;PCB prototyping equipment&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Reports vary: $1.5B in 2024 to $2.8B by 2033, or $799M in 2024 to $1.5B by 2035 depending on definition.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Positive category signal, but market-definition variance is high.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Solderless breadboards&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Reports vary from ~$145M-$630M current market size depending on scope, with 3.9%-8.1% CAGR estimates.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Breadboards prove education/prototyping baseline, but not direct Raven willingness-to-pay.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Creator economy&lt;/td&gt;&lt;td class=&quot;blue&quot;&gt;Grand View estimates $252B in 2025 to $1.35T by 2033 at 23.3% CAGR.&lt;/td&gt;&lt;td class=&quot;yellow&quot;&gt;Useful context for creator-business buyers, but not a direct electronics hardware TAM.&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;div class="card span-6"&gt;
-&lt;h2 class="green"&gt;Leadership Takeaways&lt;/h2&gt;
-&lt;div class="callout green"&gt;&lt;strong&gt;1. Demand exists at multiple levels.&lt;/strong&gt; Kickstarter proves paid demand for maker machines; software data proves large PCB-design intent; PCB fab houses prove real low-volume board demand.&lt;/div&gt;
-&lt;div class="callout blue"&gt;&lt;strong&gt;2. Raven should not try to be cheaper than JLCPCB.&lt;/strong&gt; The winning wedge is same-day physical iteration, privacy, local learning, and no minimum order logic.&lt;/div&gt;
-&lt;div class="callout green"&gt;&lt;strong&gt;3. The best customer is a serious hobbyist/pro-maker.&lt;/strong&gt; Raspberry Pi, Arduino, Adafruit, and SparkFun show a large ecosystem, but the $1K-$2K Raven buyer is likely above beginner level.&lt;/div&gt;
-&lt;div class="callout yellow"&gt;&lt;strong&gt;4. TAM should be built bottom-up.&lt;/strong&gt; Market reports validate direction, but they are too inconsistent to use as a primary forecast.&lt;/div&gt;
-&lt;div class="callout green"&gt;&lt;strong&gt;5. Software is the moat.&lt;/strong&gt; Raven must convert Gerber/Excellon into a reliable board workflow without exposing the user to CNC/CAM decisions.&lt;/div&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Leadership Takeaways&lt;/h2&gt;
+&lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;1. Demand exists at multiple levels.&lt;/strong&gt; Kickstarter proves paid demand for maker machines; software data proves large PCB-design intent; PCB fab houses prove real low-volume board demand.&lt;/div&gt;
+&lt;div class=&quot;callout blue&quot;&gt;&lt;strong&gt;2. Raven should not try to be cheaper than JLCPCB.&lt;/strong&gt; The winning wedge is same-day physical iteration, privacy, local learning, and no minimum order logic.&lt;/div&gt;
+&lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;3. The best customer is a serious hobbyist/pro-maker.&lt;/strong&gt; Raspberry Pi, Arduino, Adafruit, and SparkFun show a large ecosystem, but the $1K-$2K Raven buyer is likely above beginner level.&lt;/div&gt;
+&lt;div class=&quot;callout yellow&quot;&gt;&lt;strong&gt;4. TAM should be built bottom-up.&lt;/strong&gt; Market reports validate direction, but they are too inconsistent to use as a primary forecast.&lt;/div&gt;
+&lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;5. Software is the moat.&lt;/strong&gt; Raven must convert Gerber/Excellon into a reliable board workflow without exposing the user to CNC/CAM decisions.&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 
-&lt;section class="card"&gt;
-&lt;h2 class="green"&gt;Updated Product Thesis for Raven&lt;/h2&gt;
-&lt;p class="green"&gt;&lt;strong&gt;Raven is justified if it turns PCB fabrication from a CNC/CAM task into an appliance-like workflow.&lt;/strong&gt;&lt;/p&gt;
-&lt;p class="blue"&gt;The strongest evidence is not any single TAM number. It is the overlap of confirmed crowdfunding purchases, PCB software usage, Raspberry Pi/Arduino hardware ecosystems, and outsourced PCB-order volume.&lt;/p&gt;
-&lt;p class="yellow"&gt;The highest-risk assumption remains conversion: how many serious hobbyists and pro-makers will pay $1,299-$1,999 instead of continuing to use cheap fab houses plus breadboards?&lt;/p&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Updated Product Thesis for Raven&lt;/h2&gt;
+&lt;p class=&quot;green&quot;&gt;&lt;strong&gt;Raven is justified if it turns PCB fabrication from a CNC/CAM task into an appliance-like workflow.&lt;/strong&gt;&lt;/p&gt;
+&lt;p class=&quot;blue&quot;&gt;The strongest evidence is not any single TAM number. It is the overlap of confirmed crowdfunding purchases, PCB software usage, Raspberry Pi/Arduino hardware ecosystems, and outsourced PCB-order volume.&lt;/p&gt;
+&lt;p class=&quot;yellow&quot;&gt;The highest-risk assumption remains conversion: how many serious hobbyists and pro-makers will pay $1,299-$1,999 instead of continuing to use cheap fab houses plus breadboards?&lt;/p&gt;
 &lt;/section&gt;
 
-&lt;section class="card"&gt;
+&lt;section class=&quot;card&quot;&gt;
 &lt;h2&gt;Source URLs and Uploaded Data Sources&lt;/h2&gt;
-&lt;ol class="sources"&gt;
+&lt;ol class=&quot;sources&quot;&gt;
 &lt;li&gt;Uploaded: B1.Kickstarters.csv&lt;/li&gt;
 &lt;li&gt;Uploaded: Raven Market Research - Software.csv&lt;/li&gt;
 &lt;li&gt;Uploaded: Raven Market Research_Market Data.csv&lt;/li&gt;
@@ -1305,9 +1342,316 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 &lt;/section&gt;
 &lt;/main&gt;
 &lt;/body&gt;
-&lt;/html&gt;' title="Research Data and Market Signals"></iframe></div></section>
-</div>
+&lt;/html&gt;" title="Research Data and Market Signals"></iframe></div>
+<div aria-label="Raven Competitive Analysis" class="panel panel-competitive" role="tabpanel">
+<iframe srcdoc="&lt;!DOCTYPE html&gt;
 
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width, initial-scale=1.0&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Raven Competitive Analysis&lt;/title&gt;
+&lt;style&gt;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');
+:root{
+  --green:#10b981;--green-bg:#ecfdf5;--green-border:#bbf7d0;--green-text:#065f46;
+  --blue:#3b82f6;--blue-bg:#eff6ff;--blue-border:#bfdbfe;--blue-text:#1e40af;
+  --yellow:#f59e0b;--yellow-bg:#fffbeb;--yellow-border:#fef3c7;--yellow-text:#854d0e;
+  --orange:#f97316;--orange-bg:#fff7ed;--orange-border:#ffedd5;--orange-text:#9a3412;
+  --ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--page:#f8fafc;--panel:#ffffff;
+  --shadow:0 8px 26px rgba(15,23,42,.06);--tab-bg:rgba(255,255,255,.92);
+  --neutral-bg:#f8fafc;--neutral-text:#334155;--neutral-border:#cbd5e1;
+}
+body.night{
+  --ink:#e5e7eb;--muted:#cbd5e1;--line:#334155;--page:#020617;--panel:#0f172a;
+  --shadow:0 12px 34px rgba(0,0,0,.45);--tab-bg:rgba(15,23,42,.92);
+  --neutral-bg:#1e293b;--neutral-text:#e2e8f0;--neutral-border:#475569;
+  --green-bg:#052e26;--green-border:#047857;--green-text:#6ee7b7;
+  --blue-bg:#0b2554;--blue-border:#2563eb;--blue-text:#93c5fd;
+  --yellow-bg:#3b2701;--yellow-border:#b45309;--yellow-text:#fcd34d;
+  --orange-bg:#431407;--orange-border:#ea580c;--orange-text:#fdba74;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page);color:var(--ink);font-family:'Inter',Arial,Helvetica,sans-serif;line-height:1.5;font-size:14px;transition:background .2s,color .2s}
+.topbar{position:sticky;top:0;z-index:50;background:var(--tab-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);box-shadow:0 4px 20px -2px rgba(15,23,42,.1);padding:12px 22px}
+.topbar-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px}.brand h1{font-size:16px;margin:0;font-weight:800;letter-spacing:-.02em}.brand span{font-size:12px;color:var(--muted);font-weight:600}.tabs{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.tabs a{font-size:12px;text-decoration:none;color:var(--muted);font-weight:700;padding:7px 10px;border-radius:9px;border:1px solid transparent}.tabs a:hover{background:var(--neutral-bg);color:var(--ink);border-color:var(--line)}.theme-toggle{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:7px 11px;font-weight:800;cursor:pointer;font-size:12px}.legend{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 10px;background:var(--panel);border:1px solid var(--line);border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.03)}.legend-label{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800}.legend-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;border:1px solid}.legend-pill .dot{width:7px;height:7px;border-radius:50%}.legend-pill.green{background:var(--green-bg);color:var(--green-text);border-color:var(--green-border)}.legend-pill.green .dot{background:var(--green)}.legend-pill.blue{background:var(--blue-bg);color:var(--blue-text);border-color:var(--blue-border)}.legend-pill.blue .dot{background:var(--blue)}.legend-pill.yellow{background:var(--yellow-bg);color:var(--yellow-text);border-color:var(--yellow-border)}.legend-pill.yellow .dot{background:var(--yellow)}.legend-pill.orange{background:var(--orange-bg);color:var(--orange-text);border-color:var(--orange-border)}.legend-pill.orange .dot{background:var(--orange)}
+.page{max-width:1320px;margin:0 auto;padding:28px 20px 70px}.hero,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.hero{padding:34px;margin-bottom:22px}.card{padding:24px;margin-bottom:20px}h1,h2,h3{line-height:1.18;margin:0 0 12px}h1{font-size:clamp(32px,4vw,50px);letter-spacing:-.04em}h2{font-size:26px;letter-spacing:-.02em}h3{font-size:19px;margin-top:8px}p{margin:0 0 13px}.sub{font-size:17px;color:var(--muted);max-width:980px}.small{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-3{grid-column:span 3}.metric{min-height:128px}.metric-value{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em}.metric-label{display:block;color:var(--muted);font-size:13px;margin-top:6px}.green{color:var(--green)}.blue{color:var(--blue)}.yellow{color:var(--yellow)}.orange{color:var(--orange)}.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;margin:0 4px 8px 0}.pill.green{background:var(--green-bg);color:var(--green-text);border:1px solid var(--green-border)}.pill.blue{background:var(--blue-bg);color:var(--blue-text);border:1px solid var(--blue-border)}.pill.yellow{background:var(--yellow-bg);color:var(--yellow-text);border:1px solid var(--yellow-border)}.pill.orange{background:var(--orange-bg);color:var(--orange-text);border:1px solid var(--orange-border)}.callout{border-left:7px solid var(--blue);background:var(--blue-bg);padding:17px 19px;border-radius:13px;margin:15px 0;color:var(--blue-text)}.callout.green{border-left-color:var(--green);background:var(--green-bg);color:var(--green-text)}.callout.yellow{border-left-color:var(--yellow);background:var(--yellow-bg);color:var(--yellow-text)}.callout.orange{border-left-color:var(--orange);background:var(--orange-bg);color:var(--orange-text)}
+.table-wrap{overflow-x:auto;margin-top:12px}table{width:100%;border-collapse:collapse;background:var(--panel);font-size:13px}th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top;text-align:left}th{background:var(--neutral-bg);color:var(--ink);font-weight:800;white-space:nowrap}tr:nth-child(even) td{background:color-mix(in srgb, var(--neutral-bg) 50%, transparent)}.score{font-weight:800}.status{display:inline-block;min-width:72px;text-align:center;border-radius:999px;font-size:11px;font-weight:800;padding:3px 8px;border:1px solid var(--neutral-border);background:var(--neutral-bg);color:var(--neutral-text)}.status.high{background:var(--green-bg);border-color:var(--green-border);color:var(--green-text)}.status.med{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue-text)}.status.low{background:var(--orange-bg);border-color:var(--orange-border);color:var(--orange-text)}.status.neutral{background:var(--neutral-bg);border-color:var(--neutral-border);color:var(--neutral-text)}.status.expensive{background:var(--yellow-bg);border-color:var(--yellow-border);color:var(--yellow-text)}.status.risk{background:var(--orange-bg);border-color:var(--orange-border);color:var(--orange-text)}.chart-wrap{overflow-x:auto;margin-top:8px}svg{max-width:100%;height:auto;font-family:'Inter',Arial,Helvetica,sans-serif}.axis{fill:var(--muted);font-size:12px}.barlabel{fill:var(--ink);font-size:12px;font-weight:800}.maplabel{font-size:12px;font-weight:800}.source-list{columns:2;column-gap:32px;font-size:12px;word-break:break-word}.source-list li{margin-bottom:7px;break-inside:avoid}.method-steps{counter-reset:step}.method-step{position:relative;padding-left:42px;margin:0 0 12px}.method-step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--blue-bg);color:var(--blue-text);border:1px solid var(--blue-border);font-weight:800}.quote{font-size:12px;border-left:4px solid var(--line);padding-left:10px;color:var(--muted)}
+@media(max-width:980px){.span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column:span 12}.topbar-inner{align-items:flex-start}.legend{border-radius:14px}.source-list{columns:1}.hero,.card{padding:20px}.tabs{display:none}}
+@media print{.topbar{display:none}.page{padding:0;max-width:none}.hero,.card{box-shadow:none;border-radius:0;break-inside:avoid}.card{page-break-inside:avoid}}
+
+
+/* Integrated app-tab adjustments */
+html{scroll-behavior:smooth;}
+body{padding-top:0;}
+.page{padding-top:28px;}
+.hero{margin-top:0;}
+section[id]{scroll-margin-top:18px;}
+.section-menu-card{padding:14px 16px;margin-bottom:18px;}
+.section-menu-title{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800;margin-bottom:8px;}
+.section-menu{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.section-menu a{display:inline-flex;align-items:center;text-decoration:none;color:var(--blue-text);background:var(--blue-bg);border:1px solid var(--blue-border);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800;}
+.section-menu a:hover{filter:brightness(.96);transform:translateY(-1px);}
+:root[data-theme=&quot;dark&quot;] .section-menu a,
+body[data-theme=&quot;dark&quot;] .section-menu a{background:rgba(59,130,246,.16);color:#bfdbfe;border-color:#2563eb;}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;main class=&quot;page&quot;&gt;
+&lt;section class=&quot;hero&quot; id=&quot;overview&quot;&gt;
+&lt;span class=&quot;pill blue&quot;&gt;PrOS Phase 2/3 Input&lt;/span&gt;&lt;span class=&quot;pill green&quot;&gt;Competitive Validation Working Draft&lt;/span&gt;
+&lt;h1&gt;Raven Competitive Analysis&lt;/h1&gt;
+&lt;p class=&quot;sub&quot;&gt;A Raven-specific version of the ALTA competitive-validation exercise. It shifts the competitor view away from only Kickstarter maker-machine pricing and toward the real customer alternatives for same-day PCB prototyping.&lt;/p&gt;
+&lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;Core conclusion:&lt;/strong&gt; Raven should be compared against status quo workflows, not only other maker machines. The real alternatives are outsourced PCB fabs, breadboards/protoboards/dev boards, fiber/MOPA/UV laser workflows, generic CNC + FlatCAM, Bantam/Carvera/Othermill-class mills, V-One additive workflows, and chemical etching.&lt;/div&gt;
+&lt;/section&gt;&lt;section aria-label=&quot;Competitive analysis section menu&quot; class=&quot;card section-menu-card&quot;&gt;
+&lt;div class=&quot;section-menu-title&quot;&gt;Competitive Analysis Sections&lt;/div&gt;
+&lt;div class=&quot;section-menu&quot;&gt;
+&lt;a data-scroll-target=&quot;method&quot; href=&quot;#method&quot;&gt;Method&lt;/a&gt;
+&lt;a data-scroll-target=&quot;landscape&quot; href=&quot;#landscape&quot;&gt;Competitors&lt;/a&gt;
+&lt;a data-scroll-target=&quot;matrix&quot; href=&quot;#matrix&quot;&gt;Matrix&lt;/a&gt;
+&lt;a data-scroll-target=&quot;voc&quot; href=&quot;#voc&quot;&gt;VOC&lt;/a&gt;
+&lt;a data-scroll-target=&quot;strategy&quot; href=&quot;#strategy&quot;&gt;Strategy&lt;/a&gt;
+&lt;a data-scroll-target=&quot;sources&quot; href=&quot;#sources&quot;&gt;Sources&lt;/a&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot;&gt;
+&lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill blue&quot;&gt;Competitor Groups&lt;/span&gt;&lt;span class=&quot;metric-value blue&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;Direct, indirect, and status-quo alternatives.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill green&quot;&gt;VOC Themes&lt;/span&gt;&lt;span class=&quot;metric-value green&quot;&gt;10+&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;Repeated pain patterns from community evidence.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill blue&quot;&gt;Primary Wedge&lt;/span&gt;&lt;span class=&quot;metric-value blue&quot;&gt;CAM&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;Raven wins by eliminating software/CNC setup burden.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;card span-3 metric&quot;&gt;&lt;span class=&quot;pill yellow&quot;&gt;Key Risk&lt;/span&gt;&lt;span class=&quot;metric-value yellow&quot;&gt;Price&lt;/span&gt;&lt;span class=&quot;metric-label&quot;&gt;Cheap fabs and breadboards anchor expectations low.&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot; id=&quot;method&quot;&gt;
+&lt;div class=&quot;card span-7&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Methodology Adapted From ALTA&lt;/h2&gt;
+&lt;div class=&quot;method-steps&quot;&gt;
+&lt;div class=&quot;method-step&quot;&gt;&lt;strong&gt;Define direct and indirect competitors.&lt;/strong&gt; Include machines, services, workarounds, and doing nothing.&lt;/div&gt;
+&lt;div class=&quot;method-step&quot;&gt;&lt;strong&gt;Map the real job-to-be-done.&lt;/strong&gt; For Raven, the job is not “own a PCB machine”; it is “get a reliable physical PCB today without becoming a CAM/CNC expert.”&lt;/div&gt;
+&lt;div class=&quot;method-step&quot;&gt;&lt;strong&gt;Compare feature/benefit tradeoffs.&lt;/strong&gt; Score each alternative against customer priorities: speed, quality, ease, safety, cost, IP, repeatability, and scalability.&lt;/div&gt;
+&lt;div class=&quot;method-step&quot;&gt;&lt;strong&gt;Attach VOC evidence to each pain point.&lt;/strong&gt; Use community quotes to identify what buyers already hate about the current workflow.&lt;/div&gt;
+&lt;div class=&quot;method-step&quot;&gt;&lt;strong&gt;Synthesize differentiators, risks, opportunities, and must-haves.&lt;/strong&gt; Translate the competitor matrix into product requirements and customer-discovery hypotheses.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card span-5&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;What This Accomplishes&lt;/h2&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;Output&lt;/th&gt;&lt;th&gt;Use&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Competitive clarity&lt;/td&gt;&lt;td&gt;Defines who Raven takes money or behavior away from.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Risk prioritization&lt;/td&gt;&lt;td&gt;Shows where status quo options are already “good enough.”&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Product requirements&lt;/td&gt;&lt;td&gt;Turns pain points into must-have features.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Customer discovery plan&lt;/td&gt;&lt;td&gt;Identifies which claims need validation before development locks.&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;card&quot; id=&quot;landscape&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Expanded Competitor Landscape&lt;/h2&gt;
+&lt;p class=&quot;small&quot;&gt;This table expands the market report’s prior competitor set by adding MOPA/fiber/UV lasers, breadboards/protoboards/dev boards, and chemical etching.&lt;/p&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Competitor / Status Quo Option&lt;/th&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Strength&lt;/th&gt;&lt;th&gt;Weakness Raven Can Exploit&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;PCB fab houses: JLCPCB, PCBWay, OSH Park&lt;/td&gt;&lt;td&gt;Indirect / status quo&lt;/td&gt;&lt;td&gt;Cheap, high-quality boards.&lt;/td&gt;&lt;td&gt;Waiting, shipping, minimums, privacy, and iteration lag.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Breadboards, protoboards, dev kits, terminal boards, breakout boards&lt;/td&gt;&lt;td&gt;Indirect / current workaround&lt;/td&gt;&lt;td&gt;Cheap, flexible, immediately available, beginner-friendly.&lt;/td&gt;&lt;td&gt;Time-consuming, fragile, not scalable, and often not a seamless custom solution once design complexity increases.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Fiber, MOPA, and UV lasers&lt;/td&gt;&lt;td&gt;Direct / adjacent fabrication tool&lt;/td&gt;&lt;td&gt;Can ablate copper traces and cut FR4 with the right laser type, settings, and safety setup.&lt;/td&gt;&lt;td&gt;Expensive for hobbyists, sold as generalist tools, and not default-tuned for PCB design, CAM, registration, or board-safe workflows.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Generic CNC + FlatCAM&lt;/td&gt;&lt;td&gt;Direct workflow competitor&lt;/td&gt;&lt;td&gt;Cheap, flexible, and widely available.&lt;/td&gt;&lt;td&gt;CAM setup, autoleveling, tooling, broken bits, failed boards, noise, FR4 dust, and unsafe beginner workflow.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Bantam / Carvera / Othermill class&lt;/td&gt;&lt;td&gt;Direct premium machine class&lt;/td&gt;&lt;td&gt;High-quality desktop milling and stronger workflow packaging than generic CNC.&lt;/td&gt;&lt;td&gt;Higher price, narrower hobbyist affordability, and still mechanical/tooling heavy.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;V-One additive model&lt;/td&gt;&lt;td&gt;Internal legacy / adjacent Voltera product&lt;/td&gt;&lt;td&gt;Known Voltera trust, education value, and proof of desktop electronics fabrication demand.&lt;/td&gt;&lt;td&gt;Ink shelf-life, nozzle clogging, resistance limits, and manual probing pain.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Chemical etching&lt;/td&gt;&lt;td&gt;Indirect old-school workaround&lt;/td&gt;&lt;td&gt;Low equipment cost and can create usable copper traces.&lt;/td&gt;&lt;td&gt;Messy, hazardous, disposal issues, poor apartment/classroom fit, and manual alignment burden.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot; id=&quot;matrix&quot;&gt;
+&lt;div class=&quot;card span-7&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Competitive Positioning Map&lt;/h2&gt;
+&lt;p class=&quot;small&quot;&gt;X-axis = same-day PCB control / output quality. Y-axis = ease of use / appliance feel. Raven target is the desired position, not a validated product state.&lt;/p&gt;
+&lt;div class=&quot;chart-wrap&quot;&gt;
+&lt;svg aria-label=&quot;Competitive positioning map&quot; role=&quot;img&quot; viewbox=&quot;0 0 760 480&quot;&gt;
+&lt;rect fill=&quot;var(--neutral-bg)&quot; height=&quot;360&quot; rx=&quot;14&quot; stroke=&quot;var(--line)&quot; width=&quot;620&quot; x=&quot;80&quot; y=&quot;40&quot;&gt;&lt;/rect&gt;
+&lt;line stroke=&quot;var(--muted)&quot; stroke-width=&quot;2&quot; x1=&quot;80&quot; x2=&quot;700&quot; y1=&quot;400&quot; y2=&quot;400&quot;&gt;&lt;/line&gt;
+&lt;line stroke=&quot;var(--muted)&quot; stroke-width=&quot;2&quot; x1=&quot;80&quot; x2=&quot;80&quot; y1=&quot;400&quot; y2=&quot;40&quot;&gt;&lt;/line&gt;
+&lt;text class=&quot;axis&quot; x=&quot;270&quot; y=&quot;445&quot;&gt;Same-Day PCB Control / Output Quality →&lt;/text&gt;
+&lt;text class=&quot;axis&quot; transform=&quot;rotate(-90 18,270)&quot; x=&quot;18&quot; y=&quot;270&quot;&gt;Ease of Use / Appliance Feel →&lt;/text&gt;
+&lt;line stroke=&quot;var(--line)&quot; stroke-dasharray=&quot;5 5&quot; x1=&quot;80&quot; x2=&quot;700&quot; y1=&quot;220&quot; y2=&quot;220&quot;&gt;&lt;/line&gt;
+&lt;line stroke=&quot;var(--line)&quot; stroke-dasharray=&quot;5 5&quot; x1=&quot;390&quot; x2=&quot;390&quot; y1=&quot;40&quot; y2=&quot;400&quot;&gt;&lt;/line&gt;
+&lt;g&gt;
+&lt;circle cx=&quot;620&quot; cy=&quot;90&quot; fill=&quot;var(--green)&quot; r=&quot;9&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--green)&quot; x=&quot;635&quot; y=&quot;94&quot;&gt;Raven target&lt;/text&gt;
+&lt;circle cx=&quot;430&quot; cy=&quot;255&quot; fill=&quot;var(--yellow)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--yellow)&quot; x=&quot;445&quot; y=&quot;259&quot;&gt;PCB fab houses&lt;/text&gt;
+&lt;circle cx=&quot;290&quot; cy=&quot;115&quot; fill=&quot;var(--blue)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--blue)&quot; x=&quot;305&quot; y=&quot;119&quot;&gt;Breadboards / dev boards&lt;/text&gt;
+&lt;circle cx=&quot;570&quot; cy=&quot;230&quot; fill=&quot;var(--blue)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--blue)&quot; x=&quot;585&quot; y=&quot;234&quot;&gt;MOPA / UV lasers&lt;/text&gt;
+&lt;circle cx=&quot;470&quot; cy=&quot;320&quot; fill=&quot;var(--orange)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--orange)&quot; x=&quot;485&quot; y=&quot;324&quot;&gt;Generic CNC + FlatCAM&lt;/text&gt;
+&lt;circle cx=&quot;560&quot; cy=&quot;190&quot; fill=&quot;var(--blue)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--blue)&quot; x=&quot;575&quot; y=&quot;194&quot;&gt;Bantam / Carvera class&lt;/text&gt;
+&lt;circle cx=&quot;420&quot; cy=&quot;175&quot; fill=&quot;var(--blue)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--blue)&quot; x=&quot;435&quot; y=&quot;179&quot;&gt;V-One legacy&lt;/text&gt;
+&lt;circle cx=&quot;330&quot; cy=&quot;355&quot; fill=&quot;var(--orange)&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;maplabel&quot; fill=&quot;var(--orange)&quot; x=&quot;345&quot; y=&quot;359&quot;&gt;Chemical etching&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card span-5&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Interpretation&lt;/h2&gt;
+&lt;div class=&quot;callout green&quot;&gt;&lt;strong&gt;Raven’s white space:&lt;/strong&gt; high control + high usability. None of the current options strongly own both.&lt;/div&gt;
+&lt;div class=&quot;callout yellow&quot;&gt;&lt;strong&gt;Price pressure:&lt;/strong&gt; fab houses and breadboards anchor users to low-cost alternatives.&lt;/div&gt;
+&lt;div class=&quot;callout orange&quot;&gt;&lt;strong&gt;Adoption risk:&lt;/strong&gt; if Raven feels like a CNC or laser settings project, it loses its core differentiation.&lt;/div&gt;
+&lt;div class=&quot;callout blue&quot;&gt;&lt;strong&gt;Positioning:&lt;/strong&gt; “Same-day PCB fabrication without CAM/CNC burden.”&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Feature / Benefit / Sentiment Comparison Matrix&lt;/h2&gt;
+&lt;p class=&quot;small&quot;&gt;Modeled after the ALTA “Good, Bad, Ugly” sheet. Labels are competitive performance indicators, not confidence colors.&lt;/p&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Customer Priority&lt;/th&gt;&lt;th&gt;PCB Fab Houses&lt;/th&gt;&lt;th&gt;Breadboards / Protoboards&lt;/th&gt;&lt;th&gt;MOPA / UV Lasers&lt;/th&gt;&lt;th&gt;Generic CNC + FlatCAM&lt;/th&gt;&lt;th&gt;Bantam / Carvera / Othermill&lt;/th&gt;&lt;th&gt;V-One Additive&lt;/th&gt;&lt;th&gt;Chemical Etching&lt;/th&gt;&lt;th&gt;Raven Target&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Same-day iteration&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Custom PCB output quality&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Pure copper / RF viability&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Software ease / native Gerber flow&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Low capital cost&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status expensive&quot;&gt;Expensive&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status expensive&quot;&gt;Expensive&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status expensive&quot;&gt;Expensive&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Safe / office-friendly workflow&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;No closed consumable lock-in&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Double-sided repeatability&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;IP/privacy control&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Scales past first prototype&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status low&quot;&gt;Low&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Medium&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot; id=&quot;voc&quot;&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Pain-Point Signal Strength&lt;/h2&gt;
+&lt;div class=&quot;chart-wrap&quot;&gt;
+&lt;svg aria-label=&quot;Pain point signal strength chart&quot; role=&quot;img&quot; viewbox=&quot;0 0 700 405&quot;&gt;
+&lt;line stroke=&quot;var(--line)&quot; x1=&quot;150&quot; x2=&quot;660&quot; y1=&quot;345&quot; y2=&quot;345&quot;&gt;&lt;/line&gt;
+&lt;line stroke=&quot;var(--line)&quot; x1=&quot;150&quot; x2=&quot;150&quot; y1=&quot;40&quot; y2=&quot;345&quot;&gt;&lt;/line&gt;
+&lt;text class=&quot;axis&quot; x=&quot;20&quot; y=&quot;46&quot;&gt;Pain signal strength&lt;/text&gt;
+&lt;g&gt;
+&lt;rect fill=&quot;var(--green)&quot; height=&quot;273&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;170&quot; y=&quot;72&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;192&quot; y=&quot;62&quot;&gt;5&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;192&quot; y=&quot;370&quot;&gt;CAM&lt;/text&gt;
+&lt;rect fill=&quot;var(--green)&quot; height=&quot;273&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;240&quot; y=&quot;72&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;262&quot; y=&quot;62&quot;&gt;5&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;262&quot; y=&quot;370&quot;&gt;Wait&lt;/text&gt;
+&lt;rect fill=&quot;var(--blue)&quot; height=&quot;219&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;310&quot; y=&quot;126&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;332&quot; y=&quot;116&quot;&gt;4&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;332&quot; y=&quot;370&quot;&gt;Safety&lt;/text&gt;
+&lt;rect fill=&quot;var(--blue)&quot; height=&quot;219&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;380&quot; y=&quot;126&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;402&quot; y=&quot;116&quot;&gt;4&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;402&quot; y=&quot;370&quot;&gt;Consumables&lt;/text&gt;
+&lt;rect fill=&quot;var(--yellow)&quot; height=&quot;164&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;450&quot; y=&quot;181&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;472&quot; y=&quot;171&quot;&gt;3&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;472&quot; y=&quot;370&quot;&gt;RF&lt;/text&gt;
+&lt;rect fill=&quot;var(--yellow)&quot; height=&quot;164&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;520&quot; y=&quot;181&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;542&quot; y=&quot;171&quot;&gt;3&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;542&quot; y=&quot;370&quot;&gt;2-sided&lt;/text&gt;
+&lt;rect fill=&quot;var(--orange)&quot; height=&quot;109&quot; opacity=&quot;.88&quot; width=&quot;44&quot; x=&quot;590&quot; y=&quot;236&quot;&gt;&lt;/rect&gt;&lt;text class=&quot;barlabel&quot; text-anchor=&quot;middle&quot; x=&quot;612&quot; y=&quot;226&quot;&gt;2&lt;/text&gt;&lt;text class=&quot;axis&quot; text-anchor=&quot;middle&quot; x=&quot;612&quot; y=&quot;370&quot;&gt;Breadboard&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;p class=&quot;small&quot;&gt;Scale is qualitative: 5 = repeated high-impact evidence; 1 = early hypothesis. This should be updated during Phase 3 customer discovery.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;VOC Synthesis&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Pain Point&lt;/th&gt;&lt;th&gt;What Users Are Saying&lt;/th&gt;&lt;th&gt;Impacted Competitors&lt;/th&gt;&lt;th&gt;Raven Implication&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Outsourcing momentum gap&lt;/td&gt;&lt;td&gt;Shipping and wait times break design flow.&lt;/td&gt;&lt;td&gt;JLCPCB / PCBWay / OSH Park&lt;/td&gt;&lt;td&gt;Sell same-day iteration, not cheaper board cost.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;CAM / FlatCAM friction&lt;/td&gt;&lt;td&gt;Users struggle to turn Gerbers into reliable toolpaths.&lt;/td&gt;&lt;td&gt;Generic CNC + FlatCAM&lt;/td&gt;&lt;td&gt;Native Gerber-to-board wizard is the product core.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;FR4 dust, spindle noise, tool breakage&lt;/td&gt;&lt;td&gt;Mechanical PCB milling is messy, loud, and easy to damage.&lt;/td&gt;&lt;td&gt;Generic CNC; Bantam/Othermill class&lt;/td&gt;&lt;td&gt;Appliance-like enclosure and protected workflow matter.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Chemical etching friction&lt;/td&gt;&lt;td&gt;Wet chemistry is messy, hazardous, and poor for apartments/classrooms.&lt;/td&gt;&lt;td&gt;Chemical etching&lt;/td&gt;&lt;td&gt;Dry, clean workflow is a strong positioning wedge.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Consumable lock-in&lt;/td&gt;&lt;td&gt;Users fear proprietary cartridges, expired ink, and bricked hardware.&lt;/td&gt;&lt;td&gt;V-One additive; closed systems&lt;/td&gt;&lt;td&gt;Use standard copper blanks and open materials messaging.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Fine pitch / soldermask / assembly stack&lt;/td&gt;&lt;td&gt;Modern SMT workflows need more than bare traces.&lt;/td&gt;&lt;td&gt;All basic PCB-only workflows&lt;/td&gt;&lt;td&gt;Define Raven scope and future Bench Stack integrations.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status expensive&quot;&gt;Assumption&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot; id=&quot;strategy&quot;&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Differentiators, Risks, and Opportunities&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Type&lt;/th&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th&gt;Why It Matters&lt;/th&gt;&lt;th&gt;Action&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Differentiator&lt;/td&gt;&lt;td&gt;Native Gerber/Excellon-to-board workflow&lt;/td&gt;&lt;td&gt;Competitors require external CAM, operator knowledge, or outsourcing.&lt;/td&gt;&lt;td&gt;Make software the moat.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Differentiator&lt;/td&gt;&lt;td&gt;Clean, enclosed, no-spindle workflow&lt;/td&gt;&lt;td&gt;Targets dust/noise/safety pain of CNC and etching.&lt;/td&gt;&lt;td&gt;Show office/classroom-safe demos.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Differentiator&lt;/td&gt;&lt;td&gt;Open consumables&lt;/td&gt;&lt;td&gt;Reduces fear of ink/cartridge lock-in.&lt;/td&gt;&lt;td&gt;Lead with standard copper blanks.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Risk&lt;/td&gt;&lt;td&gt;Cheap fab houses are “good enough”&lt;/td&gt;&lt;td&gt;Many users accept waiting because the boards are cheap and high quality.&lt;/td&gt;&lt;td&gt;Qualify users who pay the impatience tax.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;orange&quot;&gt;Risk&lt;/td&gt;&lt;td&gt;Laser capability expectations&lt;/td&gt;&lt;td&gt;If Raven is compared to generalist MOPA/UV lasers, buyers may expect broad material support.&lt;/td&gt;&lt;td&gt;Position as a PCB appliance, not a general laser.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;Opportunity&lt;/td&gt;&lt;td&gt;Breadboard-to-board bridge&lt;/td&gt;&lt;td&gt;Breadboards are the first physical prototype, but fragile and not scalable.&lt;/td&gt;&lt;td&gt;Create “from dev board to custom PCB” workflows.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Must-have&lt;/td&gt;&lt;td&gt;Automated registration and height protection&lt;/td&gt;&lt;td&gt;Double-sided alignment, broken bits, and manual setup appear repeatedly.&lt;/td&gt;&lt;td&gt;Validate in technical feasibility + customer discovery.&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;card span-6&quot;&gt;
+&lt;h2 class=&quot;blue&quot;&gt;Customer Discovery Priorities&lt;/h2&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;th&gt;Hypothesis&lt;/th&gt;&lt;th&gt;Question to Test&lt;/th&gt;&lt;th&gt;Pass Signal&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;Same-day control is worth paying for&lt;/td&gt;&lt;td&gt;What did the last 5-day board wait actually cost you?&lt;/td&gt;&lt;td&gt;User names specific delayed project or paid expedited shipping.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;green&quot;&gt;CAM is the workflow blocker&lt;/td&gt;&lt;td&gt;What tools have you tried for Gerber-to-machine output?&lt;/td&gt;&lt;td&gt;User has used FlatCAM, pcb2gcode, CopperCAM, or generic CNC workflows.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Breadboards are not enough&lt;/td&gt;&lt;td&gt;When do you move from breadboard/dev board to custom PCB?&lt;/td&gt;&lt;td&gt;User describes fragility, wiring errors, size constraints, or demo/customer needs.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;blue&quot;&gt;Lasers are too generalist&lt;/td&gt;&lt;td&gt;Would you buy a MOPA/UV laser instead of a PCB-specific appliance?&lt;/td&gt;&lt;td&gt;User rejects laser due to price, settings burden, safety, or PCB software gap.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;yellow&quot;&gt;$999-$1,499 paid launch price works&lt;/td&gt;&lt;td&gt;Would you preorder if the demo board quality is proven?&lt;/td&gt;&lt;td&gt;User selects a real package and tradeoff, not just positive sentiment.&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;div class=&quot;callout yellow&quot;&gt;&lt;strong&gt;Recommended next step:&lt;/strong&gt; use this as the interview guide foundation for Phase 3. The highest-value interviews are users who have already ordered PCBs, tried FlatCAM/CNC, or abandoned a project due to board turnaround.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;card&quot;&gt;
+&lt;h2 class=&quot;green&quot;&gt;Raven Product Implications&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Product Requirement&lt;/th&gt;&lt;th&gt;Competitor Gap It Targets&lt;/th&gt;&lt;th&gt;Why It Matters&lt;/th&gt;&lt;th&gt;Confidence&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Drag-and-drop Gerber/Excellon import&lt;/td&gt;&lt;td&gt;FlatCAM/CNC friction, proprietary software fears&lt;/td&gt;&lt;td&gt;Turns a technical CAM workflow into an appliance workflow.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Automated registration / double-sided alignment&lt;/td&gt;&lt;td&gt;Manual via and board-flip errors&lt;/td&gt;&lt;td&gt;Raises Raven from “toy prototype” to serious PCB iteration tool.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Enclosed, clean, quiet operation&lt;/td&gt;&lt;td&gt;CNC dust/noise and chemical etching mess&lt;/td&gt;&lt;td&gt;Enables office, classroom, apartment, and lab use.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Standard copper-clad blanks&lt;/td&gt;&lt;td&gt;V-One ink shelf-life and lock-in&lt;/td&gt;&lt;td&gt;Removes storage penalty and closed consumables concern.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status high&quot;&gt;High&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Proof of 0.5mm/QFN-friendly traces/pads&lt;/td&gt;&lt;td&gt;Breadboard/dev-board ceiling and basic PCB limitations&lt;/td&gt;&lt;td&gt;Modern projects rely on fine-pitch SMT and RF-capable copper.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status med&quot;&gt;Strong&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Education-first workflow content&lt;/td&gt;&lt;td&gt;Generic tool documentation and Discord-only support&lt;/td&gt;&lt;td&gt;Builds trust, reduces returns, and creates searchable demand capture.&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;status expensive&quot;&gt;Assumption&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;card&quot; id=&quot;sources&quot;&gt;
+&lt;h2&gt;Source URLs and Internal Inputs&lt;/h2&gt;
+&lt;p class=&quot;small&quot;&gt;This standalone page uses the ALTA competitive-analysis workbook as the methodology model, the two Raven community-insights documents as VOC evidence, and the existing Raven market-report research as supporting context. URLs below are preserved from the community-insights documents where relevant.&lt;/p&gt;
+&lt;ol class=&quot;source-list&quot;&gt;
+&lt;li&gt;Internal workbook: ALTA EXAMPLE - Voltera_Validation CompetitiveAnalysis_Synthesis for Findings.xlsx&lt;/li&gt;
+&lt;li&gt;Internal document: Community Insights Analysis 01.docx&lt;/li&gt;
+&lt;li&gt;Internal document: Community Insights Analysis 02.docx&lt;/li&gt;
+&lt;li&gt;Internal report: ag-v1.6 Raven Market Report Kickstarter Analysis Data&lt;/li&gt;
+&lt;li&gt;reddit.com/r/AskElectronics/comments/1cv3k92/pcb_printer_recommendations/&lt;/li&gt;
+&lt;li&gt;eevblog.com/forum/manufacture/pcb-prototyping-in-house-vs-outsourcing/&lt;/li&gt;
+&lt;li&gt;github.com/FlatCAM/FlatCAM/issues/104&lt;/li&gt;
+&lt;li&gt;reddit.com/r/hobbycnc/comments/1da3f20/breaking_01mm_bits_on_pcb_isolation_milling/&lt;/li&gt;
+&lt;li&gt;reddit.com/r/AskElectronics/comments/1b3m810/rf_prototyping_conductive_ink_vs_copper/&lt;/li&gt;
+&lt;li&gt;kickstarter.com/projects/othermachine/the-othermill-custom-circuits-at-your-fingertips/comments&lt;/li&gt;
+&lt;li&gt;eevblog.com/forum/cnc-machining/desktop-cnc-dust-control-and-noise/&lt;/li&gt;
+&lt;li&gt;community.element14.com/products/technologies/pcb-design/f/forum/22904/protecting-ip-during-prototyping&lt;/li&gt;
+&lt;li&gt;community.element14.com/products/technologies/pcb-design/f/forum/18204/making-pcbs-affordable-osh-park&lt;/li&gt;
+&lt;li&gt;reddit.com/r/AskElectronics/comments/1g8m910/double_sided_pcb_via_alignment_headaches/&lt;/li&gt;
+&lt;li&gt;forum.snapmaker.com/t/user-experience-vs-raw-hardware-specs/12093&lt;/li&gt;
+&lt;li&gt;forums.adafruit.com/viewtopic.php?t=192410&lt;/li&gt;
+&lt;li&gt;reddit.com/r/AskElectronics/comments/1e5m18a/assembling_05mm_pitch_qfn_without_stencil/&lt;/li&gt;
+&lt;li&gt;eevblog.com/forum/eda/native-gerber-imports-in-desktop-tooling/&lt;/li&gt;
+&lt;li&gt;reddit.com/r/PrintedCircuitBoard/comments/1f4p110/repeatability-is-the-only-metric-that-matters/&lt;/li&gt;
+&lt;li&gt;eevblog.com/forum/manufacture/voltera-v-one-vs-diy-isolation-routing/&lt;/li&gt;
+&lt;li&gt;forum.kicad.info/t/the-value-of-forum-archiving-vs-discord/20104&lt;/li&gt;
+&lt;li&gt;community.element14.com/products/technologies/education-systems/f/forum/15402/how-the-maker-movement-learns&lt;/li&gt;
+&lt;li&gt;reddit.com/r/hobbycnc/comments/1da4v10/why_proprietary_spindle_mounts_must_die/&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/section&gt;
+&lt;/main&gt;
+
+&lt;script&gt;
+(function(){
+  document.querySelectorAll('.section-menu a[href^=&quot;#&quot;]').forEach(function(link){
+    link.addEventListener('click', function(event){
+      var id = link.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(target){
+        event.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        if(history &amp;&amp; history.replaceState){ history.replaceState(null, '', '#'+id); }
+      }
+    });
+  });
+})();
+&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+" title="Raven Competitive Analysis"></iframe>
+</div></section>
+</div>
 <script>
 (function () {
   const STORAGE_KEY = 'raven-report-theme';
@@ -1339,6 +1683,9 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
         --border:#334155 !important;
         --panel:#0f172a !important;
         --page:#020617 !important;
+        --neutral-bg:#1e293b !important;
+        --neutral-text:#e2e8f0 !important;
+        --neutral-border:#475569 !important;
       }
       :root[data-theme="dark"] body,
       body[data-theme="dark"] {
@@ -1411,6 +1758,10 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
         fill:#cbd5e1 !important;
       }
       :root[data-theme="dark"] .bar-label { fill:#f8fafc !important; }
+      :root[data-theme="dark"] .bar-label-left,
+      :root[data-theme="dark"] .bar-value {
+        color:#e2e8f0 !important;
+      }
       :root[data-theme="dark"] .matrix {
         background:linear-gradient(#0b1120,#0f172a) !important;
         border-color:#64748b !important;
@@ -1422,7 +1773,13 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
         background:#1e293b !important;
       }
       :root[data-theme="dark"] svg line { stroke:#475569 !important; }
-      :root[data-theme="dark"] svg text:not(.bar-label):not(.axis):not(.axis-label) { fill:#f8fafc !important; }
+      :root[data-theme="dark"] svg text:not(.bar-label):not(.barlabel):not(.axis):not(.axis-label):not(.maplabel) { fill:#f8fafc !important; }
+      :root[data-theme="dark"] .maplabel {
+        paint-order:stroke !important;
+        stroke:#0f172a !important;
+        stroke-width:3px !important;
+        stroke-linejoin:round !important;
+      }
     `;
   }
 
@@ -1474,6 +1831,5 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
   }
 })();
 </script>
-
 </body>
 </html>
