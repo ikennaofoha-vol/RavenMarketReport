@@ -101,38 +101,40 @@
     .global-legend {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
       background: #ffffff;
-      padding: 6px 12px;
+      padding: 10px 16px;
       border-radius: 9999px;
       border: 1px solid var(--line);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+      transform: scale(1.04);
+      transform-origin: right center;
     }
     .legend-label {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       color: var(--muted);
     }
     .legend-pills {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: center;
     }
     .legend-pill {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 8px;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
       border-radius: 9999px;
       border: 1px solid transparent;
     }
     .legend-pill .dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
     }
     
@@ -269,6 +271,111 @@
       .tab-controls { display: flex; flex-direction: column; width: 100%; }
       .tab-controls label { width: 100%; }
     }
+  
+
+    /* Day / night theme additions */
+    [data-theme="dark"] {
+      --green: #34d399;
+      --green-bg: rgba(16, 185, 129, 0.14);
+      --green-border: rgba(52, 211, 153, 0.35);
+      --green-text: #a7f3d0;
+
+      --blue: #60a5fa;
+      --blue-bg: rgba(59, 130, 246, 0.16);
+      --blue-border: rgba(96, 165, 250, 0.38);
+      --blue-text: #bfdbfe;
+
+      --yellow: #fbbf24;
+      --yellow-bg: rgba(245, 158, 11, 0.16);
+      --yellow-border: rgba(251, 191, 36, 0.35);
+      --yellow-text: #fde68a;
+
+      --orange: #fb923c;
+      --orange-bg: rgba(249, 115, 22, 0.16);
+      --orange-border: rgba(251, 146, 60, 0.35);
+      --orange-text: #fed7aa;
+
+      --ink: #e5e7eb;
+      --muted: #cbd5e1;
+      --line: #334155;
+      --page: #020617;
+      --tab-bg: rgba(15, 23, 42, 0.88);
+    }
+
+    [data-theme="dark"] body,
+    body[data-theme="dark"] {
+      background: var(--page);
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] .top-tabs {
+      background: var(--tab-bg);
+      border-bottom-color: var(--line);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+    }
+
+    [data-theme="dark"] .brand-title h1 { color: var(--ink); }
+    [data-theme="dark"] .brand-title span { color: var(--muted); }
+
+    [data-theme="dark"] .global-legend,
+    [data-theme="dark"] .tab-controls {
+      background: #0f172a;
+      border-color: var(--line);
+      color: var(--ink);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    }
+
+    [data-theme="dark"] .tab-controls label:hover {
+      background: rgba(30, 41, 59, 0.9);
+      color: var(--ink);
+    }
+
+    [data-theme="dark"] #tab-raven:checked ~ label[for="tab-raven"],
+    [data-theme="dark"] #tab-kickstarter:checked ~ label[for="tab-kickstarter"],
+    [data-theme="dark"] #tab-deep:checked ~ label[for="tab-deep"] {
+      background: #1e293b;
+      color: var(--blue-text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    [data-theme="dark"] .panel,
+    [data-theme="dark"] iframe {
+      background: var(--page);
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 9999px;
+      padding: 7px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .theme-toggle:hover { background: #f8fafc; }
+    [data-theme="dark"] .theme-toggle {
+      background: #1e293b;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    [data-theme="dark"] .theme-toggle:hover { background: #334155; }
+
+    .theme-toggle .theme-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
   </style>
 </head>
 <body>
@@ -293,6 +400,10 @@
         <span class="legend-pill orange" title="Inference / weak data"><span class="dot"></span>Inferences</span>
       </div>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" title="Switch day/night mode">
+      <span class="theme-icon" aria-hidden="true">☀️</span>
+      <span class="theme-text">Day</span>
+    </button>
   </div>
 
   <div class="tab-controls">
@@ -1196,5 +1307,173 @@ p{margin:0 0 14px} .subtitle{color:var(--muted);font-size:17px;max-width:960px} 
 &lt;/body&gt;
 &lt;/html&gt;' title="Research Data and Market Signals"></iframe></div></section>
 </div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'raven-report-theme';
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  function iframeDarkCss() {
+    return `
+      :root[data-theme="dark"] {
+        --green:#34d399 !important;
+        --green-bg:rgba(16,185,129,0.14) !important;
+        --green-border:rgba(52,211,153,0.35) !important;
+        --green-text:#a7f3d0 !important;
+        --blue:#60a5fa !important;
+        --blue-bg:rgba(59,130,246,0.16) !important;
+        --blue-border:rgba(96,165,250,0.38) !important;
+        --blue-text:#bfdbfe !important;
+        --yellow:#fbbf24 !important;
+        --yellow-bg:rgba(245,158,11,0.16) !important;
+        --yellow-border:rgba(251,191,36,0.35) !important;
+        --yellow-text:#fde68a !important;
+        --orange:#fb923c !important;
+        --orange-bg:rgba(249,115,22,0.16) !important;
+        --orange-border:rgba(251,146,60,0.35) !important;
+        --orange-text:#fed7aa !important;
+        --ink:#e5e7eb !important;
+        --muted:#cbd5e1 !important;
+        --line:#334155 !important;
+        --border:#334155 !important;
+        --panel:#0f172a !important;
+        --page:#020617 !important;
+      }
+      :root[data-theme="dark"] body,
+      body[data-theme="dark"] {
+        background:#020617 !important;
+        color:#e5e7eb !important;
+      }
+      :root[data-theme="dark"] .report,
+      :root[data-theme="dark"] .page,
+      :root[data-theme="dark"] .sources-page,
+      :root[data-theme="dark"] header,
+      :root[data-theme="dark"] .card,
+      :root[data-theme="dark"] .legend-item {
+        background:#0f172a !important;
+        color:#e5e7eb !important;
+        border-color:#334155 !important;
+        box-shadow:none !important;
+      }
+      :root[data-theme="dark"] table {
+        background:#0f172a !important;
+        color:#e5e7eb !important;
+      }
+      :root[data-theme="dark"] th {
+        background:#1e293b !important;
+        color:#f8fafc !important;
+        border-color:#334155 !important;
+      }
+      :root[data-theme="dark"] h1,
+      :root[data-theme="dark"] h2,
+      :root[data-theme="dark"] h3,
+      :root[data-theme="dark"] h4,
+      :root[data-theme="dark"] p,
+      :root[data-theme="dark"] li,
+      :root[data-theme="dark"] .subtitle,
+      :root[data-theme="dark"] .metric-value,
+      :root[data-theme="dark"] .source-list,
+      :root[data-theme="dark"] .sources {
+        color:#f8fafc;
+      }
+      :root[data-theme="dark"] td {
+        background:#0f172a !important;
+        color:inherit;
+        border-color:#334155 !important;
+      }
+      :root[data-theme="dark"] tr:nth-child(even) td {
+        background:#111827 !important;
+      }
+      :root[data-theme="dark"] .callout,
+      :root[data-theme="dark"] .callout.blue {
+        background:rgba(59,130,246,0.16) !important;
+      }
+      :root[data-theme="dark"] .callout.green { background:rgba(16,185,129,0.14) !important; }
+      :root[data-theme="dark"] .callout.yellow { background:rgba(245,158,11,0.16) !important; }
+      :root[data-theme="dark"] .callout.orange { background:rgba(249,115,22,0.16) !important; }
+      :root[data-theme="dark"] .pill.green { background:rgba(16,185,129,0.14) !important; color:#a7f3d0 !important; }
+      :root[data-theme="dark"] .pill.blue { background:rgba(59,130,246,0.16) !important; color:#bfdbfe !important; }
+      :root[data-theme="dark"] .pill.yellow { background:rgba(245,158,11,0.16) !important; color:#fde68a !important; }
+      :root[data-theme="dark"] .pill.orange { background:rgba(249,115,22,0.16) !important; color:#fed7aa !important; }
+      :root[data-theme="dark"] .green { color:#34d399 !important; }
+      :root[data-theme="dark"] .blue { color:#60a5fa !important; }
+      :root[data-theme="dark"] .yellow { color:#fbbf24 !important; }
+      :root[data-theme="dark"] .orange { color:#fb923c !important; }
+      :root[data-theme="dark"] .meta,
+      :root[data-theme="dark"] .small,
+      :root[data-theme="dark"] .metric-label,
+      :root[data-theme="dark"] .note,
+      :root[data-theme="dark"] .sub,
+      :root[data-theme="dark"] .axis-label,
+      :root[data-theme="dark"] .axis {
+        color:#cbd5e1 !important;
+        fill:#cbd5e1 !important;
+      }
+      :root[data-theme="dark"] .bar-label { fill:#f8fafc !important; }
+      :root[data-theme="dark"] .matrix {
+        background:linear-gradient(#0b1120,#0f172a) !important;
+        border-color:#64748b !important;
+      }
+      :root[data-theme="dark"] .dot {
+        background:#0f172a !important;
+      }
+      :root[data-theme="dark"] .bar-track {
+        background:#1e293b !important;
+      }
+      :root[data-theme="dark"] svg line { stroke:#475569 !important; }
+      :root[data-theme="dark"] svg text:not(.bar-label):not(.axis):not(.axis-label) { fill:#f8fafc !important; }
+    `;
+  }
+
+  function applyThemeToIframe(iframe, theme) {
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc || !doc.documentElement) return;
+      doc.documentElement.setAttribute('data-theme', theme);
+      if (doc.body) doc.body.setAttribute('data-theme', theme);
+      let style = doc.getElementById('raven-injected-theme-style');
+      if (!style) {
+        style = doc.createElement('style');
+        style.id = 'raven-injected-theme-style';
+        style.textContent = iframeDarkCss();
+        (doc.head || doc.documentElement).appendChild(style);
+      }
+    } catch (err) {
+      // srcdoc iframes should be accessible; fail silently if a browser restricts access.
+    }
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
+    if (toggle) {
+      const isDark = theme === 'dark';
+      toggle.setAttribute('aria-label', isDark ? 'Switch to day mode' : 'Switch to night mode');
+      toggle.querySelector('.theme-icon').textContent = isDark ? '🌙' : '☀️';
+      toggle.querySelector('.theme-text').textContent = isDark ? 'Night' : 'Day';
+    }
+    document.querySelectorAll('iframe').forEach((iframe) => applyThemeToIframe(iframe, theme));
+  }
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const preferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const initial = saved || preferred;
+  applyTheme(initial);
+
+  document.querySelectorAll('iframe').forEach((iframe) => {
+    iframe.addEventListener('load', () => applyThemeToIframe(iframe, root.getAttribute('data-theme') || initial));
+  });
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const next = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      localStorage.setItem(STORAGE_KEY, next);
+      applyTheme(next);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
